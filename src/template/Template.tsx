@@ -1,7 +1,7 @@
 import { Facebook, Instagram, Phone, Menu, X } from "lucide-react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import logo from "../assets/Bigode.png";
+import logo from "../assets/logo.png";
 
 const Template = () => {
   const navigate = useNavigate();
@@ -24,9 +24,9 @@ const Template = () => {
                 <>
                     <nav className="hidden md:flex gap-4 mt-2">
                         <a href="/" className="hover:text-neutral-200">Home</a>
-                        <a href="/sobre" className="hover:text-neutral-200">Sobre</a>
-                        <a href="/produtos" className="hover:text-neutral-200">Produtos</a>
-                        <a href="/servicos" className="hover:text-neutral-200">Serviços</a>
+                        <a onClick={()=>navigate('/sobre')} className="hover:text-neutral-200">Sobre</a>
+                        <a onClick={()=>navigate('/produtos')} className="hover:text-neutral-200">Produtos</a>
+                        <a onClick={()=>navigate('/servicos')} className="hover:text-neutral-200">Serviços</a>
                     </nav>
 
                     {/* Contatos e botão login para desktop */}
