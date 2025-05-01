@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Removed duplicate import of Template
 // Lazy load all components
