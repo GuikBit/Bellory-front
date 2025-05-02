@@ -2,6 +2,20 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+@theme {
+  --animate-wiggle: wiggle 0.3s ease-out;
+
+  @keyframes wiggle {
+    0% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+
 :root {
   font-family: Poppins, sans-serif;
   line-height: 1.5;

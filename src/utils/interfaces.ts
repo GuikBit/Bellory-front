@@ -23,3 +23,15 @@ export interface GlobalState {
     setUserLogado: (userLogado: UserLogado | null) => void;
 }
   
+
+export interface NovoAgendamento{
+    nome?: string;
+    telefone?: string;
+    cpf?: string;
+    data?: string;
+    horario?: string;
+    servicos?: any[];
+    observacao?: string;
+    status?: string;
+    barbeiro?: any;
+}

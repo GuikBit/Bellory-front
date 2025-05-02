@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from './theme/Theme.tsx';
 import { GlobalStateProvider } from './global/ContextGlobalState.tsx';
 import Routing from './route/Routing.tsx';
+import Tailwind from 'primereact/passthrough/tailwind';
 
 addLocale('pt-BR', {
   firstDayOfWeek: 0,
@@ -149,42 +150,42 @@ const MyDesignSystem: any = {
           leaveActiveClass: 'transition-all duration-150 ease-in',
           leaveToClass: 'opacity-0 scale-75'
       }
-      },
+  },
   carousel: {
-      root: 'flex flex-col',
-      content: 'flex flex-col overflow-auto',
-      container: ({ props }:{props: any}) => ({
-          className: classNames('flex', {
-              'flex-row': props.orientation !== 'vertical',
-              'flex-col': props.orientation == 'vertical'
-          })
-      }),
-      previousbutton: {
-          className: classNames('flex justify-center items-center self-center overflow-hidden relative shrink-0 grow-0', 'w-8 h-8 text-gray-600 border-0 bg-transparent rounded-full transition duration-200 ease-in-out mx-2')
-      },
-      itemscontent: 'overflow-hidden w-full',
-      itemscontainer: ({ props }:{props: any}) => ({
-          className: classNames('flex ', {
-              'flex-row': props.orientation !== 'vertical',
-              'flex-col h-full': props.orientation == 'vertical'
-          })
-      }),
-      item: ({ props }:{props: any}) => ({
-          className: classNames('flex shrink-0 grow', {
-              'w-1/3': props.orientation !== 'vertical',
-              'w-full': props.orientation == 'vertical'
-          })
-      }),
-      indicators: {
-          className: classNames('flex flex-row justify-center flex-wrap')
-      },
-      indicator: 'mr-2 mb-2',
-      indicatorbutton: ({ context }:{context: any}) => ({
-          className: classNames('w-8 h-2 transition duration-200 rounded-0', 'focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)] dark:focus:shadow-[0_0_0_0.2rem_rgba(147,197,253,0.5)]', {
-              'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600': !context.active,
-              'bg-blue-500 hover:bg-blue-600': context.active
-          })
-      })
+    root: 'flex flex-col',
+    content: 'flex flex-col overflow-auto',
+    container: ({ props }:{props: any}) => ({
+        className: classNames('flex', {
+            'flex-row': props.orientation !== 'vertical',
+            'flex-col': props.orientation == 'vertical'
+        })
+    }),
+    previousbutton: {
+        className: classNames('flex justify-center items-center self-center overflow-hidden relative shrink-0 grow-0', 'w-8 h-8 text-gray-600 cursor-pointer border-0 rounded-full transition duration-200 ease-in-out mx-2')
+    },
+    itemscontent: 'overflow-hidden w-full ',
+    itemscontainer: ({ props }:{props: any}) => ({
+        className: classNames('flex ', {
+            'flex-row': props.orientation !== 'vertical',
+            'flex-col h-full': props.orientation == 'vertical'
+        })
+    }),
+    item: ({ props }:{props: any}) => ({
+        className: classNames('flex shrink-0 grow', {
+            'w-1/3': props.orientation !== 'vertical',
+            'w-full': props.orientation == 'vertical'
+        })
+    }),
+    indicators: {
+        className: classNames('flex flex-row justify-center flex-wrap')
+    },
+    indicator: 'mr-2 mb-2',
+    indicatorbutton: ({ context }:{context: any}) => ({
+        className: classNames('w-8 h-2 transition duration-200 rounded-0', 'focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)] dark:focus:shadow-[0_0_0_0.2rem_rgba(147,197,253,0.5)]', {
+            'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600': !context.active,
+            'bg-blue-500 hover:bg-blue-600': context.active
+        })
+    })
   },
   dialog: {
       root: ({ state }:{state: any}) => ({
@@ -513,6 +514,24 @@ const MyDesignSystem: any = {
       spinner: 'absolute top-0 bottom-0 left-0 right-0 m-auto w-full h-full transform origin-center animate-spin',
       circle: 'text-red-500 progress-spinner-circle'
   },
+  card: {
+    root: {
+        className: classNames(
+            'bg-white text-gray-700 shadow-md rounded-md', // Background, text color, box shadow, and border radius.
+            'dark:bg-gray-900 dark:text-white ' //dark
+        )
+    },
+    body: 'p-5', // Padding.
+    title: 'text-2xl font-bold mb-2', // Font size, font weight, and margin bottom.
+    subtitle: {
+        className: classNames(
+            'font-normal mb-2 text-gray-600', // Font weight, margin bottom, and text color.
+            'dark:text-white/60 ' //dark
+        )
+    },
+    content: 'py-5', // Vertical padding.
+    footer: 'pt-5' // Top padding.
+}
 };
 
 const queryClient = new QueryClient({
@@ -526,7 +545,7 @@ const queryClient = new QueryClient({
 });
 
 createRoot(document.getElementById('root')!).render(
-  <PrimeReactProvider value={{ locale: 'pt-BR',unstyled: true, pt: MyDesignSystem  }} >
+  <PrimeReactProvider value={{ locale: 'pt-BR',unstyled: true, pt: MyDesignSystem }} >
     <QueryClientProvider client={ queryClient }>
       <ThemeProvider defaultTheme='dark' >
         <GlobalStateProvider>
