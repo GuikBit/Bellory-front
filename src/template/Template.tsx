@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Phone, Menu, X, SunMoon, Sun, MoonStar } from "lucide-react";
+import { Facebook, Instagram, Phone, Menu, X, Sun, MoonStar } from "lucide-react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/logo.png";

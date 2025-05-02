@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from './theme/Theme.tsx';
 import { GlobalStateProvider } from './global/ContextGlobalState.tsx';
 import Routing from './route/Routing.tsx';
-import Tailwind from 'primereact/passthrough/tailwind';
 
 addLocale('pt-BR', {
   firstDayOfWeek: 0,

@@ -1,9 +1,5 @@
-import { useTheme } from "../theme/Theme";
-
 import background from "../assets/barbearia01.jpg";
 import logo from "../assets/logo.png";
-import { Card } from "primereact/card";
-import { Button } from "primereact/button";
 import Produtos from "../components/Produtos";
 import Servicos from "../components/Servicos";
 import Agendamento from "../components/Agendamento";

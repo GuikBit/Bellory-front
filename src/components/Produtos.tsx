@@ -1,8 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
-import { Carousel, CarouselResponsiveOption } from 'primereact/carousel';
-import { Tag } from 'primereact/tag';
+import { Carousel } from 'primereact/carousel';
 
 const list = [
     {
@@ -140,44 +139,44 @@ interface Product {
 
 export default function Produtos() {
     const [products, setProducts] = useState<Product[]>([]);
-    const responsiveOptions: CarouselResponsiveOption[] = [
-        {
-            breakpoint: '1400px',
-            numVisible: 2,
-            numScroll: 1
-        },
-        {
-            breakpoint: '1199px',
-            numVisible: 3,
-            numScroll: 1
-        },
-        {
-            breakpoint: '767px',
-            numVisible: 2,
-            numScroll: 1
-        },
-        {
-            breakpoint: '575px',
-            numVisible: 1,
-            numScroll: 1
-        }
-    ];
+    // const responsiveOptions: CarouselResponsiveOption[] = [
+    //     {
+    //         breakpoint: '1400px',
+    //         numVisible: 2,
+    //         numScroll: 1
+    //     },
+    //     {
+    //         breakpoint: '1199px',
+    //         numVisible: 3,
+    //         numScroll: 1
+    //     },
+    //     {
+    //         breakpoint: '767px',
+    //         numVisible: 2,
+    //         numScroll: 1
+    //     },
+    //     {
+    //         breakpoint: '575px',
+    //         numVisible: 1,
+    //         numScroll: 1
+    //     }
+    // ];
 
-    const getSeverity = (product: Product) => {
-        switch (product.inventoryStatus) {
-            case 'INSTOCK':
-                return 'success';
+    // const getSeverity = (product: Product) => {
+    //     switch (product.inventoryStatus) {
+    //         case 'INSTOCK':
+    //             return 'success';
 
-            case 'LOWSTOCK':
-                return 'warning';
+    //         case 'LOWSTOCK':
+    //             return 'warning';
 
-            case 'OUTOFSTOCK':
-                return 'danger';
+    //         case 'OUTOFSTOCK':
+    //             return 'danger';
 
-            default:
-                return null;
-        }
-    };
+    //         default:
+    //             return null;
+    //     }
+    // };
 
     useEffect(() => {
         setProducts(list.slice(0, 9));

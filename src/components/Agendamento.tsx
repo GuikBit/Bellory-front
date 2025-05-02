@@ -1,12 +1,9 @@
 
-import { Button } from 'primereact/button';
-import { StepperPanel } from 'primereact/stepperpanel';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Stepper, { Step } from './Fragments/Stepper';
 import { Ban, Calendar, Clock, IdCard, Phone, User } from 'lucide-react';
 import { NovoAgendamento } from '../utils/interfaces';
 import { formatCPF, formatTelefone } from '../utils/functions';
-import { div } from 'framer-motion/client';
 
 const Agendamento = () => {
     const list = [
@@ -52,7 +49,7 @@ const Agendamento = () => {
         },
     ]
 
-    const stepperRef = useRef(null);
+    // const stepperRef = useRef(null);
 
     const [novo, setNovo] = useState<NovoAgendamento | null>(null);
 
@@ -240,7 +237,7 @@ const Agendamento = () => {
                 </div>
                 <div className="mt-4">
                     <h3 className="text-md font-semibold mb-2">Serviços selecionados</h3>
-                    {novo?.servicos?.map((item, index) => (
+                    {novo?.servicos?.map((item) => (
                         <div className='flex justify-between items-center mx-4 my-1' key={item.id}>
                             <p className="text-sm">{item.title}</p>
                             <p className="text-sm">R${item.price.toFixed(2)}</p>
