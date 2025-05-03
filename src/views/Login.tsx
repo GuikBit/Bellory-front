@@ -1,14 +1,13 @@
 // Login.tsx
 import { useState } from 'react';
 import background from "../assets/barbearia01.jpg";
-import logo from "../assets/logo.png";
 import { Eye, EyeOff, IdCard, KeyRound, LogIn, Mail, Pen, User } from 'lucide-react';
 
 const Login = () => {
 
     const [isLogin, setIsLogin] = useState(true);
     const [isSenhaLogin, setIsSenhaLogin] = useState(false);
-    const [isSenhaRegister, setIsSenhaRegister] = useState(false);
+    // const [isSenhaRegister, setIsSenhaRegister] = useState(false);
 
 
 
