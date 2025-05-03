@@ -15,7 +15,7 @@ const Login = () => {
         <div className=" min-h-auto relative ">          
           <img src={background} alt="background" className="w-full h-210 object-cover blur-[2px]" />
           <div className="absolute inset-0 p-4 bg-black/20 dark:bg-black/70 w-full h-210 flex items-center justify-center">
-            <form autoComplete='off' className="flex flex-col gap-4 py-14 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-8 w-[450px] rounded-2xl shadow-lg">
+            <form autoComplete='off' className="flex flex-col gap-4 py-14 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-8 w-full rounded-2xl shadow-lg">
               <div className="flex flex-col">
                 <label htmlFor="login" className="mb-1 font-medium flex items-center">
                   <User size={20} className='mr-2'/>
@@ -78,7 +78,7 @@ const Login = () => {
         <div className=" min-h-auto relative">          
           <img src={background} alt="background" className="w-full h-210 object-cover blur-[2px]" />
           <div className="absolute inset-0 p-4 bg-black/20 dark:bg-black/70 w-full h-210 flex items-center justify-center">
-            <form autoComplete='off' className="flex flex-col gap-4  border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-8 w-[450px] rounded-2xl shadow-lg">
+            <form autoComplete='off' className="flex flex-col gap-4  border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-8 w-full rounded-2xl shadow-lg">
               <div className="flex flex-col">
                 <label htmlFor="nome" className="mb-1 font-medium flex items-center">
                   <Pen size={20} className='mr-2'/>
