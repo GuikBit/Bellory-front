@@ -62,13 +62,19 @@ const Template = () => {
                   </div>
               </div>
           </div>
-          
-          <button
-            className="md:hidden ml-auto"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+
+          <div className="flex md:hidden items-center gap-3">
+              <div className="flex gap-4">
+                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer">
+                  <ShoppingCart size={24} className="hover:text-neutral-300 cursor-pointer" />
+                </span>
+              </div> 
+              <div className="flex gap-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer">
+                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </span>
+              </div> 
+          </div>
         </div>
 
 

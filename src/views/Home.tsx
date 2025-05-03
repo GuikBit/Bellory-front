@@ -34,7 +34,7 @@ const Home = () => {
                   <Servicos/>  
                 </div>                
             </div>
-            <div className="flex flex-col items-center justify-center mt-10 p-4">
+            <div className="flex flex-col items-center justify-center mt-10">
                 <h1 className="text-4xl font-bold mb-4">Nossos produtos</h1>
                 <div className="w-full h-auto ">
                     <Produtos />

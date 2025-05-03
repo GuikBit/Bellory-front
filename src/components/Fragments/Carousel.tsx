@@ -216,11 +216,11 @@ const Carousel: React.FC<CarouselProps> = (props) => {
       // Vamos confiar no e.preventDefault() por enquanto.
       style={{ touchAction: verticalScrollNav ? 'none' : 'auto' }} // Tenta desabilitar scroll nativo SÓ SE nav vertical ativa
     >
-      <div className="grid grid-cols-12 overflow-hidden"> {/* Adicionado overflow-hidden aqui para conter o motion.div */}
+      <div className="grid grid-cols-12 overflow-hidden m-0 p-0 gap-0"> {/* Adicionado overflow-hidden aqui para conter o motion.div */}
 
         {/* Botão Anterior */}
         {items.length > itemsPerPage && (
-          <div className='col-span-1 bg-neutral-100 dark:bg-neutral-950 flex items-center justify-center z-10'> {/* Ajustado col-span */}
+          <div className=' bg-neutral-100 dark:bg-neutral-950 flex items-center justify-center z-10'> {/* Ajustado col-span */}
             <button
               onClick={prev}
               className="bg-neutral-300 dark:bg-neutral-700/40 hover:dark:bg-neutral-700/80 hover:cursor-pointer bg-opacity-40 text-white p-2 rounded-full hover:bg-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition-opacity duration-200 z-10"
@@ -261,7 +261,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
 
         {/* Botão Próximo */}
         {items.length > itemsPerPage && (
-           <div className='col-span-1 bg-neutral-100 dark:bg-neutral-950 flex items-center justify-center z-10'> {/* Ajustado col-span */}
+           <div className=' bg-neutral-100 dark:bg-neutral-950 flex items-center justify-center z-10 p-3'> {/* Ajustado col-span */}
             <button
               onClick={next}
               className="bg-neutral-300 dark:bg-neutral-700/40 hover:dark:bg-neutral-700/80 hover:cursor-pointer bg-opacity-40 text-white p-2 rounded-full hover:bg-opacity-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition-opacity duration-200 z-10"
