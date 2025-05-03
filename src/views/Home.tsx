@@ -28,21 +28,21 @@ const Home = () => {
                   Apresentação 
                 </div>                
             </div>
-            <div className="flex flex-col items-center justify-center mt-10  p-16 ">
-                <h1 className="text-4xl font-bold mb-4">Serviços que oferecemos</h1>
-                <div className="w-full h-auto  p-4 bg-blue-100">
+            <div className="flex flex-col items-center justify-center mt-10 p-4">
+                <h1 className="text-4xl font-bold mb-4">Nossos serviços</h1>
+                <div className="md:w-7xl h-auto  md:p-4">
                   <Servicos/>  
                 </div>                
             </div>
-            <div className="flex flex-col items-center justify-center mt-10">
+            <div className="flex flex-col items-center justify-center mt-10 p-4">
                 <h1 className="text-4xl font-bold mb-4">Nossos produtos</h1>
-                <div className="w-full h-auto p-4 bg-blue-100">
+                <div className="w-full h-auto ">
                     <Produtos />
                 </div>
             </div>
             <div className="flex flex-col  items-center justify-center mt-10">
                 <h1 className="text-4xl font-bold mb-4">Agendamento Rápido</h1>
-                <div className="w-full p-4 h-auto">
+                <div className="w-full p-4 h-auto  pb-24">
                     <Agendamento />
                 </div>
             </div>

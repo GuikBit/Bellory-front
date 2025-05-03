@@ -33,22 +33,29 @@ const list = [
 
 const Servicos = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-            {list.map((item, index) => (
-                <Card
-                    key={index}
-                    className="shadow-4 border-round-xl overflow-hidden transition-transform hover:scale-105"
-                    title={item.title}
-                    header={<img alt={item.title} src={item.image} className="w-full h-60 object-cover border-round-top-xl" />}
-                    footer={
-                        <div className="text-right">
-                            <Button label="Agendar" icon="pi pi-calendar" className="p-button-outlined p-button-sm mt-3" />
-                        </div>
-                    }
-                >
-                    <p className="text-900 text-sm leading-relaxed">{item.description}</p>
-                </Card>
-            ))}
+        <div className="flex flex-col items-center justify-center mt-10 p-4">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                {list.map((item, index) => (
+                    <Card
+                        key={index}
+                        className="shadow-4 border-round-xl overflow-hidden transition-transform hover:scale-102 bg-white dark:bg-neutral-900"
+                        title={item.title}
+                        header={<img alt={item.title} src={item.image} className="w-full h-60 object-cover border-round-top-xl" />}
+                        footer={
+                            <div className="text-right">
+                                <Button label="Agendar" icon="pi pi-calendar" className="p-button-outlined p-button-sm mt-3" />
+                            </div>
+                        }
+                    >
+                        <p className="text-900 text-sm leading-relaxed">{item.description}</p>
+                    </Card>
+                ))}
+            </div>
+
+            <div className="flex flex-col items-center justify-center mt-10 p-4">
+                <Button label="Ver mais serviços" text icon="pi pi-calendar" className="p-button-outlined p-button-sm mt-3" />
+            </div>
         </div>
     );
 };

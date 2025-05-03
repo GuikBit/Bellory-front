@@ -1,7 +1,10 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
-import { Carousel } from 'primereact/carousel';
+import { CarouselResponsiveOption } from 'primereact/carousel';
+import Carousel from './Fragments/Carousel';
+import { PlusIcon, ShoppingCart } from 'lucide-react';
+
 
 const list = [
     {
@@ -139,54 +142,24 @@ interface Product {
 
 export default function Produtos() {
     const [products, setProducts] = useState<Product[]>([]);
-    // const responsiveOptions: CarouselResponsiveOption[] = [
-    //     {
-    //         breakpoint: '1400px',
-    //         numVisible: 2,
-    //         numScroll: 1
-    //     },
-    //     {
-    //         breakpoint: '1199px',
-    //         numVisible: 3,
-    //         numScroll: 1
-    //     },
-    //     {
-    //         breakpoint: '767px',
-    //         numVisible: 2,
-    //         numScroll: 1
-    //     },
-    //     {
-    //         breakpoint: '575px',
-    //         numVisible: 1,
-    //         numScroll: 1
-    //     }
-    // ];
 
-    // const getSeverity = (product: Product) => {
-    //     switch (product.inventoryStatus) {
-    //         case 'INSTOCK':
-    //             return 'success';
-
-    //         case 'LOWSTOCK':
-    //             return 'warning';
-
-    //         case 'OUTOFSTOCK':
-    //             return 'danger';
-
-    //         default:
-    //             return null;
-    //     }
-    // };
+    const customItemsToShow = {
+        default: 1, // 1 item em telas extra pequenas (mobile)
+        sm: 1,      // 2 itens em telas pequenas (>= 640px)
+        md: 2,      // 3 itens em telas médias (>= 768px)
+        lg: 3,      // 4 itens em telas grandes (>= 1024px)
+      };
 
     useEffect(() => {
         setProducts(list.slice(0, 9));
     }, []);
 
     const productTemplate = (product: Product) => {
+
         const hasDiscount = (product.discount && product.discount > 0) ? true : false;
     
         return (
-            <div className="bg-neutral-900 text-white rounded-2xl shadow-lg p-4 m-2 relative overflow-hidden hover:scale-[1.02] transition-transform">
+            <div className="bg-white dark:bg-neutral-900 dark:hover:bg-neutral-800/70 text-white rounded-2xl shadow-lg p-4 m-2 relative overflow-hidden hover:scale-[1.02] transition-transform">
                 {/* Tag de Promoção */}
                 {hasDiscount && (
                     <div className="absolute top-4 -left-1 -rotate-45 bg-gradient-to-r from-green-700 to-emerald-800 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md z-10">
@@ -205,7 +178,7 @@ export default function Produtos() {
     
                 <div className="h-20">
                     {/* Informações */}
-                    <h4 className="text-lg font-semibold mb-1">{product.name}</h4>
+                    <h4 className="text-lg text-black dark:text-white font-semibold mb-1">{product.name}</h4>
                     {hasDiscount && (
                         <h6 className="text-sm line-through text-red-400">R${product.price},99</h6>
                     )}
@@ -218,10 +191,19 @@ export default function Produtos() {
                 </div>
     
                 {/* Botão */}
-                <div className="mt-4">
+                <div className="mt-4 flex justify-between items-center">
                     <Button
-                        label="Adicionar no carrinho"
-                        className="bg-yellow-500 hover:bg-yellow-600 border-none text-black font-medium py-2 px-4 rounded-lg transition"
+                        icon={()=> <PlusIcon size={18} className="text-blue-400 mr-2" />}
+                        label="Ver mais"
+                        size='small'
+                        text
+                        className="bg-blue-500 hover:bg-blue-200 border-none text-black py-1 px-2 rounded-lg transition"
+                    />
+                    <Button
+                        icon={()=> <ShoppingCart size={18} className="text-white dark:text-black mr-2" />}
+                        label="Adicionar"
+                        size='small'
+                        className="bg-blue-500 hover:bg-blue-600 border-none text-black py-1 px-2 rounded-lg transition"
                     />
                 </div>
             </div>
@@ -230,9 +212,18 @@ export default function Produtos() {
     
     
     return (
-        <div className="p-4">
-            <Carousel value={products} numScroll={1} numVisible={3} itemTemplate={productTemplate} circular autoplayInterval={3000} />
-            {/* <Carousel value={products} numVisible={3} numScroll={1} itemTemplate={productTemplate} circular autoplayInterval={3000} /> */}
+        <div className="">
+            <Carousel
+                items={products}
+                renderItem={productTemplate}
+                autoplay={true}
+                interval={4000}
+                itemsToShow={customItemsToShow} // Passa a configuração customizada
+                className="max-w-100 md:max-w-2xl lg:max-w-3xl 2xl:max-w-7xl mx-auto" // Aumenta um pouco a largura máxima para acomodar mais itens
+            />            
+            <div className="flex flex-col items-center justify-center p-4">
+                <Button label="Ver mais produtos" text icon="pi pi-calendar" className="p-button-outlined p-button-sm mt-3" />
+            </div>
         </div>
     )
 }

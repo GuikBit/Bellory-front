@@ -170,10 +170,12 @@ const MyDesignSystem: any = {
         })
     }),
     item: ({ props }:{props: any}) => ({
-        className: classNames('flex shrink-0 grow', {
-            'w-1/3': props.orientation !== 'vertical',
-            'w-full': props.orientation == 'vertical'
-        })
+        className: classNames('flex shrink-0 grow', 
+        //     {
+        //     'w-1/3': props.orientation !== 'vertical',
+        //     'w-full': props.orientation == 'vertical'
+        // }
+    )
     }),
     indicators: {
         className: classNames('flex flex-row justify-center flex-wrap')

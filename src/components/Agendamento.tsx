@@ -47,7 +47,7 @@ const Agendamento = () => {
             title: "Matheus",
             image: "https://www.shutterstock.com/image-photo/barber-shop-hair-clipper-black-600nw-2302169201.jpg",
         },
-    ]
+    ];
 
     // const stepperRef = useRef(null);
 

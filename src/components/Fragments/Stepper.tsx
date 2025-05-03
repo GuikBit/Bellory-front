@@ -87,7 +87,7 @@ import React, {
         {...rest}
       >
         <div
-          className={`mx-auto w-full border border-neutral-300 dark:border-neutral-700/70 dark:bg-neutral-900 max-w-3xl rounded-4xl shadow-xl ${stepCircleContainerClassName}`}
+          className={`mx-auto bg-white dark:bg-neutral-900 w-full border border-neutral-300 dark:border-neutral-700/70 max-w-3xl rounded-4xl shadow-xl ${stepCircleContainerClassName}`}
         //   style={{ border: "1px solid #222" }}
         >
           <div
