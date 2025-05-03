@@ -171,10 +171,10 @@ const MyDesignSystem: any = {
     }),
     item: ({ props }:{props: any}) => ({
         className: classNames('flex shrink-0 grow', 
-        //     {
-        //     'w-1/3': props.orientation !== 'vertical',
-        //     'w-full': props.orientation == 'vertical'
-        // }
+            {
+            'w-1/3': props.orientation !== 'vertical',
+            'w-full': props.orientation == 'vertical'
+        }
     )
     }),
     indicators: {

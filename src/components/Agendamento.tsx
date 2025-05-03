@@ -186,11 +186,11 @@ const Agendamento = () => {
                             ? "border-green-500 shadow-green-400/50"
                             : "border-neutral-300 dark:border-neutral-600"
                     } 
-                    bg-neutral-200/50 hover:bg-neutral-200/80 flex justify-center items-center dark:bg-neutral-800/70 transition-colors duration-200`}
+                    bg-neutral-200/50 hover:bg-neutral-700/40 flex justify-center items-center dark:bg-neutral-800/70 transition-colors duration-200`}
             >
                 <div className='flex flex-col items-center '>
-                    <Ban size={100} className="text-neutral-200 absolute top-1/5" />
-                    <h4 className="text-lg font-semibold text-black z-1">Sem preferência</h4>
+                    <Ban size={100} className="text-neutral-200 dark:text-neutral-700/40 absolute top-1/5" />
+                    <h4 className="text-lg font-semibold text-black dark:text-white text-center z-1">Sem preferência</h4>
                 </div>
             </div>
             {barbeiros.map((item) => (

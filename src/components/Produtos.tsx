@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
-import { CarouselResponsiveOption } from 'primereact/carousel';
 import Carousel from './Fragments/Carousel';
 import { PlusIcon, ShoppingCart } from 'lucide-react';
 

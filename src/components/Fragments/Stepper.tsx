@@ -7,6 +7,7 @@ import React, {
     ReactNode,
   } from "react";
   import { motion, AnimatePresence, Variants } from "framer-motion";
+import { ArrowLeft, ArrowRight, Save } from "lucide-react";
   
   interface StepperProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
@@ -145,22 +146,25 @@ import React, {
                 {currentStep !== 1 && (
                   <button
                     onClick={handleBack}
-                    className={`duration-350 rounded px-2 py-1 transition ${
+                    className={`duration-350 cursor-pointer border border-neutral-400/80 dark:border-neutral-700 rounded-full py-1.5 px-3.5 transition flex items-center justify-center  ${
                       currentStep === 1
-                        ? "pointer-events-none opacity-50 text-neutral-400"
-                        : "text-neutral-400 hover:text-neutral-700"
+                        ? "pointer-events-none opacity-50 dark:text-neutral-400 "
+                        : "text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 hover:text-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                     }`}
                     {...backButtonProps}
                   >
+                    <ArrowLeft size={16} className="mr-2" />
                     {backButtonText}
                   </button>
                 )}
                 <button
                   onClick={isLastStep ? handleComplete : handleNext}
-                  className="duration-350 flex items-center justify-center rounded-full bg-green-500 py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:bg-green-600 active:bg-green-700"
+                  className={`duration-350 flex items-center cursor-pointer justify-center rounded-full  py-1.5 px-3.5 font-medium tracking-tight  transition
+                    ${isLastStep? 'text-white bg-green-600 hover:bg-green-700 active:bg-green-800':'text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-700'}`}
                   {...nextButtonProps}
                 >
-                  {isLastStep ? "Complete" : nextButtonText}
+                  {isLastStep ? <Save size={16} className="mr-2" /> : <ArrowRight size={16} className="mr-2" />}
+                  {isLastStep ? "Agendar" : nextButtonText}
                 </button>
               </div>
             </div>

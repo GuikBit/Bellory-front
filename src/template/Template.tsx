@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Phone, Menu, X, Sun, MoonStar, Map, Calendar, Info, ShoppingCart } from "lucide-react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import { useTheme } from "../theme/Theme";
