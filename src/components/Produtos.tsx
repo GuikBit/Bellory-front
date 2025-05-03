@@ -161,7 +161,7 @@ export default function Produtos() {
             <div className="bg-white dark:bg-neutral-900 dark:hover:bg-neutral-800/70 text-white rounded-2xl shadow-lg p-4 m-2 relative overflow-hidden hover:scale-[1.02] transition-transform">
                 {/* Tag de Promoção */}
                 {hasDiscount && (
-                    <div className="absolute top-4 -left-1 -rotate-45 bg-gradient-to-r from-green-700 to-emerald-800 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md z-10">
+                    <div className="absolute top-4 -left-1 -rotate-45 bg-gradient-to-r from-green-700 to-emerald-800 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md z-1">
                         {product.discount}% OFF
                     </div>
                 )}
@@ -218,7 +218,7 @@ export default function Produtos() {
                 autoplay={true}
                 interval={4000}
                 itemsToShow={customItemsToShow} // Passa a configuração customizada
-                className="max-w-100 md:max-w-2xl lg:max-w-3xl 2xl:max-w-7xl mx-auto" // Aumenta um pouco a largura máxima para acomodar mais itens
+                className="max-w-full md:max-w-2xl lg:max-w-3xl 2xl:max-w-7xl mx-auto " // Aumenta um pouco a largura máxima para acomodar mais itens
             />            
             <div className="flex flex-col items-center justify-center p-4">
                 <Button label="Ver mais produtos" text icon="pi pi-calendar" className="p-button-outlined p-button-sm mt-3" />

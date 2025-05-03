@@ -42,7 +42,7 @@ export default defineConfig({
             }
           ],
           id: "Barbearia do Bigode",
-          orientation: "portrait",
+          orientation: 'natural',
           categories: [
             "business",
             "lifestyle"
