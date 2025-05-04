@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import { useTheme } from "../theme/Theme";
-import Logo3D from "../components/Fragments/Logo3D";
 
 const Template = () => {
   const navigate = useNavigate();

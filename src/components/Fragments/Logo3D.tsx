@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Suspense, useState } from 'react';
+import { useRef, useEffect, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useGLTF, OrbitControls, useAnimations } from '@react-three/drei';
@@ -13,7 +13,7 @@ function Model({ isInteracting, scale, ...props }:{isInteracting: boolean, scale
   const clonedScene = useRef(scene.clone());
 
   // --- Animações Embutidas (se houver) ---
-  const { actions } = useAnimations(animations, group);
+//   const { actions } = useAnimations(animations, group);
 
   // --- Efeito para ajustar a posição e rotação inicial ---
   useEffect(() => {

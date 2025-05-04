@@ -1,5 +1,4 @@
 import background from "../assets/barbearia01.jpg";
-import logo from "../assets/logo.png";
 import Produtos from "../components/Produtos";
 import Servicos from "../components/Servicos";
 import Agendamento from "../components/Agendamento";
