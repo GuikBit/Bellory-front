@@ -1,12 +1,12 @@
 import { useRef, useEffect, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useGLTF, OrbitControls, useAnimations } from '@react-three/drei';
+import { useGLTF, OrbitControls } from '@react-three/drei';
 
 // Componente que carrega e exibe o modelo GLB
 function Model({ isInteracting, scale, ...props }:{isInteracting: boolean, scale: number}) {
   const group = useRef<THREE.Group>(null!);
-  const { scene, animations } = useGLTF('/logoBarbearia3Dv2.glb');
+  const { scene } = useGLTF('/logoBarbearia3Dv2.glb');
 
   // Clone a cena para evitar modificar o cache de useGLTF se o componente for montado várias vezes
   // e ajuste as propriedades do clone.
