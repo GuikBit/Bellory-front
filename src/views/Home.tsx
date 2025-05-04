@@ -3,9 +3,12 @@ import logo from "../assets/logo.png";
 import Produtos from "../components/Produtos";
 import Servicos from "../components/Servicos";
 import Agendamento from "../components/Agendamento";
+import Logo3D from "../components/Fragments/Logo3D";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const Home = () => {    
 
+    const isMobile = useIsMobile();
 
 
 
@@ -15,10 +18,8 @@ const Home = () => {
                 <img src={background} alt="background" className="w-full h-210 object-cover blur-[2px]" />
                 <div className="absolute inset-0 bg-black/20 dark:bg-black/70 w-full h-210 flex items-center justify-center">
                     <div className="flex flex-col items-center justify-center">
-                        <img src={logo} alt="Logo do pagina" className="w-100 object-cover " />
-                        <div className="text-white text-6xl font-bold mt-4">
-                            Bigode
-                        </div>
+                        
+                        <Logo3D scale={isMobile?3:4}/>
                     </div>
                 </div>
             </div>
