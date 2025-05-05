@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import Carousel from './Fragments/Carousel';
 import { PlusIcon, ShoppingCart } from 'lucide-react';
+import { Product } from '../utils/interfaces';
+import { useGlobalState } from '../global/ContextGlobalState';
 
 
 const list = [
@@ -125,22 +127,11 @@ const list = [
     },
 ]
 
-interface Product {
-    id: string;
-    code: string;
-    name: string;
-    description: string;
-    image: string;
-    price: number;
-    category: string;
-    quantity: number;
-    inventoryStatus: string;
-    rating: number;
-    discount: number;
-}
+
 
 export default function Produtos() {
     const [products, setProducts] = useState<Product[]>([]);
+    const { adicionarProdutoCarrinho } = useGlobalState();
 
     const customItemsToShow = {
         default: 1, // 1 item em telas extra pequenas (mobile)
@@ -203,6 +194,7 @@ export default function Produtos() {
                         label="Adicionar"
                         size='small'
                         className="bg-blue-500 hover:bg-blue-600 border-none text-black py-1 px-2 rounded-lg transition"
+                        onClick={()=>adicionarProdutoCarrinho(product)}
                     />
                 </div>
             </div>

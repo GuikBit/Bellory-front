@@ -17,7 +17,7 @@ const Home = () => {
                 <img src={background} alt="background" className="w-full h-210 object-cover blur-[2px]" />
                 <div className="absolute inset-0 bg-black/20 dark:bg-black/70 w-full h-210 flex items-center justify-center">
                     <div className="flex flex-col items-center justify-center">                        
-                        <Logo3D scale={isMobile?3:4}/>
+                        {/* <Logo3D scale={isMobile?3:4}/> */}
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ const Sobre = lazy(() => import("../views/Sobre"));
 const Produtos = lazy(() => import("../views/Produtos"));
 const Servicos = lazy(() => import("../views/Servicos"));
 const NotFound = lazy(() => import("../views/NotFound"));
+const Carrinho = lazy(() => import("../views/Carrinho"));
 const Login = lazy(() => import("../views/Login"));
 
 const LoadingFallback = () => (
@@ -20,7 +21,7 @@ function Routing() {
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').then(
+      navigator.serviceWorker.register('/regiserSW.js').then(
         (registration) => {
           console.log('SW registered: ', registration);
         },
@@ -40,6 +41,7 @@ function Routing() {
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/servicos" element={<Servicos />} />
+            <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Route>        

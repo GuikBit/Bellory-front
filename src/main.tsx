@@ -532,6 +532,51 @@ const MyDesignSystem: any = {
     },
     content: 'py-5', // Vertical padding.
     footer: 'pt-5' // Top padding.
+  },
+  badge: {
+    root: ({ props }:{props: any}) => ({
+        className: classNames(
+            'rounded-full p-0 text-center inline-block',
+            'bg-blue-500 text-white font-bold',
+            {
+                'bg-gray-500 ': props.severity == 'secondary',
+                'bg-green-500 ': props.severity == 'success',
+                'bg-blue-500 ': props.severity == 'info',
+                'bg-orange-500 ': props.severity == 'warning',
+                'bg-purple-500 ': props.severity == 'help',
+                'bg-red-500 ': props.severity == 'danger'
+            },
+            {
+                'text-xs min-w-[1.5rem] h-[1.5rem] leading-[1.5rem]': props.size == null,
+                'text-lg min-w-[2.25rem] h-[2.25rem] leading-[2.25rem]': props.size == 'large',
+                'text-2xl min-w-[3rem] h-[3rem] leading-[3rem]': props.size == 'xlarge'
+            }
+        )
+    })
+  },
+  avatar: {
+    root: ({ props, state }:{props: any, state: any}) => ({
+        className: classNames(
+            'flex items-center justify-center',
+            'bg-gray-300 dark:bg-gray-800',
+            {
+                'rounded-lg': props.shape == 'square',
+                'rounded-full': props.shape == 'circle'
+            },
+            {
+                'text-base h-8 w-8': props.size == null || props.size == 'normal',
+                'w-12 h-12 text-xl': props.size == 'large',
+                'w-16 h-16 text-2xl': props.size == 'xlarge'
+            },
+            {
+                '-ml-4 border-2 border-white dark:border-gray-900': state.isNestedInAvatarGroup
+            }
+        )
+    }),
+    image: 'h-full w-full'
+},
+avatargroup: {
+    root: 'flex items-center'
 }
 };
 

@@ -3,11 +3,13 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import { useTheme } from "../theme/Theme";
+import { useGlobalState } from "../global/ContextGlobalState";
 
 const Template = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {theme ,setTheme} = useTheme();
+  const {carrinho} = useGlobalState();
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-neutral-100 dark:bg-neutral-950">
@@ -31,8 +33,11 @@ const Template = () => {
           
           <div className="hidden md:flex items-center">
               <div className="flex gap-4">
-                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer">
+                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer relative" onClick={()=>navigate('/carrinho')}>
                   <ShoppingCart size={24} className="hover:text-neutral-300 cursor-pointer" />
+                  {carrinho?.produtos && carrinho?.produtos?.length > 0 ? (
+                    <span className="w-4 h-4  rounded-full bg-blue-500 absolute bottom-0 right-0 flex items-center justify-center text-xs"> {carrinho?.produtos?.length} </span>
+                  ) : null}                  
                 </span>
               </div> 
 
@@ -44,6 +49,7 @@ const Template = () => {
                       Login
                   </button>
               </div> 
+
               <div className="ml-10">
                   <div className="border border-neutral-600 dark:border-neutral-800 hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer"
                       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -65,8 +71,12 @@ const Template = () => {
 
           <div className="flex md:hidden items-center gap-3">
               <div className="flex gap-4">
-                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer">
-                  <ShoppingCart size={24} className="hover:text-neutral-300 cursor-pointer" />
+                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer relative">
+                <ShoppingCart size={24} className="hover:text-neutral-300 cursor-pointer" />
+                  {carrinho?.produtos && carrinho?.produtos?.length > 0 ? (
+                    <span className="w-4 h-4  rounded-full bg-blue-500 absolute bottom-0 right-0 flex items-center justify-center text-xs"> {carrinho?.produtos?.length} </span>
+                  ) : null} 
+                  
                 </span>
               </div> 
               <div className="flex gap-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
