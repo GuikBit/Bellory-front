@@ -71,7 +71,7 @@ const Template = () => {
 
           <div className="flex md:hidden items-center gap-3">
               <div className="flex gap-4">
-                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer relative">
+                <span className=" hover:bg-neutral-700/30 p-2 rounded-lg shadow-lg cursor-pointer relative" onClick={()=>navigate('/carrinho')}>
                 <ShoppingCart size={24} className="hover:text-neutral-300 cursor-pointer" />
                   {carrinho?.produtos && carrinho?.produtos?.length > 0 ? (
                     <span className="w-4 h-4  rounded-full bg-blue-500 absolute bottom-0 right-0 flex items-center justify-center text-xs"> {carrinho?.produtos?.length} </span>
