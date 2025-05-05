@@ -239,14 +239,14 @@ const Agendamento = () => {
                     <h3 className="text-md font-semibold mb-2">Serviços selecionados</h3>
                     {novo?.servicos?.map((item) => (
                         <div className='flex justify-between items-center mx-4 my-1' key={item.id}>
-                            <p className="text-sm">{item.title}</p>
-                            <p className="text-sm">R${item.price.toFixed(2)}</p>
+                            <p className="text-sm">{item.nome}</p>
+                            <p className="text-sm">R${item.preco.toFixed(2)}</p>
                         </div>
                     ))}
                     <hr className=" border-1 border-neutral-200 my-2 mx-4" />
                     <div className='flex justify-between items-center mx-4 my-1'>
                         <p></p>
-                        <p className="text-sm font-normal">Total: <span className='font-semibold'>R${novo?.servicos?.reduce((acc, item) => acc + item.price, 0).toFixed(2)}</span></p>
+                        <p className="text-sm font-normal">Total: <span className='font-semibold'>R${novo?.servicos?.reduce((acc, item) => acc + item.preco, 0).toFixed(2)}</span></p>
                     </div>
                 </div>
                 <div className='mt-2'>
@@ -254,7 +254,7 @@ const Agendamento = () => {
                     <div className='flex justify-between gap-2 mx-4'>
                         <div className='flex flex-col items-center'>
                             {/* <img src={novo?.barbeiro?.image} alt={novo?.barbeiro?.title} className='w-20 h-20 object-cover rounded-full' /> */}
-                            <p className="text-sm">{novo?.barbeiro?.title}</p>
+                            <p className="text-sm">{novo?.barbeiro?.nome}</p>
                         </div>
                         <div>
                             <p className="text-sm flex items-center mr-1">

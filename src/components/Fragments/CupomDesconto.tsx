@@ -43,7 +43,7 @@ export const CupomDesconto = ({ aplicarDesconto }: CupomDescontoProps) => {
           <input
             type="text"
             value={cupomDigitado}
-            onChange={(e) => setCupomDigitado(e.target.value)}
+            onChange={(e) => setCupomDigitado(e.target.value.toUpperCase())}
             onBlur={()=>{validarCupom()}}
             className={`flex-1 outline-none placeholder:text-neutral-600  `}
             placeholder="Digite o seu cupom"
