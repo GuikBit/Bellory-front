@@ -1,12 +1,12 @@
 "use client"
 
-import { type HTMLAttributes, forwardRef } from "react"
-import { motion } from "framer-motion"
+import { forwardRef } from "react"
+import { motion, type HTMLMotionProps } from "framer-motion"
 import { UTILS } from "../../styles/theme-guid"
 
 const { cn } = UTILS
 
-interface BarbeariaCardProps extends HTMLAttributes<HTMLDivElement> {
+interface BarbeariaCardProps extends HTMLMotionProps<"div"> {
   hover?: boolean
   bordered?: boolean
   elevated?: boolean

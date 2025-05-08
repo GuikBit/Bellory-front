@@ -149,7 +149,7 @@ export default function BarbeariaStepper({
                   className="bg-bigode-neutral-800 hover:bg-bigode-neutral-700 text-white border border-bigode-neutral-700 rounded-lg py-2.5 px-4 transition flex items-center justify-center"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  {...backButtonProps}
+                  // {...backButtonProps}
                 >
                   <ArrowLeft size={16} className="mr-2" />
                   {backButtonText}
@@ -165,7 +165,7 @@ export default function BarbeariaStepper({
                   }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                {...nextButtonProps}
+                // {...nextButtonProps}
               >
                 {isLastStep ? <Save size={16} className="mr-2" /> : <ArrowRight size={16} className="mr-2" />}
                 {isLastStep ? "Agendar" : nextButtonText}

@@ -1,9 +1,9 @@
-import { Facebook, Instagram, Phone, Menu, X, Sun, MoonStar, ShoppingCart } from "lucide-react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import logo from "../assets/logo.png";
-import { useTheme } from "../theme/Theme";
-import { useGlobalState } from "../global/ContextGlobalState";
+//import { Facebook, Instagram, Phone, Menu, X, Sun, MoonStar, ShoppingCart } from "lucide-react";
+import { Outlet, } from "react-router-dom";
+// import { useState } from "react";
+// import logo from "../assets/logo.png";
+// import { useTheme } from "../theme/Theme";
+// import { useGlobalState } from "../global/ContextGlobalState";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
