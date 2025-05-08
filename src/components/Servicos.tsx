@@ -1,63 +1,102 @@
-import { Card } from "primereact/card";
-import { Button } from "primereact/button";
+"use client"
+
+import { motion } from "framer-motion"
+import { Scissors } from "lucide-react"
 
 const list = [
-    {
-        id: '1000',
-        title: "Corte",
-        image: "https://images.unsplash.com/photo-1647140655214-e4a2d914971f?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        description: "Corte moderno e personalizado para o formato do seu rosto. Estilo, elegância e confiança em cada detalhe.",
-        price: 50.00,
+  {
+    id: "1001",
+    title: "Corte",
+    image:
+      "https://images.unsplash.com/photo-1647140655214-e4a2d914971f?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "Corte moderno e personalizado para o formato do seu rosto. Estilo, elegância e confiança em cada detalhe.",
+    price: 50.0,
+  },
+  {
+    id: "1002",
+    title: "Barba",
+    image:
+      "https://images.unsplash.com/photo-1599351431618-317f6a5f9a6b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description: "Barba feita com navalha, toalha quente e hidratação. Realce seu visual com cuidado profissional.",
+    price: 25.0,
+  },
+  {
+    id: "1003",
+    title: "Sobrancelha",
+    image:
+      "https://s1-unimed-dev.us-southeast-1.linodeobjects.com/images/products/seller_143/Modelagem-e-design-de-sobrancelha-masculina_cfac09e2_7d31_40ce_97ab_629fd41641a0.webp",
+    description: "Remoção dos excessos de pelos para uma aparência limpa e natural, sem exageros.",
+    price: 17.0,
+  },
+  {
+    id: "1004",
+    title: "Pigmentação de Barba",
+    image: "https://www.lamafiabarbearia.com.br//wp-content/uploads/2022/08/bg-box-pigmentacao-barba.jpg",
+    description: "Cobertura de falhas e fios brancos com técnica artesanal. Efeito natural e visual renovado.",
+    price: 13.0,
+  },
+]
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
     },
-    {
-        id: '1000',
-        title: "Barba",
-        image: "https://images.unsplash.com/photo-1599351431618-317f6a5f9a6b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        description: "Barba feita com navalha, toalha quente e hidratação. Realce seu visual com cuidado profissional.",
-        price: 25.00,
-    },
-    {   id: '1000',
-        title: "Sobrancelha",
-        image: "https://s1-unimed-dev.us-southeast-1.linodeobjects.com/images/products/seller_143/Modelagem-e-design-de-sobrancelha-masculina_cfac09e2_7d31_40ce_97ab_629fd41641a0.webp",
-        description: "Remoção dos excessos de pelos para uma aparência limpa e natural, sem exageros.",
-        price: 17.00
-    },
-    {
-        id: '1000',
-        title: "Pigmentação de Barba",
-        image: "https://www.lamafiabarbearia.com.br//wp-content/uploads/2022/08/bg-box-pigmentacao-barba.jpg",
-        description: "Cobertura de falhas e fios brancos com técnica artesanal. Efeito natural e visual renovado.",
-        price: 13.00,
-    }
-];
+  },
+}
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
 
 const Servicos = () => {
-    return (
-        <div className="flex flex-col items-center justify-center mt-10 p-4">
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-                {list.map((item, index) => (
-                    <Card
-                        key={index}
-                        className="shadow-4 border-round-xl overflow-hidden transition-transform hover:scale-102 bg-white dark:bg-neutral-900"
-                        title={item.title}
-                        header={<img alt={item.title} src={item.image} className="w-full h-60 object-cover border-round-top-xl" />}
-                        footer={
-                            <div className="text-right">
-                                <Button label="Agendar" icon="pi pi-calendar" className="p-button-outlined p-button-sm mt-3" />
-                            </div>
-                        }
-                    >
-                        <p className="text-900 text-sm leading-relaxed">{item.description}</p>
-                    </Card>
-                ))}
+  return (
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+    >
+      {list.map((service) => (
+        <motion.div
+          key={service.id}
+          variants={item}
+          whileHover={{ y: -10, transition: { duration: 0.3 } }}
+          className="bg-neutral-900 rounded-lg overflow-hidden shadow-lg"
+        >
+          <div className="relative h-56 overflow-hidden">
+            <img
+              src={service.image || "/placeholder.svg"}
+              alt={service.title}
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 p-4">
+              <h3 className="text-xl font-bold text-white">{service.title}</h3>
+              <p className="text-amber-500 font-semibold">R$ {service.price.toFixed(2)}</p>
             </div>
+          </div>
 
-            <div className="flex flex-col items-center justify-center mt-10 p-4">
-                <Button label="Ver mais serviços" text icon="pi pi-calendar" className="p-button-outlined p-button-sm mt-3" />
-            </div>
-        </div>
-    );
-};
+          <div className="p-4">
+            <p className="text-gray-300 text-sm mb-4">{service.description}</p>
 
-export default Servicos;
+            <motion.button
+              className="w-full py-2 bg-amber-600 hover:bg-amber-700 text-white rounded flex items-center justify-center gap-2 transition-colors duration-300"
+              whileTap={{ scale: 0.95 }}
+            >
+              <Scissors size={16} />
+              AGENDAR
+            </motion.button>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  )
+}
+
+export default Servicos

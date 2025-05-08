@@ -55,6 +55,20 @@ export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
     setCarrinho(novoCarrinho); // Atualiza estado + localStorage
   };
 
+  // const removerProdutoCarrinho = (produtoId: string) => {
+  //   setCarrinho((prevCarrinho: any) => ({
+  //     ...prevCarrinho,
+  //     produtos: prevCarrinho.produtos.filter((p: { id: string; }) => p.id !== produtoId),
+  //   }))
+  // }
+
+  // const atualizarQuantidadeProduto = (produtoId: string, quantidade: number) => {
+  //   setCarrinho((prevCarrinho: { produtos: any[]; }) => ({
+  //     ...prevCarrinho,
+  //     produtos: prevCarrinho.produtos.map((p: { id: string; }) => (p.id === produtoId ? { ...p, quantidade } : p)),
+  //   }))
+  // }
+
   return (
     <GlobalStateContext.Provider
       value={{ userLogado, setUserLogado, carrinho, setCarrinho, adicionarProdutoCarrinho }}
