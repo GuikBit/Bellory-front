@@ -11,9 +11,11 @@ import { useIsMobile } from "../hooks/useIsMobile"
 import Logo3D from "../components/Fragments/Logo3D"
 import Feedback from "../components/Feedback"
 import PlanoAssinatura from "../components/PlanoAssinaturas"
+import { useGlobalState } from "../global/ContextGlobalState"
 
 const Home = () => {
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
+  const {setNovoAgendamento} = useGlobalState();
   const scrollRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: scrollRef,
@@ -91,12 +93,13 @@ const Home = () => {
           </motion.p>
 
           <motion.button
-            className="mt-8 px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-md font-medium transition-all duration-300 flex items-center"
+            className="mt-8 px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-md font-medium transition-all duration-300 flex items-center cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.8 }}
+            onClick={()=>setNovoAgendamento(true)}
           >
             AGENDE AGORA
           </motion.button>
@@ -252,7 +255,7 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto bg-neutral-900 p-6 rounded-lg shadow-lg">
+          <div className="max-w-4xl h-auto mx-auto bg-neutral-900 p-6 rounded-lg shadow-lg">
             <Agendamento />
           </div>
         </div>

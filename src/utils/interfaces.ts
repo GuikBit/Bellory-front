@@ -42,7 +42,7 @@ export interface NovoAgendamento {
     servicos?: Servico[];
     observacao?: string;
     status?: 'pendente' | 'confirmado' | 'cancelado';
-    barbeiro?: Barbeiro;
+    barbeiro?: Barbeiro | null;
 }
 export interface Product {
     id: string;
@@ -78,6 +78,9 @@ export interface CarrinhoCompras {
 }
 
 export interface GlobalState {
+    novoAgendamento: boolean; 
+    setNovoAgendamento: (item: boolean)=>void;
+
     userLogado: UserLogado | null;
     setUserLogado: (userLogado: UserLogado | null) => void;
 

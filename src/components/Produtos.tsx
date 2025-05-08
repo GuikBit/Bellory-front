@@ -146,19 +146,21 @@ export default function Produtos() {
         </div>
 
         {/* Botões */}
-        <div className="mt-4 flex justify-between items-center">
+        <div className="mt-14 flex justify-between items-center">
           <Button
-            icon={() => <PlusIcon size={18} className="text-white mr-2" />}
+            icon={() => <PlusIcon size={18} className="!text-amber-500 mr-2" />}
             label="Ver mais"
             size="small"
+            security="warning"
             text
-            className="bg-neutral-700 hover:bg-neutral-600 border-none text-white py-1 px-2 rounded-lg transition"
+            className="bg-neutral-700 !text-amber-500 hover:bg-neutral-600 border-none py-1 px-2 rounded-lg transition"
           />
           <Button
             icon={() => <ShoppingCart size={18} className="text-white mr-2" />}
             label="Adicionar"
             size="small"
-            className="bg-amber-600 hover:bg-amber-700 border-none text-white py-1 px-2 rounded-lg transition"
+            security="warning"
+            className="!bg-amber-600 !hover:bg-amber-700 border-none !text-white py-1 px-2 rounded-lg transition"
             onClick={() => adicionarProdutoCarrinho(product)}
           />
         </div>

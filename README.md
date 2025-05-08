@@ -1,54 +1,78 @@
-# React + TypeScript + Vite
+# Barbearia Bigode - Guia de Identidade Visual
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositório contém o guia de identidade visual e componentes para o projeto Barbearia Bigode.
 
-Currently, two official plugins are available:
+## Visão Geral
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A identidade visual da Barbearia Bigode é caracterizada por:
 
-## Expanding the ESLint configuration
+- **Paleta de cores**: Tons de preto e cinza escuro com destaque em âmbar/dourado
+- **Tipografia**: Fonte moderna e legível (Inter)
+- **Elementos visuais**: Ícones de tesoura, separadores estilizados, efeitos sutis
+- **Animações**: Transições suaves e efeitos interativos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Componentes Principais
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+O projeto inclui componentes reutilizáveis que seguem a identidade visual:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **BarbeariaButton**: Botões estilizados com variantes (primário, secundário, outline, texto)
+- **BarbeariaInput**: Campos de entrada com suporte para ícones e mensagens de erro
+- **BarbeariaCard**: Cards com efeitos de hover e estilos consistentes
+- **BarbeariaTitle**: Títulos de seção com separadores decorativos
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Uso
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Para manter a consistência visual em todo o projeto, utilize os componentes e estilos definidos neste guia.
+
+### Exemplo de uso:
+
+\`\`\`tsx
+import { BarbeariaButton, BarbeariaTitle } from '@/components/ui'
+import { Scissors } from 'lucide-react'
+
+export default function ExamplePage() {
+  return (
+    <div className="container mx-auto px-4 py-12">
+      <BarbeariaTitle 
+        title="NOSSOS SERVIÇOS" 
+        subtitle="Oferecemos uma variedade de serviços premium para atender às suas necessidades."
+      />
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Conteúdo */}
+      </div>
+      
+      <BarbeariaButton 
+        variant="primary" 
+        rightIcon={<Scissors size={16} />}
+      >
+        Agendar Agora
+      </BarbeariaButton>
+    </div>
+  )
+}
+\`\`\`
+
+## Cores
+
+As cores principais da identidade visual são:
+
+- **Âmbar (Primária)**: #D97706
+- **Preto/Cinza Escuro (Fundo)**: #171717, #262626
+- **Branco/Cinza Claro (Texto)**: #FFFFFF, #D4D4D4
+
+## Animações
+
+Utilize as animações definidas para criar uma experiência interativa:
+
+- Efeitos de hover nos botões e cards
+- Transições suaves entre estados
+- Animações de entrada para elementos da página
+
+## Responsividade
+
+Todos os componentes são responsivos e se adaptam a diferentes tamanhos de tela.
+
+---
+
+© Barbearia Bigode. Todos os direitos reservados.

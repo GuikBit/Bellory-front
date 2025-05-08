@@ -5,16 +5,17 @@ import logo from "../assets/logo.png";
 import { useTheme } from "../theme/Theme";
 import { useGlobalState } from "../global/ContextGlobalState";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const Template = () => {
-  const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {theme ,setTheme} = useTheme();
-  const {carrinho} = useGlobalState();
+  // const navigate = useNavigate();
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const {theme ,setTheme} = useTheme();
+  // const {carrinho} = useGlobalState();
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-neutral-100 dark:bg-neutral-950">
-      <header className="bg-neutral-900 text-neutral-200 p-4 sticky top-0 shadow-lg z-50">
+      {/* <header className="bg-neutral-900 text-neutral-200 p-4 sticky top-0 shadow-lg z-50">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img
@@ -131,69 +132,13 @@ const Template = () => {
             </button>
           </div>
         )}
-      </header>
+      </header> */}
+
+      <Header/>
 
       <main className="flex-grow text-black dark:text-white">
         <Outlet />
       </main>
-
-      {/* <footer className="bg-neutral-800 dark:bg-neutral-900 text-white py-8">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 px-4 text-sm">
-          
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Siga nas Redes</h3>
-            <div className="flex gap-4">
-              <a href="https://facebook.com/suabebearia" target="_blank" rel="noopener noreferrer">
-                <Facebook size={20} className="hover:text-blue-400" />
-              </a>
-              <a href="https://instagram.com/suabebearia" target="_blank" rel="noopener noreferrer">
-                <Instagram size={20} className="hover:text-pink-400" />
-              </a>
-              <a href="tel:+5511999999999">
-                <Phone size={20} className="hover:text-green-400" />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-2 flex items-center">
-              <Map size={18} className="mr-2" /> Endereço
-            </h3>
-            <p>Rua dos Cabelos, 123</p>
-            <p>Bairro Estilo - São Paulo, SP</p>
-            <p>CEP: 01234-567</p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-2 flex items-center">
-              <Calendar size={18} className="mr-2" />
-              Horário de Funcionamento
-            </h3>
-            <p>Seg - Sex: 9h - 19h</p>
-            <p>Sábado: 9h - 17h</p>
-            <p>Domingo: Fechado</p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-2 flex items-center">
-              <Info size={18} className="mr-2" />
-              Informações
-            </h3>
-            <p>Email: contato@barbearia.com</p>
-            <p>Telefone: (11) 99999-9999</p>
-          </div>
-
-          <div className="col-span-1 md:col-span-4 text-center mt-4">
-            <p className="mt-2 text-neutral-400 text-xs">
-              Desenvolvido por <a href="https://guikbit-portifolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">GUIKBIT</a>
-            </p>
-          </div>
-        </div>
-
-        <div className="text-center text-xs text-neutral-400 mt-6 border-t border-neutral-700 pt-4">
-          &copy; {new Date().getFullYear()} Barbearia. Todos os direitos reservados.
-        </div>
-      </footer> */}
 
       <Footer />
     </div>

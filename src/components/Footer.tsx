@@ -122,17 +122,21 @@ const Footer = () => {
 
             <div className="space-y-3">
               <div className="flex items-start">
-                <Clock size={18} className="text-amber-600 mt-1 mr-3 flex-shrink-0" />
+                {/* <Clock size={18} className="text-amber-600 mt-1 mr-3 flex-shrink-0" /> */}
                 <div>
+                    
                   <div className="flex justify-between mb-1">
+                    <Clock size={18} className="text-amber-600 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-300">Segunda - Sexta</span>
                     <span className="text-amber-500 font-medium">9h - 19h</span>
                   </div>
                   <div className="flex justify-between mb-1">
+                    <Clock size={18} className="text-amber-600 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-300">Sábado</span>
                     <span className="text-amber-500 font-medium">9h - 17h</span>
                   </div>
                   <div className="flex justify-between">
+                    <Clock size={18} className="text-amber-600 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-300">Domingo</span>
                     <span className="text-red-400 font-medium">Fechado</span>
                   </div>

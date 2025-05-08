@@ -574,10 +574,10 @@ const MyDesignSystem: any = {
         )
     }),
     image: 'h-full w-full'
-},
-avatargroup: {
+  },
+  avatargroup: {
     root: 'flex items-center'
-}
+  }
 };
 
 const queryClient = new QueryClient({

@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Variáveis de cores da Barbearia Bigode */
+  --bigode-amber: #d97706;
+  --bigode-amber-light: #f59e0b;
+  --bigode-amber-dark: #b45309;
+
+  --bigode-neutral-900: #171717;
+  --bigode-neutral-800: #262626;
+  --bigode-neutral-700: #404040;
+  --bigode-neutral-600: #525252;
+  --bigode-neutral-500: #737373;
+  --bigode-neutral-400: #a3a3a3;
+  --bigode-neutral-300: #d4d4d4;
+  --bigode-neutral-200: #e5e5e5;
+  --bigode-neutral-100: #f5f5f5;
+}
+
+/* Estilos base */
+body {
+  font-family: "Inter", sans-serif;
+  @apply bg-bigode-neutral-900 text-white;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bigode-neutral-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-bigode-amber rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-bigode-amber-light;
+}
+
+/* Classes de utilidade para a Barbearia Bigode */
+@layer components {
+  /* Botões */
+  .btn-bigode-primary {
+    @apply bg-bigode-amber hover:bg-bigode-amber-dark text-white font-medium rounded-lg px-4 py-2.5 transition-colors duration-300;
+  }
+
+  .btn-bigode-secondary {
+    @apply bg-bigode-neutral-800 hover:bg-bigode-neutral-700 text-white font-medium rounded-lg border border-bigode-neutral-700 px-4 py-2.5 transition-colors duration-300;
+  }
+
+  .btn-bigode-outline {
+    @apply bg-transparent border border-bigode-amber text-bigode-amber hover:bg-bigode-amber/10 font-medium rounded-lg px-4 py-2.5 transition-colors duration-300;
+  }
+
+  /* Inputs */
+  .input-bigode {
+    @apply w-full px-4 py-2.5 bg-bigode-neutral-800 border border-bigode-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-bigode-amber focus:border-transparent text-white placeholder-bigode-neutral-500 transition-colors duration-300;
+  }
+
+  .input-bigode-icon {
+    @apply pl-10 pr-4;
+  }
+
+  /* Cards */
+  .card-bigode {
+    @apply bg-bigode-neutral-800 rounded-xl border border-bigode-neutral-700 overflow-hidden shadow-bigode-lg;
+  }
+
+  .card-bigode-hover {
+    @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-bigode-xl;
+  }
+
+  /* Títulos */
+  .title-bigode {
+    @apply text-3xl md:text-4xl font-bold text-white;
+  }
+
+  .subtitle-bigode {
+    @apply text-xl font-semibold text-white;
+  }
+
+  /* Separadores */
+  .divider-bigode {
+    @apply flex items-center my-4;
+  }
+
+  .divider-bigode::before,
+  .divider-bigode::after {
+    @apply h-[1px] w-full bg-bigode-neutral-700;
+    content: "";
+  }
+
+  .divider-bigode-text {
+    @apply px-3 text-bigode-neutral-400;
+  }
+}
+
+/* Animações */
+@keyframes scissorSnip {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.8);
+  }
+}
+
+.animate-scissor-snip {
+  animation: scissorSnip 1s ease-in-out infinite;
+}
+
+/* Modo escuro (já é o padrão, mas mantido para compatibilidade) */
+.dark {
+  color-scheme: dark;
+}

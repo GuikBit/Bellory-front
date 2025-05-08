@@ -11,7 +11,8 @@ export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
     return stored ? JSON.parse(stored) : null;
   });
 
-  // Inicializa o carrinho a partir do localStorage
+  const [novoAgendamento, setNovoAgendamento] = useState<boolean>(false);
+
   const [carrinho, setCarrinhoState] = useState<CarrinhoCompras | null>(() => {
     const stored = localStorage.getItem('carrinho');
     return stored ? JSON.parse(stored) : { produtos: [] };
@@ -71,7 +72,7 @@ export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <GlobalStateContext.Provider
-      value={{ userLogado, setUserLogado, carrinho, setCarrinho, adicionarProdutoCarrinho }}
+      value={{ userLogado, setUserLogado, carrinho, setCarrinho, adicionarProdutoCarrinho, novoAgendamento, setNovoAgendamento }}
     >
       {children}
     </GlobalStateContext.Provider>
