@@ -235,7 +235,7 @@ const Home = () => {
       </section>
 
       {/* Agendamento */}
-      <section className="py-20 bg-neutral-800">
+      <section className="py-20 bg-neutral-900">
         <div className="container mx-auto px-4">
           <motion.div
             className="flex flex-col items-center justify-center mb-12"
@@ -255,7 +255,7 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="max-w-4xl h-auto mx-auto bg-neutral-900 p-6 rounded-lg shadow-lg">
+          <div className="max-w-4xl h-auto mx-auto rounded-lg shadow-lg">
             <Agendamento />
           </div>
         </div>

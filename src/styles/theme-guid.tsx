@@ -40,7 +40,7 @@ export const COLORS = {
 
   // Cores de estado
   state: {
-    success: "#10B981", // emerald-500
+    success: "#00C950", // emerald-500
     error: "#EF4444", // red-500
     warning: "#F59E0B", // amber-500
     info: "#3B82F6", // blue-500

@@ -43,6 +43,8 @@ export interface NovoAgendamento {
     observacao?: string;
     status?: 'pendente' | 'confirmado' | 'cancelado';
     barbeiro?: Barbeiro | null;
+    dataAgendamento?: Date | null ;
+    horaAgendamento?: Date | null ;
 }
 export interface Product {
     id: string;

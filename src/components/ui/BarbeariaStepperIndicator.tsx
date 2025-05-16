@@ -50,8 +50,8 @@ export function BarbeariaStepIndicator({
           },
           complete: {
             scale: 1,
-            backgroundColor: COLORS.primary.main,
-            borderColor: COLORS.primary.main,
+            backgroundColor: COLORS.state.success,
+            borderColor: COLORS.state.success,
             color: "#FFFFFF",
           },
         }}

@@ -31,14 +31,14 @@ const BarbeariaInput = forwardRef<HTMLInputElement, BarbeariaInputProps>(
         <div className="relative">
           {leftIcon && (
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className={cn("text-bigode-neutral-500", isFocused && "text-bigode-amber")}>{leftIcon}</span>
+              <span className={cn( isFocused && "text-amber-500")}>{leftIcon}</span>
             </div>
           )}
 
           <input
             ref={ref}
             className={cn(
-              "bg-bigode-neutral-800 border border-bigode-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-bigode-amber focus:border-transparent text-white placeholder-bigode-neutral-500 transition-colors duration-300",
+              "bg-neutral-800 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-white placeholder-neutral-500 transition-colors duration-300",
               leftIcon ? "pl-10" : "pl-4",
               rightIcon ? "pr-10" : "pr-4",
               "py-2.5",

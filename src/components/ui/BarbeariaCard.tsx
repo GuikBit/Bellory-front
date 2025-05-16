@@ -18,9 +18,9 @@ const BarbeariaCard = forwardRef<HTMLDivElement, BarbeariaCardProps>(
       <motion.div
         ref={ref}
         className={cn(
-          "bg-bigode-neutral-800 rounded-xl overflow-hidden",
-          bordered && "border border-bigode-neutral-700",
-          elevated && "shadow-bigode-lg",
+          "bg-neutral-800 rounded-xl overflow-hidden",
+          bordered && "border border-neutral-700",
+          elevated && "shadow-lg",
           className,
         )}
         whileHover={hover ? { y: -5, transition: { duration: 0.3 } } : {}}

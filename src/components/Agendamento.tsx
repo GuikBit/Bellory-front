@@ -7,6 +7,7 @@ import type { NovoAgendamento } from "../utils/interfaces"
 import { formatCPF, formatTelefone } from "../utils/functions"
 import BarbeariaStepper, { BarbeariaStep } from "./ui/BarbeariaStepper"
 import { BarbeariaInput } from "./ui"
+import { Calendar as CalendarInput } from "primereact/calendar"
 
 const Agendamento = () => {
   const list = [
@@ -63,6 +64,8 @@ const Agendamento = () => {
     cpf: "",
     servicos: [],
     barbeiro: null,
+    dataAgendamento: null,
+    horaAgendamento: null,
   })
 
   const handlerSetServicos = (item: any) => {
@@ -127,7 +130,7 @@ const Agendamento = () => {
           </div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4 pb-10 md:px-16">
           <BarbeariaInput
             label="Nome completo"
             leftIcon={<User size={18} />}
@@ -165,15 +168,15 @@ const Agendamento = () => {
           <p className="text-neutral-400 text-sm mt-2">Selecione os serviços desejados</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pb-10">
           {list.map((item) => (
             <motion.div
               key={item.id}
               onClick={() => handlerSetServicos(item)}
               className={`cursor-pointer rounded-lg overflow-hidden shadow-lg relative ${
                 isSelecionado(item.id)
-                  ? "ring-2 ring-bigode-amber ring-offset-2 ring-offset-bigode-neutral-900"
-                  : "border border-bigode-neutral-700"
+                  ? "ring-2 ring-amber-500 ring-offset-2 ring-offset-neutral-900"
+                  : "border border-neutral-700"
               }`}
               whileHover={{ y: -5, transition: { duration: 0.3 } }}
               initial={{ opacity: 0, y: 20 }}
@@ -189,14 +192,14 @@ const Agendamento = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
 
                 {isSelecionado(item.id) && (
-                  <div className="absolute top-2 right-2 bg-bigode-amber rounded-full p-1">
+                  <div className="absolute top-2 right-2 bg-amber-500 rounded-full p-1">
                     <Check size={16} className="text-white" />
                   </div>
                 )}
 
                 <div className="absolute bottom-0 left-0 p-3">
                   <h3 className="text-lg font-bold text-white">{item.title}</h3>
-                  <p className="text-bigode-amber font-semibold">R$ {item.price.toFixed(2)}</p>
+                  <p className={`${isSelecionado(item.id)? 'text-amber-500':'text-white'}  font-semibold`}>R$ {item.price.toFixed(2)}</p>
                 </div>
               </div>
             </motion.div>
@@ -215,7 +218,7 @@ const Agendamento = () => {
           <p className="text-neutral-400 text-sm mt-2">Escolha seu barbeiro preferido</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-10">
           <motion.div
             key={0}
             onClick={() =>
@@ -225,10 +228,10 @@ const Agendamento = () => {
                 image: "https://www.shutterstock.com/image-photo/hairdresser-barbershop-barber-600nw-2484467169.jpg",
               })
             }
-            className={`cursor-pointer rounded-lg overflow-hidden shadow-lg relative bg-bigode-neutral-800 flex flex-col items-center justify-center h-40 ${
+            className={`cursor-pointer rounded-lg overflow-hidden shadow-lg relative bg-neutral-800 flex flex-col items-center justify-center h-40 ${
               isBarbeiroSelecionado(0)
-                ? "ring-2 ring-bigode-amber ring-offset-2 ring-offset-bigode-neutral-900"
-                : "border border-bigode-neutral-700"
+                ? "ring-2 ring-amber-500 ring-offset-2 ring-offset-neutral-900"
+                : "border border-neutral-700"
             }`}
             whileHover={{ y: -5, transition: { duration: 0.3 } }}
             initial={{ opacity: 0, y: 20 }}
@@ -239,7 +242,7 @@ const Agendamento = () => {
             <h4 className="text-lg font-semibold text-white text-center">Sem preferência</h4>
 
             {isBarbeiroSelecionado(0) && (
-              <div className="absolute top-2 right-2 bg-bigode-amber rounded-full p-1">
+              <div className="absolute top-2 right-2 bg-amber-500 rounded-full p-1">
                 <Check size={16} className="text-white" />
               </div>
             )}
@@ -251,8 +254,8 @@ const Agendamento = () => {
               onClick={() => handlerSetBarbeiro(item)}
               className={`cursor-pointer rounded-lg overflow-hidden shadow-lg relative ${
                 isBarbeiroSelecionado(item.id)
-                  ? "ring-2 ring-bigode-amber ring-offset-2 ring-offset-bigode-neutral-900"
-                  : "border border-bigode-neutral-700"
+                  ? "ring-2 ring-amber-500 ring-offset-2 ring-offset-neutral-900"
+                  : "border border-neutral-700"
               }`}
               whileHover={{ y: -5, transition: { duration: 0.3 } }}
               initial={{ opacity: 0, y: 20 }}
@@ -268,7 +271,7 @@ const Agendamento = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
 
                 {isBarbeiroSelecionado(item.id) && (
-                  <div className="absolute top-2 right-2 bg-bigode-amber rounded-full p-1">
+                  <div className="absolute top-2 right-2 bg-amber-500 rounded-full p-1">
                     <Check size={16} className="text-white" />
                   </div>
                 )}
@@ -282,8 +285,86 @@ const Agendamento = () => {
         </div>
       </BarbeariaStep>
 
-      <BarbeariaStep>
+       <BarbeariaStep>
         <div className="flex flex-col items-center mb-6">
+          <h3 className="text-xl font-semibold text-white mb-2">DATA E HORA</h3>
+          <div className="flex items-center">
+            <div className="h-[1px] w-8 bg-bigode-amber"></div>
+            <Calendar className="mx-2 text-bigode-amber" size={14} />
+            <div className="h-[1px] w-8 bg-bigode-amber"></div>
+          </div>
+          <p className="text-neutral-400 text-sm mt-2">Escolha a data e hora do agendamento</p>
+        </div>
+
+        <div className="space-y-6 pb-10 md:px-16">
+          <div className="space-y-4">
+            <div className="flex flex-col">
+              {/* <h4 className="text-white font-medium mb-2 flex items-center">
+                <Calendar size={16} className="text-bigode-amber mr-2" />
+                Selecione uma data
+              </h4> */}
+              <div className="flex justify-center items-center max-w-full">
+                <CalendarInput value={novo.dataAgendamento} onChange={(e) => setNovo({ ...novo, dataAgendamento: e.target.value })} inline className="w-130"/>
+              </div>
+            </div>
+
+            {novo.dataAgendamento && (
+              <div className="flex flex-col mt-6">
+     <div className="flex flex-col items-center mb-6">
+          <div className="flex items-center">
+            <div className="h-[1px] w-8 bg-bigode-amber"></div>
+            <Clock className="mx-2 text-bigode-amber" size={14} />
+            <div className="h-[1px] w-8 bg-bigode-amber"></div>
+          </div>
+          <p className="text-neutral-400 text-sm mt-2">Escolha a data e hora do agendamento</p>
+        </div>
+                <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
+                  {[
+                    "09:00",
+                    "09:30",
+                    "10:00",
+                    "10:30",
+                    "11:00",
+                    "11:30",
+                    "13:00",
+                    "13:30",
+                    "14:00",
+                    "14:30",
+                    "15:00",
+                    "15:30",
+                    "16:00",
+                    "16:30",
+                    "17:00",
+                    "17:30",
+                  ].map((time) => (
+                    <motion.div
+                      key={time}
+                      className={`text-center py-2 px-1 rounded-md border border-amber-500/10 cursor-pointer ${
+                        novo.horaAgendamento === time
+                          ? "bg-amber-500 text-white dark:text-neutral-950 font-bold"
+                          : "bg-neutral-800 text-white hover:bg-amber-500/10"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => {
+                        setNovo({
+                          ...novo,
+                          horaAgendamento: time,
+                        })
+                      }}
+                    >
+                      {time}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </BarbeariaStep>
+
+      <BarbeariaStep>
+        <div className="flex flex-col items-center mb-6 pb-10">
           <h3 className="text-xl font-semibold text-white mb-2">CONFIRMAÇÃO</h3>
           <div className="flex items-center">
             <div className="h-[1px] w-8 bg-bigode-amber"></div>
@@ -293,7 +374,7 @@ const Agendamento = () => {
           <p className="text-neutral-400 text-sm mt-2">Revise os detalhes do seu agendamento</p>
         </div>
 
-        <div className="bg-bigode-neutral-800 rounded-lg p-6 space-y-6">
+        <div className="bg-bigode-neutral-800 rounded-lg p-6 space-y-6 pb-10">
           <div>
             <h4 className="text-lg font-semibold text-white mb-3 flex items-center">
               <User size={18} className="text-bigode-amber mr-2" />
@@ -349,17 +430,22 @@ const Agendamento = () => {
               <div className="flex flex-wrap gap-4 mt-3">
                 <div className="bg-bigode-neutral-700/50 p-3 rounded flex items-center">
                   <Calendar size={18} className="text-bigode-amber mr-2" />
-                  <span className="text-white">03/05/2025</span>
+                  <span className="text-white">
+                    {novo.dataAgendamento
+                      ? new Date(novo.dataAgendamento).toLocaleDateString("pt-BR")
+                      : "Data não selecionada"}
+                  </span>
                 </div>
                 <div className="bg-bigode-neutral-700/50 p-3 rounded flex items-center">
                   <Clock size={18} className="text-bigode-amber mr-2" />
-                  <span className="text-white">15:00</span>
+                  <span className="text-white">{novo.horaAgendamento || "Horário não selecionado"}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </BarbeariaStep>
+
     </BarbeariaStepper>
   )
 }

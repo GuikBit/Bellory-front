@@ -80,11 +80,11 @@ export default function BarbeariaStepper({
 
   return (
     <div
-      className="flex min-h-full flex-1 flex-col items-center justify-center p-4 sm:aspect-[4/3] md:aspect-[2/1]"
+      className="flex items-center justify-center"
       {...rest}
     >
       <div
-        className={`mx-auto bg-bigode-neutral-900 w-full border border-bigode-neutral-700 max-w-3xl rounded-xl shadow-xl ${stepCircleContainerClassName}`}
+        className={`mx-auto bg-neutral-800 w-full border border-neutral-700 rounded-xl ${stepCircleContainerClassName}`}
       >
         {/* Título do stepper */}
         <div className="flex flex-col items-center justify-center pt-8 pb-4">
@@ -134,40 +134,40 @@ export default function BarbeariaStepper({
           isCompleted={isCompleted}
           currentStep={currentStep}
           direction={direction}
-          className={`space-y-4 px-8 ${contentClassName}`}
+          className={` ${contentClassName}`}
         >
           {stepsArray[currentStep - 1]}
         </StepContentWrapper>
 
         {/* Botões de navegação */}
         {!isCompleted && (
-          <div className={`px-8 pb-8 ${footerClassName}`}>
-            <div className={`mt-10 flex ${currentStep !== 1 ? "justify-between" : "justify-end"}`}>
+          <div className={`  ${footerClassName}`}>
+            <div className={`mb-10 px-8 flex ${currentStep !== 1 ? "justify-between" : "justify-end"}`}>
               {currentStep !== 1 && (
                 <motion.button
                   onClick={handleBack}
-                  className="bg-bigode-neutral-800 hover:bg-bigode-neutral-700 text-white border border-bigode-neutral-700 rounded-lg py-2.5 px-4 transition flex items-center justify-center"
+                  className="bg-neutral-800 dark:hover:bg-neutral-700/40 text-amber-500 cursor-pointer rounded-lg py-2.5 px-4 font-bold transition flex items-center justify-center"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   // {...backButtonProps}
                 >
-                  <ArrowLeft size={16} className="mr-2" />
+                  <ArrowLeft size={20} className="mr-2" />
                   {backButtonText}
                 </motion.button>
               )}
               <motion.button
                 onClick={isLastStep ? handleComplete : handleNext}
-                className={`flex items-center justify-center rounded-lg py-2.5 px-4 font-medium transition
+                className={`flex items-center justify-center cursor-pointer rounded-lg py-2.5 px-4 transition
                   ${
                     isLastStep
-                      ? "text-white bg-green-600 hover:bg-green-700"
-                      : "text-white bg-bigode-amber hover:bg-bigode-amber-dark"
+                      ? "text-white font-bold bg-green-600 hover:bg-green-700"
+                      : "text-white font-bold bg-amber-500 hover:bg-amber-600"
                   }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 // {...nextButtonProps}
               >
-                {isLastStep ? <Save size={16} className="mr-2" /> : <ArrowRight size={16} className="mr-2" />}
+                {isLastStep ? <Save size={20} className="mr-2" /> : <ArrowRight size={20} className="mr-2" />}
                 {isLastStep ? "Agendar" : nextButtonText}
               </motion.button>
             </div>
