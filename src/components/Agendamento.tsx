@@ -340,7 +340,7 @@ const Agendamento = () => {
                     <motion.div
                       key={time}
                       className={`text-center py-2 px-1 rounded-md border border-amber-500/10 cursor-pointer ${
-                        novo.horaAgendamento === time
+                        (typeof novo.horaAgendamento === "string" ? novo.horaAgendamento : "") === time
                           ? "bg-amber-500 text-white dark:text-neutral-950 font-bold"
                           : "bg-neutral-800 text-white hover:bg-amber-500/10"
                       }`}
@@ -349,7 +349,7 @@ const Agendamento = () => {
                       onClick={() => {
                         setNovo({
                           ...novo,
-                          horaAgendamento: time,
+                          horaAgendamento: new Date(`00/00/0000 ${time}`),
                         })
                       }}
                     >
@@ -438,7 +438,7 @@ const Agendamento = () => {
                 </div>
                 <div className="bg-bigode-neutral-700/50 p-3 rounded flex items-center">
                   <Clock size={18} className="text-bigode-amber mr-2" />
-                  <span className="text-white">{novo.horaAgendamento || "Horário não selecionado"}</span>
+                  <span className="text-white">{novo.horaAgendamento?.toLocaleDateString("pt-BR") || "Horário não selecionado"}</span>
                 </div>
               </div>
             </div>
