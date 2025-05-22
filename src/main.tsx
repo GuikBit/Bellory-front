@@ -3,9 +3,10 @@ import { PrimeReactProvider, addLocale, locale } from 'primereact/api';
 import './index.css'
 import { classNames } from 'primereact/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from './theme/Theme.tsx';
+// import { ThemeProvider } from './theme/Theme.tsx';
 import { GlobalStateProvider } from './global/ContextGlobalState.tsx';
 import Routing from './route/Routing.tsx';
+import { ThemeProvider } from './contexts/Theme-context.tsx';
 
 addLocale('pt-BR', {
   firstDayOfWeek: 0,
@@ -723,11 +724,11 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById('root')!).render(
   <PrimeReactProvider value={{ locale: 'pt-BR',unstyled: true, pt: MyDesignSystem }} >
     <QueryClientProvider client={ queryClient }>
-      <ThemeProvider defaultTheme='dark' >
+      <ThemeProvider >
         <GlobalStateProvider>
           <Routing />
         </GlobalStateProvider>
-      </ThemeProvider>
+      </ThemeProvider >
     </QueryClientProvider>
-  </PrimeReactProvider>,
+  </PrimeReactProvider>
 )

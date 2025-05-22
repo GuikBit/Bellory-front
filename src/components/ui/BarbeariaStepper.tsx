@@ -4,10 +4,13 @@ import React, { useState, Children, useRef, useLayoutEffect, type HTMLAttributes
 import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { ArrowLeft, ArrowRight, Save, Scissors } from "lucide-react"
 import { BarbeariaStepConnector, BarbeariaStepIndicator } from "./BarbeariaStepperIndicator"
+import { useTheme } from "../../contexts/Theme-context"
+
 
 interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   initialStep?: number
+  template?: string
   onStepChange?: (step: number) => void
   onFinalStepCompleted?: () => void
   stepCircleContainerClassName?: string
@@ -41,6 +44,7 @@ export default function BarbeariaStepper({
   nextButtonText = "Próximo",
   disableStepIndicators = false,
   renderStepIndicator,
+  template,
   ...rest
 }: StepperProps) {
   const [currentStep, setCurrentStep] = useState<number>(initialStep)
@@ -49,6 +53,7 @@ export default function BarbeariaStepper({
   const totalSteps = stepsArray.length
   const isCompleted = currentStep > totalSteps
   const isLastStep = currentStep === totalSteps
+  const { currentTheme } = useTheme()
 
   const updateStep = (newStep: number) => {
     setCurrentStep(newStep)
@@ -79,20 +84,30 @@ export default function BarbeariaStepper({
   }
 
   return (
-    <div
-      className="flex items-center justify-center"
-      {...rest}
-    >
+    <div className="flex items-center justify-center" {...rest}>
       <div
-        className={`mx-auto bg-neutral-800 w-full border border-neutral-700 rounded-xl ${stepCircleContainerClassName}`}
+        className={`mx-auto w-full border rounded-xl ${stepCircleContainerClassName}`}
+        style={{
+          backgroundColor: currentTheme.colors.cardBackground,
+          borderColor: currentTheme.colors.secondary,
+          borderRadius: currentTheme.borderRadius.large,
+        }}
       >
         {/* Título do stepper */}
         <div className="flex flex-col items-center justify-center pt-8 pb-4">
-          <h2 className="text-2xl font-bold text-white mb-2">AGENDAMENTO</h2>
+          <h2
+            className="text-2xl font-bold mb-2"
+            style={{
+              color: currentTheme.colors.text,
+              fontFamily: currentTheme.fonts.heading,
+            }}
+          >
+            AGENDAMENTO
+          </h2>
           <div className="flex items-center mb-4">
-            <div className="h-[1px] w-12 bg-bigode-amber"></div>
-            <Scissors className="mx-2 text-bigode-amber" size={16} />
-            <div className="h-[1px] w-12 bg-bigode-amber"></div>
+            <div className="h-[1px] w-12" style={{ backgroundColor: currentTheme.colors.primary }}></div>
+            <Scissors className="mx-2" size={16} style={{ color: currentTheme.colors.primary }} />
+            <div className="h-[1px] w-12" style={{ backgroundColor: currentTheme.colors.primary }}></div>
           </div>
         </div>
 
@@ -146,7 +161,12 @@ export default function BarbeariaStepper({
               {currentStep !== 1 && (
                 <motion.button
                   onClick={handleBack}
-                  className="bg-neutral-800 dark:hover:bg-neutral-700/40 text-amber-500 cursor-pointer rounded-lg py-2.5 px-4 font-bold transition flex items-center justify-center"
+                  className="cursor-pointer rounded-lg py-2.5 px-4 font-bold transition flex items-center justify-center"
+                  style={{
+                    backgroundColor: "transparent",
+                    color: currentTheme.colors.primary,
+                    borderRadius: currentTheme.borderRadius.medium,
+                  }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   // {...backButtonProps}
@@ -157,12 +177,12 @@ export default function BarbeariaStepper({
               )}
               <motion.button
                 onClick={isLastStep ? handleComplete : handleNext}
-                className={`flex items-center justify-center cursor-pointer rounded-lg py-2.5 px-4 transition
-                  ${
-                    isLastStep
-                      ? "text-white font-bold bg-green-600 hover:bg-green-700"
-                      : "text-white font-bold bg-amber-500 hover:bg-amber-600"
-                  }`}
+                className="flex items-center justify-center cursor-pointer rounded-lg py-2.5 px-4 transition font-bold"
+                style={{
+                  backgroundColor: isLastStep ? "#22c55e" : currentTheme.colors.primary,
+                  color: "#FFFFFF",
+                  borderRadius: currentTheme.borderRadius.medium,
+                }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 // {...nextButtonProps}

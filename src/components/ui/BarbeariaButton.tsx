@@ -4,6 +4,7 @@ import type React from "react"
 import { forwardRef } from "react"
 import { motion, type HTMLMotionProps } from "framer-motion"
 import { UTILS } from "../../styles/theme-guid"
+import { useTheme } from "../../contexts/Theme-context"
 
 const { cn } = UTILS
 
@@ -14,6 +15,8 @@ interface BarbeariaButtonProps extends HTMLMotionProps<"button"> {
   isLoading?: boolean
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
+  value?: string
+  template?: string
 }
 
 const BarbeariaButton = forwardRef<HTMLButtonElement, BarbeariaButtonProps>(
@@ -27,22 +30,27 @@ const BarbeariaButton = forwardRef<HTMLButtonElement, BarbeariaButtonProps>(
       isLoading = false,
       leftIcon,
       rightIcon,
+      template,
+      value = "Teste",
       disabled,
       ...props
     },
     ref,
   ) => {
+    const { currentTheme } = useTheme()
+
+    // Estilos de variante baseados no tema atual
     const variantStyles = {
-      primary: "bg-bigode-amber hover:bg-bigode-amber-dark text-white",
-      secondary: "bg-bigode-neutral-800 hover:bg-bigode-neutral-700 text-white border border-bigode-neutral-700",
-      outline: "bg-transparent border border-bigode-amber text-bigode-amber hover:bg-bigode-amber/10",
-      text: "bg-transparent text-bigode-amber hover:text-bigode-amber-light",
+      primary: `bg-[${currentTheme.colors.primary}] hover:bg-opacity-90 text-[${currentTheme.colors.buttonText}]`,
+      secondary: `bg-[${currentTheme.colors.secondary}] hover:bg-opacity-90 text-[${currentTheme.colors.buttonText}] border border-[${currentTheme.colors.secondary}]`,
+      outline: `bg-transparent border border-[${currentTheme.colors.primary}] text-[${currentTheme.colors.primary}] hover:bg-[${currentTheme.colors.primary}] hover:bg-opacity-10`,
+      text: `bg-transparent text-[${currentTheme.colors.primary}] hover:text-opacity-80`,
     }
 
     const sizeStyles = {
-      sm: "text-sm px-3 py-1.5 rounded",
-      md: "px-4 py-2.5 rounded-lg",
-      lg: "text-lg px-6 py-3 rounded-lg",
+      sm: `text-sm px-3 py-1.5 rounded-[${currentTheme.borderRadius.small}]`,
+      md: `px-4 py-2.5 rounded-[${currentTheme.borderRadius.medium}]`,
+      lg: `text-lg px-6 py-3 rounded-[${currentTheme.borderRadius.large}]`,
     }
 
     return (
@@ -56,6 +64,30 @@ const BarbeariaButton = forwardRef<HTMLButtonElement, BarbeariaButtonProps>(
           isLoading || disabled ? "opacity-70 cursor-not-allowed" : "",
           className,
         )}
+        style={{
+          backgroundColor:
+            variant === "primary"
+              ? currentTheme.colors.primary
+              : variant === "secondary"
+                ? currentTheme.colors.secondary
+                : "transparent",
+          color:
+            variant === "outline" || variant === "text" ? currentTheme.colors.primary : currentTheme.colors.buttonText,
+          borderColor:
+            variant === "outline"
+              ? currentTheme.colors.primary
+              : variant === "secondary"
+                ? currentTheme.colors.secondary
+                : variant === "primary"
+                  ? currentTheme.colors.primary
+                  : "transparent",
+          borderRadius:
+            size === "sm"
+              ? currentTheme.borderRadius.small
+              : size === "md"
+                ? currentTheme.borderRadius.medium
+                : currentTheme.borderRadius.large,
+        }}
         whileHover={!isLoading && !disabled ? { scale: 1.02 } : {}}
         whileTap={!isLoading && !disabled ? { scale: 0.98 } : {}}
         disabled={isLoading || disabled}
@@ -79,7 +111,9 @@ const BarbeariaButton = forwardRef<HTMLButtonElement, BarbeariaButtonProps>(
           <span className="mr-2">{leftIcon}</span>
         ) : null}
 
-        {children as React.ReactNode}
+        {typeof value === "object" && value !== null && "get" in value
+          ? String(value)
+          : value ?? children}
 
         {!isLoading && rightIcon ? <span className="ml-2">{rightIcon}</span> : null}
       </motion.button>

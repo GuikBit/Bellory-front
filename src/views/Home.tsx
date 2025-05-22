@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <div className="w-full min-h-screen relative bg-neutral-900 text-white">
-      {/* Hero Section com Parallax */}
+
       <motion.div
         ref={scrollRef}
         className="relative h-screen flex items-center justify-center overflow-hidden"
@@ -115,7 +115,6 @@ const Home = () => {
         </motion.div>
       </motion.div>
 
-      {/* Sobre nós */}
       <section id="about-section" className="py-20 bg-neutral-900">
         <div className="container mx-auto px-4">
           <motion.div
@@ -177,7 +176,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Serviços */}
       <section className="py-20 bg-neutral-800">
         <div className="container mx-auto px-4">
           <motion.div
@@ -203,13 +201,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Planos de Assinatura */}
       <PlanoAssinatura />
 
-      {/* Feedback dos clientes */}
       <Feedback />
 
-      {/* Produtos */}
       <section className="py-20 bg-neutral-900">
         <div className="container mx-auto px-4">
           <motion.div
@@ -234,7 +229,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Agendamento */}
       <section className="py-20 bg-neutral-900">
         <div className="container mx-auto px-4">
           <motion.div
@@ -260,6 +254,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
     </div>
   )
 }

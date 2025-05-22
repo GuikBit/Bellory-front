@@ -4,6 +4,7 @@ import type { HTMLAttributes } from "react"
 import { Scissors } from "lucide-react"
 import { motion } from "framer-motion"
 import { UTILS } from "../../styles/theme-guid"
+import { useTheme } from "../../contexts/Theme-context"
 
 const { cn } = UTILS
 
@@ -14,6 +15,7 @@ interface BarbeariaTitleProps extends HTMLAttributes<HTMLDivElement> {
   withDivider?: boolean
   as?: "h1" | "h2" | "h3" | "h4"
   size?: "sm" | "md" | "lg" | "xl"
+  template?: string
 }
 
 const BarbeariaTitle = ({
@@ -23,7 +25,11 @@ const BarbeariaTitle = ({
   withDivider = true,
   as = "h2",
   size = "lg",
+  template,
+  ...props
 }: BarbeariaTitleProps) => {
+  const { currentTheme } = useTheme()
+
   const sizeStyles = {
     sm: "text-xl md:text-2xl",
     md: "text-2xl md:text-3xl",
@@ -40,18 +46,31 @@ const BarbeariaTitle = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
+      // {...props}
     >
-      <HeadingTag className={cn("font-bold text-white mb-2", sizeStyles[size])}>{title}</HeadingTag>
+      <HeadingTag
+        className={cn("font-bold mb-2", sizeStyles[size])}
+        style={{ color: currentTheme.colors.text, fontFamily: currentTheme.fonts.heading }}
+      >
+        {title}
+      </HeadingTag>
 
       {withDivider && (
         <div className={cn("flex items-center mb-4", !subtitle && "mb-0")}>
-          <div className="h-[1px] w-12 bg-bigode-amber"></div>
-          <Scissors className="mx-2 text-bigode-amber" size={16} />
-          <div className="h-[1px] w-12 bg-bigode-amber"></div>
+          <div className="h-[1px] w-12" style={{ backgroundColor: currentTheme.colors.primary }}></div>
+          <Scissors className="mx-2" size={16} style={{ color: currentTheme.colors.primary }} />
+          <div className="h-[1px] w-12" style={{ backgroundColor: currentTheme.colors.primary }}></div>
         </div>
       )}
 
-      {subtitle && <p className="text-bigode-neutral-300 max-w-2xl">{subtitle}</p>}
+      {subtitle && (
+        <p
+          className="max-w-2xl"
+          style={{ color: currentTheme.colors.textSecondary, fontFamily: currentTheme.fonts.body }}
+        >
+          {subtitle}
+        </p>
+      )}
     </motion.div>
   )
 }
