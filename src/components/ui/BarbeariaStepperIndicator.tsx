@@ -17,7 +17,7 @@ export function BarbeariaStepIndicator({
   currentStep,
   onClickStep,
   disableStepIndicators = false,
-  template,
+  // template,
 }: StepIndicatorProps) {
   const status = currentStep === step ? "active" : currentStep < step ? "inactive" : "complete"
   const { currentTheme } = useTheme()

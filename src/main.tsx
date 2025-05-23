@@ -3,7 +3,6 @@ import { PrimeReactProvider, addLocale, locale } from 'primereact/api';
 import './index.css'
 import { classNames } from 'primereact/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// import { ThemeProvider } from './theme/Theme.tsx';
 import { GlobalStateProvider } from './global/ContextGlobalState.tsx';
 import Routing from './route/Routing.tsx';
 import { ThemeProvider } from './contexts/Theme-context.tsx';

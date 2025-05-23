@@ -2,8 +2,6 @@ import { Lock, Mail, User } from "lucide-react";
 import { ThemeStyles } from "../components/ThemeStyles";
 import { BarbeariaButton, BarbeariaCard, BarbeariaInput, BarbeariaTitle } from "../components/ui";
 import BarbeariaStepper from "../components/ui/BarbeariaStepper";
-import { BarbeariaStepIndicator } from "../components/ui/BarbeariaStepperIndicator";
-import { ThemeProvider } from "../contexts/Theme-context";
 import ThemeSelector from "../components/ThemeSelectorPrime";
 
 const Sobre = () => {   

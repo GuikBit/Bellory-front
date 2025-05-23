@@ -1,29 +1,116 @@
 @import "tailwindcss";
 
+/* Esta é uma boa forma de definir uma variante customizada para o dark mode.
+   Apenas certifique-se que seu ThemeStyles.tsx (ou lógica similar)
+   está realmente aplicando o atributo data-theme="dark" no elemento <html> ou <body>
+   quando um tema escuro está ativo.
+   Seu ThemeStyles.tsx atualmente adiciona uma classe "dark". Para usar este
+   @custom-variant, você precisaria mudar ThemeStyles.tsx para usar data-theme="dark"
+   ou alterar este seletor para algo como:
+   @custom-variant dark (.dark &); ou similar, dependendo de onde a classe .dark é aplicada.
+*/
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-  --animate-wiggle: wiggle 0.3s ease-out;
+  /* Estas definições de variáveis CSS aqui (--color-primary: var(--color-primary); etc.)
+     são redundantes se as variáveis originais (vindas do ThemeStyles.tsx)
+     já estão no :root ou html. O Tailwind vai pegá-las de qualquer forma
+     quando você as referenciar em `colors`, `fontFamily`, etc.
+     Pode remover estas linhas para simplificar. */
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-background);
+  --color-text-default: var(--color-text);
+  --color-text-secondary: var(--color-textSecondary);
+  --color-button-text: var(--color-buttonText);
+  --color-card-background: var(--color-cardBackground);
+  --color-card-background-secondary: var(--color-cardBackgroundSecondary);
 
-  @keyframes wiggle {
-    0% {
-      transform: rotate(90deg);
+  /* colors: {
+    primary: var(--color-primary),
+    secondary: var(--color-secondary),
+    accent: var(--color-accent),
+    background: var(--color-background),
+    'text-default': var(--color-text-default), 
+    'text-secondary': var(--color-text-secondary),
+    'button-text': var(--color-button-text), 
+    'card-bg': var(--color-card-background),
+    'card-bg-secondary': var(--color-card-background-secondary),
+
+  },
+
+  fontFamily: {
+    heading: ['var(--font-heading)', 'sans-serif'],
+    body: ['var(--font-body)', 'sans-serif'],
+  },
+
+  
+  keyframes: {
+    wiggle: {
+      '0%': { transform: 'rotate(90deg)' },
+      '100%': { transform: 'rotate(0deg)' },
+    },
+    fadeIn: { 
+      'from': { opacity: '0' },
+      'to': { opacity: '1' },
+    },
+    slideUp: {
+      'from': { transform: 'translateY(20px)', opacity: '0'},
+      'to': { transform: 'translateY(0)', opacity: '1'},
     }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
+  },
+  animation: {
+    wiggle: 'wiggle 0.3s ease-out',
+    fadeIn: 'fadeIn 0.5s ease-in-out', 
+    slideUp: 'slideUp 0.5s ease-in-out',
+  },
+
+  borderRadius: {
+    sm: 'var(--radius-small)',
+    DEFAULT: 'var(--radius-medium)',
+    md: 'var(--radius-medium)',
+    lg: 'var(--radius-large)',
+  } */
+
+  /* Estilos base */
+  /* body: {
+    fontFamily: theme('fontFamily.body'),
+    backgroundColor: theme('colors.background'),
+    color: theme('colors.text-default'), 
+  },
+
+  h1,h2,h3,h4,h5,h6: {
+    fontFamily: theme('fontFamily.heading'), 
+    color: theme('colors.text-default'), 
+  } */
 }
 
-
+/* As variáveis definidas aqui no :root podem ser úteis como fallback
+   se o JavaScript estiver desabilitado e ThemeStyles.tsx não rodar.
+   No entanto, o sistema de temas dinâmicos depende de JS.
+   Se o seu ThemeStyles.tsx já define --color-primary, etc.,
+   as definições aqui com nomes diferentes (ex: --primary vs --color-primary) não conflitam,
+   mas as que têm o mesmo nome seriam sobrescritas pelo JS.
+   Para este projeto, o ideal é que ThemeStyles.tsx seja a fonte da verdade para as vars dinâmicas.
+   Estas variáveis aqui (--primary: #d4af37 etc.) não estão sendo usadas
+   pela configuração @theme acima, pois você usou var(--color-primary), etc.
+*/
 :root {
-  font-family: Poppins, sans-serif;
+  /* Estas variáveis estáticas não estão sendo usadas diretamente pela config @theme acima,
+     pois você está usando as variáveis com prefixo --color-* que vêm do seu JS.
+     Pode mantê-las como fallback ou para CSS que não passa pelo Tailwind,
+     ou removê-las se todas as cores temáticas vierem do ThemeStyles.tsx.
+  */
+  --primary: #d4af37;
+  --primary-dark: #b8941f;
+  --secondary: #8b0000;
+  --dark: #1e1e1e;
+  --darker: #121212;
+  --light: #f5f5f5;
+
   line-height: 1.5;
   font-weight: 400;
-
-  /* color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,66 +118,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-:root {
-  --primary: #d4af37;
-  --primary-dark: #b8941f;
-  --secondary: #8b0000;
-  --dark: #1e1e1e;
-  --darker: #121212;
-  --light: #f5f5f5;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  @apply bg-neutral-900 text-white;
-}
-
-/* Scrollbar personalizada */
+/* Scrollbar personalizada e outras animações que você já tem */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-neutral-800;
+  background-color: var(--color-card-background-secondary, theme('colors.neutral.800')); /* Usando variável do tema com fallback */
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-amber-600 rounded-full;
+  background-color: var(--color-primary, theme('colors.amber.600')); /* Usando variável do tema com fallback */
+  @apply rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-amber-500;
+  background-color: var(--color-secondary, theme('colors.amber.500')); /* Usando variável do tema com fallback */
 }
 
-/* Animações */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+/*
+  Suas classes .animate-fadeIn e .animate-slideUp agora podem usar
+  as animações definidas no @theme. Por exemplo:
+  .animate-fadeIn {
+    @apply animate-fadeIn;
   }
-  to {
-    opacity: 1;
+  .animate-slideUp {
+    @apply animate-slideUp;
   }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.animate-slideUp {
-  animation: slideUp 0.5s ease-in-out;
-}
+  Ou você pode aplicar as classes 'animate-fadeIn' e 'animate-slideUp' diretamente no HTML/JSX.
+  Os @keyframes fadeIn e slideUp globais são redundantes se definidos no @theme.
+*/
 
 /* Transições */
 .transition-all {

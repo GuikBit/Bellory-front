@@ -25,8 +25,8 @@ const BarbeariaTitle = ({
   withDivider = true,
   as = "h2",
   size = "lg",
-  template,
-  ...props
+  // template,
+  // ...props
 }: BarbeariaTitleProps) => {
   const { currentTheme } = useTheme()
 

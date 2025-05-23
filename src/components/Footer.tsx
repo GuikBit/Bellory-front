@@ -161,7 +161,7 @@ const Footer = () => {
                             color: theme.colors.textSecondary,
                             fontFamily: theme.fonts.body,
                           }}
-                          whileHover={{ color: theme.colors.primary }}
+                          // whileHover={{ color: theme.colors.primary }}
                         >
                           <ChevronRight size={16} className="mr-2" style={{ color: theme.colors.primary }} />
                           {link.name}
@@ -217,15 +217,17 @@ const Footer = () => {
                     </div>
 
                     <div className="pt-3 border-t" style={{ borderColor: `${theme.colors.primary}30` }}>
-                      <a
+
+                      <motion.a
                         href="#booking"
                         className="flex items-center transition-colors duration-300"
                         style={{ color: theme.colors.primary }}
-                        whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                        // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                       >
                         <Calendar size={18} className="mr-2" />
                         <span>Agende seu horário</span>
-                      </a>
+                      </motion.a>
+                     
                     </div>
                   </div>
                 </div>
@@ -254,40 +256,41 @@ const Footer = () => {
 
                     <div className="flex items-center">
                       <Phone size={18} className="mr-3 flex-shrink-0" style={{ color: theme.colors.primary }} />
-                      <a
+                      <motion.a
                         href="tel:+5511999999999"
                         className="transition-colors duration-300"
                         style={{ color: theme.colors.text }}
-                        whileHover={{ color: theme.colors.primary }}
+                        // whileHover={{ color: theme.colors.primary }}
                       >
                         (11) 99999-9999
-                      </a>
+                      </motion.a>
                     </div>
 
                     <div className="flex items-center">
                       <Mail size={18} className="mr-3 flex-shrink-0" style={{ color: theme.colors.primary }} />
-                      <a
+                      <motion.a
                         href="mailto:contato@barbearia.com"
                         className="transition-colors duration-300"
                         style={{ color: theme.colors.text }}
-                        whileHover={{ color: theme.colors.primary }}
+                        // whileHover={{ color: theme.colors.primary }}
                       >
                         contato@barbearia.com
-                      </a>
+                      </motion.a>
+                    
                     </div>
 
                     <div className="pt-3 border-t" style={{ borderColor: `${theme.colors.primary}30` }}>
-                      <a
+                      <motion.a
                         href="https://maps.google.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center transition-colors duration-300"
                         style={{ color: theme.colors.primary }}
-                        whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                        // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                       >
                         <ExternalLink size={18} className="mr-2" />
                         <span>Ver no mapa</span>
-                      </a>
+                      </motion.a>
                     </div>
                   </div>
                 </div>
@@ -308,17 +311,18 @@ const Footer = () => {
 
                 <div className="mt-4 md:mt-0 flex items-center">
                   <span style={{ color: theme.colors.textSecondary }}>Desenvolvido por</span>
-                  <a
+                  <motion.a
                     href="https://guikbit-portifolio.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ml-1 transition-colors duration-300 flex items-center"
                     style={{ color: theme.colors.primary }}
-                    whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                    // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                   >
                     GUIKBIT
                     <ExternalLink size={12} className="ml-1" />
-                  </a>
+                  </motion.a>
+                  
                 </div>
               </div>
             </div>
@@ -377,14 +381,22 @@ const Footer = () => {
                   <ul className="space-y-3">
                     {quickLinks.map((link, index) => (
                       <motion.li key={index} whileHover={{ x: 3 }} transition={{ duration: 0.2 }}>
-                        <a
+                        <motion.a
                           href={link.url}
                           className="block transition-colors duration-300"
                           style={{ color: theme.colors.textSecondary, fontFamily: theme.fonts.body }}
-                          whileHover={{ color: theme.colors.primary }}
+                          // whileHover={{ color: theme.colors.primary }}
                         >
                           {link.name}
-                        </a>
+                        </motion.a>
+                        {/* <a
+                          href={link.url}
+                          className="block transition-colors duration-300"
+                          style={{ color: theme.colors.textSecondary, fontFamily: theme.fonts.body }}
+                          // whileHover={{ color: theme.colors.primary }}
+                        >
+                          {link.name}
+                        </a> */}
                       </motion.li>
                     ))}
                   </ul>
@@ -510,7 +522,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="ml-1 transition-colors duration-300 flex items-center"
                     style={{ color: theme.colors.primary }}
-                    whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                    // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                   >
                     GUIKBIT
                     <ExternalLink size={12} className="ml-1" />
@@ -547,7 +559,7 @@ const Footer = () => {
                           rel="noopener noreferrer"
                           className="transition-colors duration-300"
                           style={{ color: theme.colors.textSecondary }}
-                          whileHover={{ color: theme.colors.primary }}
+                          // whileHover={{ color: theme.colors.primary }}
                           whileTap={{ scale: 0.95 }}
                         >
                           <social.icon size={20} />
@@ -577,7 +589,7 @@ const Footer = () => {
                           href={link.url}
                           className="block transition-colors duration-300 font-serif"
                           style={{ color: theme.colors.textSecondary }}
-                          whileHover={{ color: theme.colors.primary }}
+                          // whileHover={{ color: theme.colors.primary }}
                         >
                           {link.name}
                         </a>
@@ -634,10 +646,10 @@ const Footer = () => {
                         borderColor: theme.colors.primary,
                         color: theme.colors.primary,
                       }}
-                      whileHover={{
-                        backgroundColor: `${theme.colors.primary}10`,
-                        borderColor: adjustColor(theme.colors.primary, 20),
-                      }}
+                      // whileHover={{
+                      //   backgroundColor: `${theme.colors.primary}10`,
+                      //   borderColor: adjustColor(theme.colors.primary, 20),
+                      // }}
                     >
                       Agendar Horário
                     </a>
@@ -693,7 +705,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline"
-                    whileHover={{ textDecoration: "none" }}
+                    // whileHover={{ textDecoration: "none" }}
                   >
                     GUIKBIT
                   </a>
@@ -787,7 +799,7 @@ const Footer = () => {
                           href={link.url}
                           className="block transition-colors duration-300"
                           style={{ color: theme.colors.textSecondary, fontFamily: theme.fonts.body }}
-                          whileHover={{ color: theme.colors.primary }}
+                          // whileHover={{ color: theme.colors.primary }}
                         >
                           {link.name}
                         </a>
@@ -890,7 +902,7 @@ const Footer = () => {
                         href="tel:+5511999999999"
                         className="transition-colors duration-300"
                         style={{ color: theme.colors.textSecondary }}
-                        whileHover={{ color: theme.colors.primary }}
+                        // whileHover={{ color: theme.colors.primary }}
                       >
                         (11) 99999-9999
                       </a>
@@ -902,7 +914,7 @@ const Footer = () => {
                         href="mailto:contato@barbearia.com"
                         className="transition-colors duration-300"
                         style={{ color: theme.colors.textSecondary }}
-                        whileHover={{ color: theme.colors.primary }}
+                        // whileHover={{ color: theme.colors.primary }}
                       >
                         contato@barbearia.com
                       </a>
@@ -917,7 +929,7 @@ const Footer = () => {
                         borderColor: theme.colors.primary,
                         color: theme.colors.primary,
                       }}
-                      whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
+                      // whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
                     >
                       <Calendar size={16} className="mr-2" />
                       <span>Agende seu horário</span>
@@ -947,7 +959,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="ml-1 transition-colors duration-300 flex items-center"
                     style={{ color: theme.colors.primary }}
-                    whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                    // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                   >
                     GUIKBIT
                     <ExternalLink size={12} className="ml-1" />
@@ -1038,7 +1050,7 @@ const Footer = () => {
                             href={link.url}
                             className="block transition-colors duration-300"
                             style={{ color: theme.colors.textSecondary, fontFamily: theme.fonts.body }}
-                            whileHover={{ color: theme.colors.primary }}
+                            // whileHover={{ color: theme.colors.primary }}
                           >
                             {link.name}
                           </a>
@@ -1162,7 +1174,7 @@ const Footer = () => {
                       rel="noopener noreferrer"
                       className="font-medium"
                       style={{ color: theme.colors.primary }}
-                      whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                      // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                     >
                       GUIKBIT
                     </a>
@@ -1268,7 +1280,7 @@ const Footer = () => {
                             color: theme.colors.textSecondary,
                             fontFamily: theme.fonts.body,
                           }}
-                          whileHover={{ color: theme.colors.primary }}
+                          // whileHover={{ color: theme.colors.primary }}
                         >
                           <ChevronRight size={16} className="mr-2" style={{ color: theme.colors.primary }} />
                           {link.name}
@@ -1328,7 +1340,7 @@ const Footer = () => {
                         href="#booking"
                         className="flex items-center transition-colors duration-300"
                         style={{ color: theme.colors.primary }}
-                        whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                        // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                       >
                         <Calendar size={18} className="mr-2" />
                         <span>Agende seu horário</span>
@@ -1365,7 +1377,7 @@ const Footer = () => {
                         href="tel:+5511999999999"
                         className="transition-colors duration-300"
                         style={{ color: theme.colors.text }}
-                        whileHover={{ color: theme.colors.primary }}
+                        // whileHover={{ color: theme.colors.primary }}
                       >
                         (11) 99999-9999
                       </a>
@@ -1377,7 +1389,7 @@ const Footer = () => {
                         href="mailto:contato@barbearia.com"
                         className="transition-colors duration-300"
                         style={{ color: theme.colors.text }}
-                        whileHover={{ color: theme.colors.primary }}
+                        // whileHover={{ color: theme.colors.primary }}
                       >
                         contato@barbearia.com
                       </a>
@@ -1390,7 +1402,7 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="flex items-center transition-colors duration-300"
                         style={{ color: theme.colors.primary }}
-                        whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                        // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                       >
                         <ExternalLink size={18} className="mr-2" />
                         <span>Ver no mapa</span>
@@ -1421,7 +1433,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="ml-1 transition-colors duration-300 flex items-center"
                     style={{ color: theme.colors.primary }}
-                    whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
+                    // whileHover={{ color: adjustColor(theme.colors.primary, 20) }}
                   >
                     GUIKBIT
                     <ExternalLink size={12} className="ml-1" />

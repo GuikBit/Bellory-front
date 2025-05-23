@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion } from "framer-motion"
 
@@ -47,6 +46,7 @@ interface CarouselProps {
   verticalScrollNav?: boolean
   swipeThreshold?: number
   className?: string
+  theme?: any
 }
 
 const Carousel: React.FC<CarouselProps> = (props) => {
@@ -59,6 +59,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     verticalScrollNav = defaultProps.verticalScrollNav,
     swipeThreshold = defaultProps.swipeThreshold,
     className = "",
+    theme,
   } = props
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -156,7 +157,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
       timeoutRef.current = setTimeout(next, interval)
     }
     return resetTimeout
-  }, [currentIndex, autoplay, interval, items?.length, isHovering, next, resetTimeout, itemsPerPage])
+  }, [currentIndex, autoplay, interval, items, isHovering, next, resetTimeout, itemsPerPage])
 
   // --- Resetar Índice se Itens Mudarem ---
   useEffect(() => {
@@ -236,6 +237,28 @@ const Carousel: React.FC<CarouselProps> = (props) => {
 
   const xTranslate = `-${currentIndex * itemWidthPercentage}%`
 
+  // Theme-aware button styles
+  const buttonStyle = theme
+    ? {
+        backgroundColor: `${theme.colors.cardBackground}CC`,
+        color: theme.colors.primary,
+        borderRadius: theme.borderRadius.medium,
+      }
+    : {
+        backgroundColor: "rgba(38, 38, 38, 0.8)",
+        color: "#f59e0b",
+      }
+
+  const indicatorStyle = theme
+    ? {
+        active: theme.colors.primary,
+        inactive: theme.colors.secondary,
+      }
+    : {
+        active: "#f59e0b",
+        inactive: "#525252",
+      }
+
   return (
     <div
       className={`relative w-full ${className}`}
@@ -253,7 +276,11 @@ const Carousel: React.FC<CarouselProps> = (props) => {
           <>
             <button
               onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-neutral-800/70 hover:bg-neutral-700 text-white p-2 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-200"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 transition-all duration-200"
+              style={{
+                ...buttonStyle,
+                
+              }}
               aria-label="Slide anterior"
             >
               <svg
@@ -269,7 +296,11 @@ const Carousel: React.FC<CarouselProps> = (props) => {
 
             <button
               onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-neutral-800/70 hover:bg-neutral-700 text-white p-2 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-200"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 transition-all duration-200"
+              style={{
+                ...buttonStyle,
+               
+              }}
               aria-label="Próximo slide"
             >
               <svg
@@ -287,8 +318,6 @@ const Carousel: React.FC<CarouselProps> = (props) => {
 
         {/* Container com overflow hidden para o carousel */}
         <div className="overflow-hidden px-8">
-          {" "}
-          {/* Adicionado padding para dar espaço aos botões */}
           <motion.div
             className="flex"
             animate={{ x: xTranslate }}
@@ -322,9 +351,12 @@ const Carousel: React.FC<CarouselProps> = (props) => {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-colors duration-200 ${
-                currentIndex === index ? "bg-amber-500 scale-110" : "bg-neutral-600 hover:bg-neutral-500"
-              } focus:outline-none focus:ring-1 focus:ring-amber-500`}
+              className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-colors duration-200 focus:outline-none focus:ring-1`}
+              style={{
+                backgroundColor: currentIndex === index ? indicatorStyle.active : indicatorStyle.inactive,
+                transform: currentIndex === index ? "scale(1.1)" : "scale(1)",
+                
+              }}
               aria-label={`Ir para o slide ${index + 1}`}
               aria-current={currentIndex === index ? "step" : undefined}
             />
