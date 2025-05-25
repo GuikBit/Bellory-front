@@ -31,29 +31,27 @@ export const themes = {
     id: 'masculinoModerno',
     name: 'Masculino Moderno',
     type: 'masculino',
-    isDark: true, // Exemplo de propriedade adicional
+    isDark: true,
     colors: {
-      primary: '#1A202C',       // Ex: Um cinza escuro quase preto
-      secondary: '#2D3748',     // Ex: Um cinza mais claro
-      accent: '#4A5568',        // Ex: Um cinza azulado
-      background: '#171923',    // Ex: Fundo bem escuro
-      text: '#E2E8F0',          // Ex: Texto claro
-      textSecondary: '#A0AEC0',  // Ex: Texto secundário mais suave
-      cardBackground: '#2D3748',
-      cardBackgroundSecondary: '',
-      buttonText: '#FFFFFF',
-      // ... outras cores específicas
+      primary: '#1E1F26',         // Cinza chumbo escuro (base principal)
+      secondary: '#2C2E34',       // Cinza grafite mais definido
+      accent: '#556B8C',          // Azul acinzentado elegante (destaque sutil)
+      background: '#15161B',      // Quase preto com toque azulado
+      text: '#F5F7FA',            // Branco suave (melhor legibilidade)
+      textSecondary: '#B0B8C1',   // Cinza claro azulado para textos secundários
+      cardBackground: '#23252B',  // Cartões com leve contraste do fundo
+      cardBackgroundSecondary: '#2E3036', // Para cards em destaque leve
+      buttonText: '#FFFFFF',      // Texto de botões branco
     },
     fonts: {
       heading: '"Roboto Condensed", sans-serif',
       body: '"Open Sans", sans-serif',
     },
     borderRadius: {
-      small: '0.25rem', // 4px
-      medium: '0.375rem', // 6px
-      large: '0.5rem',    // 8px
+      small: '0.25rem',
+      medium: '0.375rem',
+      large: '0.5rem',
     },
-    // Outras propriedades: sombras, espaçamentos específicos, etc.
   },
   masculinoClassico: {
     id: 'masculinoClassico',

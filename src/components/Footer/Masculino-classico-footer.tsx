@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Facebook, Instagram, Phone, MapPin, Mail, Twitter, Calendar } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
 
 
 const MasculinoClassicoFooter = () => {
@@ -92,7 +92,7 @@ const MasculinoClassicoFooter = () => {
             <div className="md:col-span-4">
               <div className="flex flex-col items-center md:items-start">
                 <div className="mb-6">
-                  <Logo3D scale={1.8} />
+                  {/* <Logo3D scale={1.8} /> */}
                 </div>
 
                 <h3

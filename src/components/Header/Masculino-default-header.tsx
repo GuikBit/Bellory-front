@@ -17,7 +17,8 @@ import {
   Search,
 } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D";
+// import Logo3D from "../Fragments/Logo3D";
+import { useNavigate } from "react-router"
 
 // interface HeaderProps {
 //   cartItemCount?: number
@@ -31,6 +32,7 @@ const MasculineDefaultHeader = () => {
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const { currentTheme: theme, setTheme } = useTheme()
+  const navigate = useNavigate();
 
   // Simular carrinho com alguns produtos
   const carrinho = { produtos: [1, 2] }
@@ -57,9 +59,9 @@ const MasculineDefaultHeader = () => {
       name: "Serviços",
       path: "/servicos",
       dropdown: [
-        { name: "Corte de Cabelo", path: "/servicos/corte" },
-        { name: "Barba", path: "/servicos/barba" },
-        { name: "Tratamentos", path: "/servicos/tratamentos" },
+        { name: "Corte de Cabelo", path: "/servicos" },
+        { name: "Barba", path: "/servicos" },
+        { name: "Tratamentos", path: "/servicos" },
       ],
     },
     { name: "Produtos", path: "/produtos" },
@@ -67,8 +69,8 @@ const MasculineDefaultHeader = () => {
       name: "Planos",
       path: "/planos",
       dropdown: [
-        { name: "Plano Básico", path: "/planos/basico" },
-        { name: "Plano Plus", path: "/planos/plus" },
+        { name: "Plano Básico", path: "/planos" },
+        { name: "Plano Plus", path: "/planos" },
       ],
     },
     { name: "Sobre", path: "/sobre" },
@@ -192,7 +194,7 @@ const MasculineDefaultHeader = () => {
               style={{ borderColor: theme.colors.primary }}
             >
               <motion.div className="w-12 h-12 flex items-center justify-center" whileHover={{ rotate: 360 }} transition={{ duration: 1 }}>
-                <Logo3D scale={scrolled ? 0.8 : 1} />
+                {/* <Logo3D scale={scrolled ? 0.8 : 1} /> */}
               </motion.div>
             </div>
             <div>
@@ -220,7 +222,7 @@ const MasculineDefaultHeader = () => {
                     href={item.path}
                     onClick={(e) => {
                       e.preventDefault()
-                      // navigate(item.path)
+                      navigate(item.path)
                     }}
                     className="px-4 py-2 font-medium text-base relative group"
                     style={{
@@ -267,7 +269,7 @@ const MasculineDefaultHeader = () => {
                               href={subItem.path}
                               onClick={(e) => {
                                 e.preventDefault()
-                                // navigate(subItem.path)
+                                navigate(subItem.path)
                                 setActiveDropdown(null)
                               }}
                               className="block px-4 py-2 hover:bg-opacity-10 transition-colors duration-200"
@@ -347,7 +349,7 @@ const MasculineDefaultHeader = () => {
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => {}}
+                onClick={() => {navigate('/carrinho')}}
               >
                 <ShoppingCart size={20} />
                 {carrinho?.produtos && carrinho?.produtos.length > 0 && (
@@ -418,7 +420,7 @@ const MasculineDefaultHeader = () => {
                 background: adjustColor(theme.colors.primary, -15),
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {}}
+              onClick={() => {navigate('/login')}}
             >
               Login
             </motion.button>
@@ -472,7 +474,7 @@ const MasculineDefaultHeader = () => {
                         if (item.dropdown) {
                           setActiveDropdown(activeDropdown === item.name ? null : item.name)
                         } else {
-                          // navigate(item.path)
+                          navigate(item.path)
                         }
                       }}
                     >
@@ -523,7 +525,7 @@ const MasculineDefaultHeader = () => {
                                 href={subItem.path}
                                 onClick={(e) => {
                                   e.preventDefault()
-                                  // navigate(subItem.path)
+                                  navigate(subItem.path)
                                 }}
                                 className="block py-2 transition-colors duration-200"
                                 style={{
@@ -557,7 +559,7 @@ const MasculineDefaultHeader = () => {
                     background: adjustColor(theme.colors.primary, -15),
                   }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => {}}
+                  onClick={() => {navigate('/login')}}
                 >
                   Login / Cadastro
                 </motion.button>

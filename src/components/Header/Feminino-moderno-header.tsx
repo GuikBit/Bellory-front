@@ -21,7 +21,8 @@ import {
   Youtube,
 } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
+import { useNavigate } from "react-router"
 
 interface HeaderProps {
   cartItemCount?: number
@@ -34,6 +35,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [activeNavItem, setActiveNavItem] = useState("Home")
   const { currentTheme: theme } = useTheme()
+  const navigate = useNavigate();
 
   // Detectar scroll para mudar a aparência do header
   useEffect(() => {
@@ -57,10 +59,10 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "Serviços",
       path: "/servicos",
       dropdown: [
-        { name: "Corte de Cabelo", path: "/servicos/corte" },
-        { name: "Tratamentos", path: "/servicos/tratamentos" },
-        { name: "Coloração", path: "/servicos/coloracao" },
-        { name: "Unhas", path: "/servicos/unhas" },
+        { name: "Corte de Cabelo", path: "/servicos" },
+        { name: "Tratamentos", path: "/servicos" },
+        { name: "Coloração", path: "/servicos" },
+        { name: "Unhas", path: "/servicos" },
       ],
     },
     { name: "Produtos", path: "/produtos" },
@@ -68,9 +70,9 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "Planos",
       path: "/planos",
       dropdown: [
-        { name: "Plano Básico", path: "/planos/basico" },
-        { name: "Plano Plus", path: "/planos/plus" },
-        { name: "Plano Premium", path: "/planos/premium" },
+        { name: "Plano Básico", path: "/planos" },
+        { name: "Plano Plus", path: "/planos" },
+        { name: "Plano Premium", path: "/planos" },
       ],
     },
     { name: "Blog", path: "/blog" },
@@ -224,7 +226,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <Logo3D scale={1} />
+                {/* <Logo3D scale={1} /> */}
               </motion.div>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r opacity-0 hover:opacity-30 transition-opacity duration-300"
@@ -266,6 +268,10 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                       background: activeNavItem === item.name ? theme.colors.primary : "transparent",
                       fontFamily: theme.fonts.body,
                     }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate(item.path)
+                    }}
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -301,6 +307,11 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                 color: theme.colors.text,
                                 fontFamily: theme.fonts.body,
                               }}
+                              onClick={(e) => {
+                                e.preventDefault()
+                                navigate(subItem.path)
+                                setActiveDropdown(null)
+                              }}
                               variants={itemVariants}
                               whileHover={{ x: 2, backgroundColor: `${theme.colors.secondary}20` }}
                             >
@@ -329,6 +340,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 }}
                 whileHover={{ scale: 1.05, backgroundColor: adjustColor(theme.colors.secondary, -10) }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {navigate('/carrinho')}}
               >
                 <ShoppingCart size={18} />
                 {cartItemCount > 0 && (
@@ -338,6 +350,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  
                   >
                     {cartItemCount}
                   </motion.span>
@@ -357,6 +370,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 background: adjustColor(theme.colors.primary, -10),
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {navigate('/login')}}
             >
               <User size={16} className="mr-2" />
               Login
@@ -480,6 +494,10 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                   fontFamily: theme.fonts.body,
                                 }}
                                 variants={itemVariants}
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  navigate(subItem.path)
+                                }}
                               >
                                 <Star size={10} className="inline-block mr-2" style={{ color: theme.colors.primary }} />
                                 {subItem.name}
@@ -506,6 +524,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                     background: adjustColor(theme.colors.primary, -10),
                   }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {navigate('/login')}}
                 >
                   <User size={18} className="mr-2" />
                   Login / Cadastro
@@ -518,6 +537,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                   style={{
                     backgroundColor: `${theme.colors.secondary}20`,
                   }}
+                  onClick={() => {navigate('/carrinho')}}
                   whileHover={{ scale: 1.05, backgroundColor: `${theme.colors.secondary}40` }}
                 >
                   <ShoppingCart size={18} style={{ color: theme.colors.primary }} />

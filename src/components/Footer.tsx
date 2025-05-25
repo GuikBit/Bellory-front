@@ -21,7 +21,7 @@ import {
   Star,
 } from "lucide-react"
 import { useTheme } from "../contexts/Theme-context"
-import Logo3D from "./Fragments/Logo3D"
+// import Logo3D from "./Fragments/Logo3D"
 
 const Footer = () => {
   const [hoverSocial, setHoverSocial] = useState<string | null>(null)
@@ -90,7 +90,7 @@ const Footer = () => {
                 {/* Coluna 1: Logo e Redes Sociais */}
                 <div className="md:col-span-4 flex flex-col items-center md:items-start">
                   <div className="mb-6 flex justify-center md:justify-start">
-                    <Logo3D scale={2} />
+                    {/* <Logo3D scale={2} /> */}
                   </div>
 
                   <p className="mb-6 text-center md:text-left" style={{ color: theme.colors.textSecondary }}>
@@ -337,7 +337,7 @@ const Footer = () => {
                 {/* Coluna 1: Logo e Descrição */}
                 <div className="md:col-span-4 flex flex-col">
                   <div className="mb-6">
-                    <Logo3D scale={1.8} />
+                    {/* <Logo3D scale={1.8} /> */}
                   </div>
 
                   <p className="mb-6" style={{ color: theme.colors.textSecondary }}>
@@ -504,7 +504,7 @@ const Footer = () => {
               {/* Copyright e Créditos */}
               <div className="flex flex-col md:flex-row justify-between items-center text-sm py-6">
                 <div className="flex items-center">
-                  <Logo3D scale={1} />
+                  {/* <Logo3D scale={1} /> */}
                   <div className="ml-2 font-medium" style={{ color: theme.colors.text }}>
                     BARBERSHOP
                   </div>
@@ -541,7 +541,7 @@ const Footer = () => {
                 {/* Coluna 1: Logo e Descrição */}
                 <div className="md:col-span-4 flex flex-col items-center md:items-start">
                   <div className="mb-6">
-                    <Logo3D scale={1.8} />
+                    {/* <Logo3D scale={1.8} /> */}
                   </div>
 
                   <p className="mb-6 text-center md:text-left font-serif" style={{ color: theme.colors.textSecondary }}>
@@ -745,7 +745,7 @@ const Footer = () => {
                 {/* Coluna 1: Logo e Descrição */}
                 <div className="md:col-span-4 flex flex-col items-center md:items-start">
                   <div className="mb-6">
-                    <Logo3D scale={1.8} />
+                    {/* <Logo3D scale={1.8} /> */}
                   </div>
 
                   <p
@@ -996,7 +996,7 @@ const Footer = () => {
                 {/* Coluna 1: Logo e Descrição */}
                 <div className="md:col-span-4">
                   <div className="mb-6">
-                    <Logo3D scale={1.8} />
+                    {/* <Logo3D scale={1.8} /> */}
                   </div>
 
                   <p className="mb-6" style={{ color: theme.colors.textSecondary, fontFamily: theme.fonts.body }}>
@@ -1209,7 +1209,7 @@ const Footer = () => {
                 {/* Coluna 1: Logo e Redes Sociais */}
                 <div className="md:col-span-4 flex flex-col items-center md:items-start">
                   <div className="mb-6 flex justify-center md:justify-start">
-                    <Logo3D scale={2} />
+                    {/* <Logo3D scale={2} /> */}
                   </div>
 
                   <p className="mb-6 text-center md:text-left" style={{ color: theme.colors.textSecondary }}>

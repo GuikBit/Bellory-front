@@ -19,7 +19,8 @@ import {
   Calendar,
 } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
+import { useNavigate } from "react-router"
 
 
 interface HeaderProps {
@@ -32,7 +33,7 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const { currentTheme: theme } = useTheme()
-
+ const navigate = useNavigate();
   // Detectar scroll para mudar a aparência do header
   useEffect(() => {
     const handleScroll = () => {
@@ -55,9 +56,9 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "Serviços",
       path: "/servicos",
       dropdown: [
-        { name: "Corte de Cabelo", path: "/servicos/corte" },
-        { name: "Tratamentos", path: "/servicos/tratamentos" },
-        { name: "Coloração", path: "/servicos/coloracao" },
+        { name: "Corte de Cabelo", path: "/servicos" },
+        { name: "Tratamentos", path: "/servicos" },
+        { name: "Coloração", path: "/servicos" },
       ],
     },
     { name: "Produtos", path: "/produtos" },
@@ -65,8 +66,8 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "Planos",
       path: "/planos",
       dropdown: [
-        { name: "Plano Básico", path: "/planos/basico" },
-        { name: "Plano Plus", path: "/planos/plus" },
+        { name: "Plano Básico", path: "/planos" },
+        { name: "Plano Plus", path: "/planos" },
       ],
     },
     { name: "Sobre", path: "/sobre" },
@@ -206,7 +207,7 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <Logo3D scale={0.9} />
+                {/* <Logo3D scale={0.9} /> */}
               </motion.div>
             </div>
             <div>
@@ -236,6 +237,10 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                     style={{
                       color: activeDropdown === item.name ? theme.colors.primary : theme.colors.text,
                       fontFamily: theme.fonts.body,
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate(item.path)
                     }}
                   >
                     {item.name}
@@ -278,6 +283,11 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                 color: theme.colors.text,
                                 fontFamily: theme.fonts.body,
                               }}
+                              onClick={(e) => {
+                                e.preventDefault()
+                                navigate(subItem.path)
+                                setActiveDropdown(null)
+                              }}
                               variants={itemVariants}
                               whileHover={{ x: 2, backgroundColor: `${theme.colors.primary}10` }}
                             >
@@ -316,6 +326,7 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 }}
                 whileHover={{ scale: 1.05, backgroundColor: `${theme.colors.primary}10` }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {navigate('/carrinho')}}
               >
                 <ShoppingCart size={18} style={{ color: theme.colors.primary }} />
                 {cartItemCount > 0 && (
@@ -360,6 +371,22 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
             >
               <Calendar size={16} className="mr-2" />
               Agendar
+            </motion.button>
+
+            <motion.button
+              className="hidden md:flex items-center px-4 py-2 rounded-full font-medium transition-colors duration-300"
+              style={{
+                background: theme.colors.primary,
+                color: theme.colors.buttonText,
+              }}
+              whileHover={{
+                scale: 1.05,
+                background: adjustColor(theme.colors.primary, -15),
+              }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {navigate('/login')}}
+            >
+              Login
             </motion.button>
 
             {/* Mobile Menu Toggle */}

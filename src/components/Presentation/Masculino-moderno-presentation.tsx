@@ -3,9 +3,8 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronDown, Hexagon, Zap, ArrowRight } from "lucide-react"
-import { useIsMobile } from "../../hooks/useIsMobile"
+// import { useIsMobile } from "../../hooks/useIsMobile"
 import { themes } from "../../theme/theme"
-import Logo3D from "../Fragments/Logo3D"
 import { BarbeariaButton } from "../ui"
 
 interface MasculinoModernoPresentationProps {
@@ -14,7 +13,7 @@ interface MasculinoModernoPresentationProps {
 }
 
 const MasculinoModernoPresentation = ({ onAgendarClick, onScrollToNext }: MasculinoModernoPresentationProps) => {
-  const isMobile = useIsMobile()
+  // const isMobile = useIsMobile()
   const theme = themes.masculinoModerno
 
   const scrollRef = useRef(null)
@@ -77,7 +76,7 @@ const MasculinoModernoPresentation = ({ onAgendarClick, onScrollToNext }: Mascul
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-8"
         >
-          <Logo3D scale={isMobile ? 3 : 4} />
+          {/* <Logo3D scale={isMobile ? 3 : 4} /> */}
         </motion.div>
 
         {/* Futuristic title */}

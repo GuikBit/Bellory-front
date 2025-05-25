@@ -10,6 +10,7 @@ const Servicos = lazy(() => import("../views/Servicos"));
 const NotFound = lazy(() => import("../views/NotFound"));
 const Carrinho = lazy(() => import("../views/Carrinho"));
 const Auth = lazy(() => import("../views/Auth"));
+const ProdutoDetalhe = lazy(()=> import("../views/ProdutosDetalhes"))
 
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -40,6 +41,7 @@ function Routing() {
             <Route index element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/produtos" element={<Produtos />} />
+            <Route path="/produtos/:id" element={<ProdutoDetalhe />} />
             <Route path="/servicos" element={<Servicos />} />
             <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/login" element={<Auth />} />

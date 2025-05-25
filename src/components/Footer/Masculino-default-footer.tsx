@@ -16,7 +16,7 @@ import {
   ArrowRight,
 } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
 
 
 const MasculineDefaultFooter = () => {
@@ -93,7 +93,7 @@ const MasculineDefaultFooter = () => {
             {/* Coluna 1: Informações e Newsletter */}
             <div className="lg:col-span-1">
               <div className="mb-6 flex justify-center lg:justify-start">
-                <Logo3D scale={1.8} />
+                {/* <Logo3D scale={1.8} /> */}
               </div>
 
               <p className="mb-6 text-center lg:text-left" style={{ color: theme.colors.textSecondary }}>

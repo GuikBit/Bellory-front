@@ -3,9 +3,9 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronDown, Flower, Heart, Calendar } from "lucide-react"
-import { useIsMobile } from "../../hooks/useIsMobile"
+// import { useIsMobile } from "../../hooks/useIsMobile"
 import { themes } from "../../theme/theme"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
 import { BarbeariaButton } from "../ui"
 
 interface FemininoElegantePresentationProps {
@@ -14,7 +14,7 @@ interface FemininoElegantePresentationProps {
 }
 
 const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: FemininoElegantePresentationProps) => {
-  const isMobile = useIsMobile()
+  // const isMobile = useIsMobile()
   const theme = themes.femininoElegante
 
   const scrollRef = useRef(null)
@@ -90,7 +90,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="mb-8"
         >
-          <Logo3D scale={isMobile ? 3 : 4} />
+          {/* <Logo3D scale={isMobile ? 3 : 4} /> */}
         </motion.div>
 
         {/* Elegant title with floating elements */}

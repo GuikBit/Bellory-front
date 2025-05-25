@@ -16,7 +16,7 @@ import {
   Scissors,
 } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
 
 
 const MasculinoModernoFooter = () => {
@@ -139,7 +139,7 @@ const MasculinoModernoFooter = () => {
             {/* Coluna 1: Logo e Descrição */}
             <div className="md:col-span-4">
               <div className="flex items-center mb-6">
-                <Logo3D scale={1.8} />
+                {/* <Logo3D scale={1.8} /> */}
                 <div className="ml-3">
                   <h2
                     className="text-xl font-bold tracking-tight"

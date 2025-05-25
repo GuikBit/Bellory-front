@@ -3,9 +3,9 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronDown, Sparkles, Star, Zap } from "lucide-react"
-import { useIsMobile } from "../../hooks/useIsMobile"
+// import { useIsMobile } from "../../hooks/useIsMobile"
 import { themes } from "../../theme/theme"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
 import { BarbeariaButton } from "../ui"
 
 interface FemininoModernoPresentationProps {
@@ -14,7 +14,7 @@ interface FemininoModernoPresentationProps {
 }
 
 const FemininoModernoPresentation = ({ onAgendarClick, onScrollToNext }: FemininoModernoPresentationProps) => {
-  const isMobile = useIsMobile()
+  // const isMobile = useIsMobile()
   const theme = themes.femininoModerno
 
   const scrollRef = useRef(null)
@@ -88,7 +88,7 @@ const FemininoModernoPresentation = ({ onAgendarClick, onScrollToNext }: Feminin
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="mb-8"
         >
-          <Logo3D scale={isMobile ? 3 : 4} />
+          {/* <Logo3D scale={isMobile ? 3 : 4} /> */}
         </motion.div>
 
         {/* Vibrant modern title */}

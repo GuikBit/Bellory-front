@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Facebook, Instagram, Phone, MapPin, Mail, Twitter, Heart, Send, ExternalLink, Calendar } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
 
 
 const FemininoEleganteFooter = () => {
@@ -129,7 +129,7 @@ const FemininoEleganteFooter = () => {
             {/* Coluna 1: Logo e Descrição */}
             <div className="md:col-span-4 flex flex-col items-center md:items-start">
               <div className="mb-6">
-                <Logo3D scale={1.8} />
+                {/* <Logo3D scale={1.8} /> */}
               </div>
 
               <p

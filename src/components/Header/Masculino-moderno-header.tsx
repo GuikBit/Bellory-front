@@ -21,7 +21,8 @@ import {
   Zap,
 } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
+import { useNavigate } from "react-router"
 
 interface HeaderProps {
   cartItemCount?: number
@@ -34,7 +35,7 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const { currentTheme: theme } = useTheme()
-
+  const navigate = useNavigate();
   // Detectar scroll para mudar a aparência do header
   useEffect(() => {
     const handleScroll = () => {
@@ -57,9 +58,9 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "Serviços",
       path: "/servicos",
       dropdown: [
-        { name: "Corte de Cabelo", path: "/servicos/corte" },
-        { name: "Barba", path: "/servicos/barba" },
-        { name: "Tratamentos", path: "/servicos/tratamentos" },
+        { name: "Corte de Cabelo", path: "/servicos" },
+        { name: "Barba", path: "/servicos" },
+        { name: "Tratamentos", path: "/servicos" },
       ],
     },
     { name: "Produtos", path: "/produtos" },
@@ -67,8 +68,8 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "Planos",
       path: "/planos",
       dropdown: [
-        { name: "Plano Básico", path: "/planos/basico" },
-        { name: "Plano Plus", path: "/planos/plus" },
+        { name: "Plano Básico", path: "/planos" },
+        { name: "Plano Plus", path: "/planos" },
       ],
     },
     { name: "Sobre", path: "/sobre" },
@@ -183,7 +184,7 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                   transition: { duration: 0.5 },
                 }}
               >
-                <Logo3D scale={1.2} />
+                {/* <Logo3D scale={1.2} /> */}
               </motion.div>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r opacity-0 hover:opacity-30 transition-opacity duration-300"
@@ -227,6 +228,10 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                     }}
                     whileHover={{ y: -1, x: 0 }}
                     transition={{ duration: 0.2 }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate(item.path)
+                    }}
                   >
                     {item.name}
                     {item.dropdown && (
@@ -259,6 +264,11 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                               style={{
                                 color: theme.colors.text,
                                 fontFamily: theme.fonts.body,
+                              }}
+                              onClick={(e) => {
+                                e.preventDefault()
+                                navigate(subItem.path)
+                                setActiveDropdown(null)
                               }}
                               variants={itemVariants}
                               whileHover={{ x: 3, backgroundColor: `${theme.colors.primary}10` }}
@@ -331,6 +341,7 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                   backgroundColor: theme.isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)",
                 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {navigate('/carrinho')}}
               >
                 <ShoppingCart size={20} style={{ color: theme.colors.primary }} />
                 {cartItemCount > 0 && (
@@ -374,6 +385,7 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 background: adjustColor(theme.colors.primary, -10),
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {navigate('/login')}}
             >
               <span>Login</span>
               <ArrowRight size={16} className="ml-2" />
@@ -456,6 +468,8 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                       onClick={() => {
                         if (item.dropdown) {
                           setActiveDropdown(activeDropdown === item.name ? null : item.name)
+                        }else {
+                          navigate(item.path)
                         }
                       }}
                     >
@@ -511,6 +525,10 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                   fontFamily: theme.fonts.body,
                                 }}
                                 variants={itemVariants}
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  navigate(subItem.path)
+                                }}
                               >
                                 <Hexagon size={8} className="inline-block mr-2 fill-current" />
                                 {subItem.name}
@@ -537,6 +555,7 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                     background: adjustColor(theme.colors.primary, -10),
                   }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {navigate('/login')}}
                 >
                   <Zap size={18} className="mr-2" />
                   Login / Cadastro
@@ -549,6 +568,7 @@ const MasculinoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                   style={{
                     backgroundColor: theme.isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)",
                   }}
+                  onClick={() => {navigate('/carrinho')}}
                   whileHover={{ scale: 1.05, backgroundColor: `${theme.colors.primary}20` }}
                 >
                   <ShoppingCart size={20} style={{ color: theme.colors.primary }} />

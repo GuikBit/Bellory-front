@@ -16,7 +16,8 @@ import {
   Twitter,
 } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
-import Logo3D from "../Fragments/Logo3D"
+// import Logo3D from "../Fragments/Logo3D"
+import { useNavigate } from "react-router"
 
 interface HeaderProps {
   cartItemCount?: number
@@ -28,6 +29,7 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const { currentTheme: theme } = useTheme()
+  const navigate = useNavigate();
 
   // Detectar scroll para mudar a aparência do header
   useEffect(() => {
@@ -51,9 +53,9 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "SERVIÇOS",
       path: "/servicos",
       dropdown: [
-        { name: "Corte de Cabelo", path: "/servicos/corte" },
-        { name: "Barba", path: "/servicos/barba" },
-        { name: "Tratamentos", path: "/servicos/tratamentos" },
+        { name: "Corte de Cabelo", path: "/servicos" },
+        { name: "Barba", path: "/servicos" },
+        { name: "Tratamentos", path: "/servicos" },
       ],
     },
     { name: "PRODUTOS", path: "/produtos" },
@@ -61,8 +63,8 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       name: "PLANOS",
       path: "/planos",
       dropdown: [
-        { name: "Plano Básico", path: "/planos/basico" },
-        { name: "Plano Plus", path: "/planos/plus" },
+        { name: "Plano Básico", path: "/planos" },
+        { name: "Plano Plus", path: "/planos" },
       ],
     },
     { name: "SOBRE", path: "/sobre" },
@@ -161,7 +163,7 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <Logo3D scale={1.2} />
+                {/* <Logo3D scale={1.2} /> */}
               </motion.div>
             </div>
             <div className="text-center md:text-left">
@@ -193,6 +195,10 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                     style={{
                       color: activeDropdown === item.name ? theme.colors.primary : theme.colors.text,
                       fontFamily: theme.fonts.heading,
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate(item.path)
                     }}
                   >
                     {item.name}
@@ -228,6 +234,11 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                 fontFamily: theme.fonts.body,
                               }}
                               variants={itemVariants}
+                              onClick={(e) => {
+                                e.preventDefault()
+                                navigate(subItem.path)
+                                setActiveDropdown(null)
+                              }}
                             >
                               {subItem.name}
                             </motion.div>
@@ -252,6 +263,7 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 }}
                 whileHover={{ color: theme.colors.primary }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {navigate('/carrinho')}}
               >
                 <ShoppingCart size={20} style={{ color: theme.colors.primary }} />
                 {cartItemCount > 0 && (
@@ -279,6 +291,7 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 background: adjustColor(theme.colors.primary, -10),
               }}
               whileTap={{ scale: 0.98 }}
+              onClick={() => {navigate('/login')}}
             >
               Login
             </motion.button>
@@ -336,6 +349,8 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                       onClick={() => {
                         if (item.dropdown) {
                           setActiveDropdown(activeDropdown === item.name ? null : item.name)
+                        }else {
+                          navigate(item.path)
                         }
                       }}
                     >
@@ -381,6 +396,10 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                   fontFamily: theme.fonts.body,
                                 }}
                                 variants={itemVariants}
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  navigate(subItem.path)
+                                }}
                               >
                                 {subItem.name}
                               </motion.div>
@@ -405,6 +424,7 @@ const MasculinoClassicoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                     background: adjustColor(theme.colors.primary, -10),
                   }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {navigate('/login')}}
                 >
                   Login / Cadastro
                 </motion.button>

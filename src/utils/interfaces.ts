@@ -59,6 +59,23 @@ export interface Product {
     rating: number;
     discount: number;
 }
+export interface Produto {
+  id: string
+  nome: string
+  preco: number
+  precoOriginal?: number
+  descricao: string
+  imagem: string
+  categoria: string
+  genero: string
+  marca: string
+  avaliacao: number
+  desconto?: number
+  emEstoque: boolean
+  novo?: boolean
+  destaque?: boolean
+  produtosUtilizados?: string[]
+}
 
 export interface ProductCarrinho extends Product {
     quantidade: number; 
