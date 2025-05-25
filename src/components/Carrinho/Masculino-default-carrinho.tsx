@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Avatar } from "primereact/avatar"
+import { Trash2, ShoppingBag, CreditCard, ArrowRight, Plus, Minus } from "lucide-react"
+import { useTheme } from "../../contexts/Theme-context"
 import { CupomDesconto } from "../Cupom/theme-cupom"
-import { Trash2, ShoppingBag, CreditCard, ArrowRight, Scissors, Plus, Minus } from "lucide-react"
 
 interface Produto {
   id: string
@@ -21,6 +22,7 @@ interface CarrinhoProps {
 }
 
 const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
+  const { currentTheme } = useTheme()
   const produtos = carrinho?.produtos || []
   const [descontoCupom, setDescontoCupom] = useState(0)
   const [metodoPagamento, setMetodoPagamento] = useState("pix")
@@ -38,10 +40,19 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white py-12 relative overflow-hidden">
+    <div
+      className="min-h-screen py-12 relative overflow-hidden"
+      style={{ backgroundColor: currentTheme.colors.background }}
+    >
       {/* Elementos decorativos de fundo */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-amber-600/5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-600/5 rounded-full -translate-x-1/2 translate-y-1/2"></div>
+      <div
+        className="absolute top-0 right-0 w-96 h-96 rounded-full translate-x-1/2 -translate-y-1/2 opacity-10"
+        style={{ backgroundColor: currentTheme.colors.primary }}
+      ></div>
+      <div
+        className="absolute bottom-0 left-0 w-64 h-64 rounded-full -translate-x-1/2 translate-y-1/2 opacity-10"
+        style={{ backgroundColor: currentTheme.colors.accent }}
+      ></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -50,41 +61,52 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">SEU CARRINHO</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: currentTheme.colors.text }}>
+            SEU CARRINHO
+          </h1>
           <div className="flex items-center justify-center mb-4">
-            <div className="h-[1px] w-12 bg-amber-500"></div>
-            <ShoppingBag className="mx-4 text-amber-500" size={20} />
-            <div className="h-[1px] w-12 bg-amber-500"></div>
+            <div className="h-[1px] w-12" style={{ backgroundColor: currentTheme.colors.primary }}></div>
+            <ShoppingBag className="mx-4" size={20} style={{ color: currentTheme.colors.primary }} />
+            <div className="h-[1px] w-12" style={{ backgroundColor: currentTheme.colors.primary }}></div>
           </div>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
           {/* Lista de produtos */}
           <motion.div
-            className="flex-grow bg-neutral-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-neutral-700"
+            className="flex-grow backdrop-blur-sm rounded-xl shadow-2xl p-6 border"
+            style={{
+              backgroundColor: `${currentTheme.colors.surface}80`,
+              borderColor: currentTheme.colors.border,
+            }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-amber-600/20 rounded-lg">
-                <ShoppingBag size={24} className="text-amber-500" />
+              <div className="p-2 rounded-lg" style={{ backgroundColor: `${currentTheme.colors.primary}20` }}>
+                <ShoppingBag size={24} style={{ color: currentTheme.colors.primary }} />
               </div>
-              <h2 className="text-xl font-semibold">Produtos no Carrinho</h2>
+              <h2 className="text-xl font-semibold" style={{ color: currentTheme.colors.text }}>
+                Produtos no Carrinho
+              </h2>
             </div>
 
             {produtos.length === 0 ? (
               <div className="text-center py-16">
                 <div className="mb-6">
-                  <ShoppingBag size={64} className="text-neutral-600 mx-auto mb-4" />
-                  <p className="text-gray-400 mb-6 text-lg">Seu carrinho está vazio</p>
+                  <ShoppingBag size={64} className="mx-auto mb-4" style={{ color: currentTheme.colors.muted }} />
+                  <p className="mb-6 text-lg" style={{ color: currentTheme.colors.muted }}>
+                    Seu carrinho está vazio
+                  </p>
                 </div>
                 <motion.button
-                  className="px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-3 mx-auto shadow-lg"
+                  className="px-8 py-4 text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-3 mx-auto shadow-lg"
+                  style={{ backgroundColor: currentTheme.colors.primary }}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Scissors size={20} />
+                  <currentTheme.icon size={20} />
                   EXPLORAR PRODUTOS
                 </motion.button>
               </div>
@@ -93,7 +115,11 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
                 {produtos.map((produto, index) => (
                   <motion.div
                     key={produto.id}
-                    className="flex items-center gap-4 p-4 bg-neutral-700/50 rounded-xl border border-neutral-600 hover:border-amber-500/30 transition-all duration-300"
+                    className="flex items-center gap-4 p-4 rounded-xl border transition-all duration-300"
+                    style={{
+                      backgroundColor: `${currentTheme.colors.surface}50`,
+                      borderColor: currentTheme.colors.border,
+                    }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -104,32 +130,53 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
                         image={produto.image}
                         size="large"
                         shape="circle"
-                        className="border-2 border-amber-500 shadow-lg"
+                        className="border-2 shadow-lg"
+                        style={{ borderColor: currentTheme.colors.primary }}
                       />
-                      <div className="absolute -top-1 -right-1 w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center text-xs font-bold">
+                      <div
+                        className="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                        style={{ backgroundColor: currentTheme.colors.accent }}
+                      >
                         {produto.quantidade}
                       </div>
                     </div>
 
                     <div className="flex-grow">
-                      <h3 className="font-semibold text-lg">{produto.name}</h3>
-                      <p className="text-amber-400 font-medium">R$ {produto.price.toFixed(2)}</p>
+                      <h3 className="font-semibold text-lg" style={{ color: currentTheme.colors.text }}>
+                        {produto.name}
+                      </h3>
+                      <p className="font-medium" style={{ color: currentTheme.colors.primary }}>
+                        R$ {produto.price.toFixed(2)}
+                      </p>
                     </div>
 
-                    <div className="flex items-center gap-3 bg-neutral-800 rounded-lg p-1">
+                    <div
+                      className="flex items-center gap-3 rounded-lg p-1"
+                      style={{ backgroundColor: currentTheme.colors.surface }}
+                    >
                       <motion.button
-                        className="w-8 h-8 flex items-center justify-center bg-neutral-600 hover:bg-amber-600 rounded-md transition-colors"
+                        className="w-8 h-8 flex items-center justify-center rounded-md transition-colors"
+                        style={{
+                          backgroundColor: currentTheme.colors.muted,
+                          color: currentTheme.colors.text,
+                        }}
                         onClick={() => handleQuantidadeChange(produto.id, produto.quantidade - 1)}
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.1, backgroundColor: currentTheme.colors.primary }}
                         whileTap={{ scale: 0.9 }}
                       >
                         <Minus size={14} />
                       </motion.button>
-                      <span className="w-8 text-center font-medium">{produto.quantidade}</span>
+                      <span className="w-8 text-center font-medium" style={{ color: currentTheme.colors.text }}>
+                        {produto.quantidade}
+                      </span>
                       <motion.button
-                        className="w-8 h-8 flex items-center justify-center bg-neutral-600 hover:bg-amber-600 rounded-md transition-colors"
+                        className="w-8 h-8 flex items-center justify-center rounded-md transition-colors"
+                        style={{
+                          backgroundColor: currentTheme.colors.muted,
+                          color: currentTheme.colors.text,
+                        }}
                         onClick={() => handleQuantidadeChange(produto.id, produto.quantidade + 1)}
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.1, backgroundColor: currentTheme.colors.primary }}
                         whileTap={{ scale: 0.9 }}
                       >
                         <Plus size={14} />
@@ -137,7 +184,7 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
                     </div>
 
                     <div className="text-right min-w-[100px]">
-                      <p className="font-bold text-lg text-amber-400">
+                      <p className="font-bold text-lg" style={{ color: currentTheme.colors.primary }}>
                         R$ {(produto.price * produto.quantidade).toFixed(2)}
                       </p>
                     </div>
@@ -158,34 +205,47 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
 
           {/* Resumo */}
           <motion.div
-            className="lg:w-[400px] bg-neutral-800/80 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-neutral-700 h-fit"
+            className="lg:w-[400px] backdrop-blur-sm rounded-xl shadow-2xl p-6 border h-fit"
+            style={{
+              backgroundColor: `${currentTheme.colors.surface}80`,
+              borderColor: currentTheme.colors.border,
+            }}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-amber-600/20 rounded-lg">
-                <CreditCard size={24} className="text-amber-500" />
+              <div className="p-2 rounded-lg" style={{ backgroundColor: `${currentTheme.colors.primary}20` }}>
+                <CreditCard size={24} style={{ color: currentTheme.colors.primary }} />
               </div>
-              <h2 className="text-xl font-semibold">Resumo do Pedido</h2>
+              <h2 className="text-xl font-semibold" style={{ color: currentTheme.colors.text }}>
+                Resumo do Pedido
+              </h2>
             </div>
 
             <div className="space-y-4 mb-6">
-              <div className="flex justify-between py-3 border-b border-neutral-700">
-                <span className="text-gray-300">Subtotal:</span>
-                <span className="font-medium">R$ {subtotal.toFixed(2)}</span>
+              <div className="flex justify-between py-3 border-b" style={{ borderColor: currentTheme.colors.border }}>
+                <span style={{ color: currentTheme.colors.muted }}>Subtotal:</span>
+                <span className="font-medium" style={{ color: currentTheme.colors.text }}>
+                  R$ {subtotal.toFixed(2)}
+                </span>
               </div>
 
               {/* Método de pagamento */}
               <div>
-                <p className="text-gray-300 mb-3 font-medium">Método de pagamento:</p>
+                <p className="mb-3 font-medium" style={{ color: currentTheme.colors.muted }}>
+                  Método de pagamento:
+                </p>
                 <div className="grid grid-cols-2 gap-3">
                   <motion.button
                     className={`py-3 px-4 rounded-lg text-sm font-medium transition-all ${
-                      metodoPagamento === "pix"
-                        ? "bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg"
-                        : "bg-neutral-700 text-gray-300 hover:bg-neutral-600 border border-neutral-600"
+                      metodoPagamento === "pix" ? "text-white shadow-lg" : "border"
                     }`}
+                    style={{
+                      backgroundColor: metodoPagamento === "pix" ? currentTheme.colors.primary : "transparent",
+                      borderColor: currentTheme.colors.border,
+                      color: metodoPagamento === "pix" ? "white" : currentTheme.colors.text,
+                    }}
                     onClick={() => setMetodoPagamento("pix")}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -194,10 +254,13 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
                   </motion.button>
                   <motion.button
                     className={`py-3 px-4 rounded-lg text-sm font-medium transition-all ${
-                      metodoPagamento === "cartao"
-                        ? "bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg"
-                        : "bg-neutral-700 text-gray-300 hover:bg-neutral-600 border border-neutral-600"
+                      metodoPagamento === "cartao" ? "text-white shadow-lg" : "border"
                     }`}
+                    style={{
+                      backgroundColor: metodoPagamento === "cartao" ? currentTheme.colors.primary : "transparent",
+                      borderColor: currentTheme.colors.border,
+                      color: metodoPagamento === "cartao" ? "white" : currentTheme.colors.text,
+                    }}
                     onClick={() => setMetodoPagamento("cartao")}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -212,21 +275,25 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
 
               {/* Descontos */}
               {descontoTotal > 0 && (
-                <div className="flex justify-between py-3 border-b border-neutral-700">
-                  <span className="text-gray-300">Descontos:</span>
+                <div className="flex justify-between py-3 border-b" style={{ borderColor: currentTheme.colors.border }}>
+                  <span style={{ color: currentTheme.colors.muted }}>Descontos:</span>
                   <span className="text-green-400 font-medium">- R$ {descontoTotal.toFixed(2)}</span>
                 </div>
               )}
 
               {/* Total */}
-              <div className="flex justify-between py-4 text-xl font-bold bg-neutral-700/50 rounded-lg px-4">
-                <span>Total:</span>
-                <span className="text-amber-400">R$ {total.toFixed(2)}</span>
+              <div
+                className="flex justify-between py-4 text-xl font-bold rounded-lg px-4"
+                style={{ backgroundColor: `${currentTheme.colors.surface}50` }}
+              >
+                <span style={{ color: currentTheme.colors.text }}>Total:</span>
+                <span style={{ color: currentTheme.colors.primary }}>R$ {total.toFixed(2)}</span>
               </div>
             </div>
 
             <motion.button
-              className="w-full py-4 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-4 text-white rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: currentTheme.colors.primary }}
               whileHover={{ scale: produtos.length > 0 ? 1.02 : 1, y: produtos.length > 0 ? -2 : 0 }}
               whileTap={{ scale: produtos.length > 0 ? 0.98 : 1 }}
               disabled={produtos.length === 0}
@@ -236,7 +303,9 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
             </motion.button>
 
             <div className="text-center mt-4">
-              <p className="text-sm text-gray-400">🔒 Pagamentos processados com segurança</p>
+              <p className="text-sm" style={{ color: currentTheme.colors.muted }}>
+                🔒 Pagamentos processados com segurança
+              </p>
             </div>
           </motion.div>
         </div>

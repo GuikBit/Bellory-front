@@ -1,15 +1,14 @@
 "use client"
 
-import { useGlobalState } from "../global/ContextGlobalState"
 import ThemeCarrinho from "../components/Carrinho/theme-carrinho"
+import { useGlobalState } from "../global/ContextGlobalState"
 
 const Carrinho = () => {
-  const { carrinho,  } = useGlobalState() //removerProdutoCarrinho, atualizarQuantidadeProduto, 
-  const produtos = carrinho?.produtos || []
+  const { carrinho } = useGlobalState() //removerProdutoCarrinho, atualizarQuantidadeProduto, 
 
   return (
     <>
-      <ThemeCarrinho carrinho={produtos}/>
+      <ThemeCarrinho carrinho={ carrinho } />
     </>
   )
 }

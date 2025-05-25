@@ -23,6 +23,7 @@ import {
 import { useTheme } from "../../contexts/Theme-context"
 // import Logo3D from "../Fragments/Logo3D"
 import { useNavigate } from "react-router"
+import ThemeSwitcherDropdown from "../Fragments/SelectTheme"
 
 interface HeaderProps {
   cartItemCount?: number
@@ -326,6 +327,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 </motion.div>
               </div>
             ))}
+            <ThemeSwitcherDropdown />
           </nav>
 
           {/* Right side actions */}

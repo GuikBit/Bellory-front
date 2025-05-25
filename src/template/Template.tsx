@@ -46,7 +46,7 @@ const Template = () => {
       <ThemeHeader />
 
       <main
-        className="flex-grow pt-20"
+        className="flex-grow"
         style={{
           color: currentTheme.colors.text,
           fontFamily: currentTheme.fonts.body,
