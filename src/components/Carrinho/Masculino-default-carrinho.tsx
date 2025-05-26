@@ -21,7 +21,7 @@ interface CarrinhoProps {
   }
 }
 
-const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
+const MasculinoDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
   const { currentTheme } = useTheme()
   const produtos = carrinho?.produtos || []
   const [descontoCupom, setDescontoCupom] = useState(0)
@@ -314,4 +314,4 @@ const MasculineDefaultCarrinho = ({ carrinho }: CarrinhoProps) => {
   )
 }
 
-export default MasculineDefaultCarrinho
+export default MasculinoDefaultCarrinho

@@ -22,13 +22,13 @@ interface CarrinhoProps {
   }
 }
 
-const MasculinoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
+const MasculinoModernoCarrinho = ({ carrinho }: any) => {
   const { currentTheme } = useTheme()
   const produtos = carrinho?.produtos || []
   const [descontoCupom, setDescontoCupom] = useState(0)
   const [metodoPagamento, setMetodoPagamento] = useState("pix")
 
-  const subtotal = produtos.reduce((total, item) => total + item.price * item.quantidade, 0)
+  const subtotal = produtos.reduce((total: any, item: any) => total + item.price * item.quantidade, 0)
   const descontoMetodo = metodoPagamento === "pix" ? subtotal * 0.1 : 0
   const descontoCupomValor = subtotal * descontoCupom
   const descontoTotal = descontoMetodo + descontoCupomValor
@@ -157,7 +157,7 @@ const MasculinoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
               </div>
             ) : (
               <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
-                {produtos.map((produto, index) => (
+                {produtos.map((produto: any, index: any) => (
                   <motion.div
                     key={produto.id}
                     className="flex items-center gap-4 p-4 backdrop-blur-sm rounded-xl border transition-all duration-300"

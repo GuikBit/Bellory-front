@@ -1,5 +1,6 @@
 "use client"
 
+import MasculinoModernoCarrinho from "../components/Carrinho/Masculino-moderno-carrinho"
 import ThemeCarrinho from "../components/Carrinho/theme-carrinho"
 import { useGlobalState } from "../global/ContextGlobalState"
 
@@ -8,7 +9,7 @@ const Carrinho = () => {
 
   return (
     <>
-      <ThemeCarrinho carrinho={ carrinho } />
+      <MasculinoModernoCarrinho carrinho={carrinho} />
     </>
   )
 }

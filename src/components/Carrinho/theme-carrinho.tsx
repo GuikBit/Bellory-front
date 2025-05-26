@@ -2,29 +2,22 @@
 
 import { useTheme } from "../../contexts/Theme-context"
 import FemininoEleganteCarrinho from "./Feminino-elegante-carrinho"
-import FemininoModernoCarrinho from "./Femino-moderno-carrinho"
+import FemininoModernoCarrinho from "./Feminino-moderno-carrinho"
 import MasculinoClassicoCarrinho from "./Masculino-classico-carrinho"
-import MasculineDefaultCarrinho from "./Masculino-default-carrinho"
+import MasculinoDefaultCarrinho from "./Masculino-default-carrinho"
 import MasculinoModernoCarrinho from "./Masculino-moderno-carrinho"
 
 
-
-// interface Produto {
-//   id: string
-//   name: string
-//   price: number
-//   image: string
-//   quantidade: number
-// }
-
-// interface ThemeCarrinhoProps {
-//   carrinho?: {
-//     produtos: Produto[]
-//   }
-// }
-
 const ThemeCarrinho = ({ carrinho }: any) => {
   const { currentTheme } = useTheme()
+
+  console.log({
+  FemininoEleganteCarrinho,
+  FemininoModernoCarrinho,
+  MasculinoClassicoCarrinho,
+  MasculinoDefaultCarrinho,
+  MasculinoModernoCarrinho
+});
 
   const renderCarrinho = () => {
     switch (currentTheme.id) {
@@ -37,11 +30,15 @@ const ThemeCarrinho = ({ carrinho }: any) => {
       case "femininoModerno":
         return <FemininoModernoCarrinho carrinho={carrinho} />
       default:
-        return <MasculineDefaultCarrinho carrinho={carrinho} />
+        return <MasculinoDefaultCarrinho carrinho={carrinho} />
     }
   }
 
-  return renderCarrinho()
+  return (
+  <>
+    {renderCarrinho()}
+  </>
+);
 }
 
 export default ThemeCarrinho
