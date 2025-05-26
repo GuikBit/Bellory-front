@@ -79,7 +79,7 @@ const FemininoEleganteCarrinho = ({ carrinho }: CarrinhoProps) => {
                 background: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.accent})`,
               }}
             ></div>
-            <currentTheme.icon className="mx-4" size={24} style={{ color: currentTheme.colors.primary }} />
+            {/* <currentTheme.icon className="mx-4" size={24} style={{ color: currentTheme.colors.primary }} /> */}
             <div
               className="h-[2px] w-16 rounded-full"
               style={{

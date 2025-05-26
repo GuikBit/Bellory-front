@@ -5,9 +5,10 @@ import { motion } from "framer-motion"
 import { Avatar } from "primereact/avatar"
 
 import { Trash2, ShoppingBag, CreditCard, ArrowRight, Plus, Minus, Sparkles } from "lucide-react"
-
 import { useTheme } from "../../contexts/Theme-context"
-import { CupomDesconto } from "../Cupom/theme-cupom"
+
+// import { CupomDesconto } from "../Cupom/theme-cupom"
+
 interface Produto {
   id: string
   name: string
@@ -22,7 +23,7 @@ interface CarrinhoProps {
   }
 }
 
-const MasculinoModernoCarrinho = ({ carrinho }: any) => {
+const MasculinoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
   const { currentTheme } = useTheme()
   const produtos = carrinho?.produtos || []
   const [descontoCupom, setDescontoCupom] = useState(0)
@@ -39,7 +40,7 @@ const MasculinoModernoCarrinho = ({ carrinho }: any) => {
       console.log(produtoId, novaQuantidade)
     }
   }
-
+  setDescontoCupom(0)
   return (
     <div
       className="min-h-screen py-12 relative overflow-hidden"
@@ -151,7 +152,7 @@ const MasculinoModernoCarrinho = ({ carrinho }: any) => {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <currentTheme.icon size={20} />
+                  {/* <currentTheme.icon size={20} /> */}
                   EXPLORAR PRODUTOS
                 </motion.button>
               </div>
@@ -341,7 +342,7 @@ const MasculinoModernoCarrinho = ({ carrinho }: any) => {
               </div>
 
               {/* Cupom de desconto */}
-              <CupomDesconto aplicarDesconto={(desconto: any) => setDescontoCupom(desconto)} />
+              {/* <CupomDesconto aplicarDesconto={(desconto: any) => setDescontoCupom(desconto)} /> */}
 
               {/* Descontos */}
               {descontoTotal > 0 && (

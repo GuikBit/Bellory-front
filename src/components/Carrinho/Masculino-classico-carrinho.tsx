@@ -144,7 +144,7 @@ const MasculinoClassicoCarrinho = ({ carrinho }: CarrinhoProps) => {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <currentTheme.icon size={20} />
+                  {/* <currentTheme.icon size={20} /> */}
                   EXPLORAR COLEÇÃO
                 </motion.button>
               </div>

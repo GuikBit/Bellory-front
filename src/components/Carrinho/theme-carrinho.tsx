@@ -11,13 +11,6 @@ import MasculinoModernoCarrinho from "./Masculino-moderno-carrinho"
 const ThemeCarrinho = ({ carrinho }: any) => {
   const { currentTheme } = useTheme()
 
-  console.log({
-  FemininoEleganteCarrinho,
-  FemininoModernoCarrinho,
-  MasculinoClassicoCarrinho,
-  MasculinoDefaultCarrinho,
-  MasculinoModernoCarrinho
-});
 
   const renderCarrinho = () => {
     switch (currentTheme.id) {
