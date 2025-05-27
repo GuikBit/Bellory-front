@@ -14,6 +14,7 @@ export const themes = {
       cardBackground: '#262626',
       cardBackgroundSecondary: '#171717', // mais escuro
       buttonText: '#FFFFFF',
+      backgroundLinear: 'linear-gradient(135deg, #FE9A00, #FFB900)'
       // ... outras cores específicas
     },
     fonts: {
@@ -42,6 +43,7 @@ export const themes = {
       cardBackground: '#23252B',  // Cartões com leve contraste do fundo
       cardBackgroundSecondary: '#2E3036', // Para cards em destaque leve
       buttonText: '#FFFFFF',      // Texto de botões branco
+      backgroundLinear: 'linear-gradient(135deg, #1E1F26, #2C2E34)'
     },
     fonts: {
       heading: '"Roboto Condensed", sans-serif',
@@ -68,6 +70,7 @@ export const themes = {
       cardBackground: '#FFFFFF',
       cardBackgroundSecondary: '',
       buttonText: '#FFFFFF',
+      backgroundLinear: 'linear-gradient(135deg, #6B4F4F, #A17C6B)'
     },
     fonts: {
       heading: '"Playfair Display", serif',
@@ -94,6 +97,7 @@ export const themes = {
       cardBackground: '#FAF7FA',
       cardBackgroundSecondary: '',
       buttonText: '#FFFFFF',
+      backgroundLinear: 'linear-gradient(135deg, #B08D9A, #D8BFD8)'
     },
     fonts: {
       heading: '"Cormorant Garamond", serif',
@@ -120,6 +124,8 @@ export const themes = {
       cardBackground: '#FFFFFF',
       cardBackgroundSecondary: '',
       buttonText: '#000000', // Texto do botão pode variar
+      backgroundLinear: 'linear-gradient(135deg, #FF69B4, #FFC0CB)',
+      boxShadow: `0px 4px 15px rgba(255, 105, 180, 0.2)`,
     },
     fonts: {
       heading: '"Poppins", sans-serif',

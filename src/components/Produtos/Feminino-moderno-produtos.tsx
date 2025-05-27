@@ -3,120 +3,132 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "primereact/button"
-import { PlusIcon, ShoppingCart, Sparkles } from "lucide-react"
-import { Product } from "../../utils/interfaces"
+import { Eye, PlusIcon, ShoppingCart, Sparkles, Star } from "lucide-react"
+import { Product, Produto } from "../../utils/interfaces"
 import { useGlobalState } from "../../global/ContextGlobalState"
 import { themes } from "../../theme/theme"
 import Carousel from "../Fragments/Carousel"
+import { BarbeariaButton } from "../ui"
+import { useNavigate } from "react-router"
 const list = [
   {
-    id: "1000",
-    code: "p001",
-    name: "Pomada Modeladora",
-    description: "Pomada modeladora com fixação forte e acabamento matte para um visual moderno.",
-    image: "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?q=80&w=2787&auto=format&fit=crop",
-    price: 45,
-    category: "Styling",
-    quantity: 24,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 10,
+    id: "1",
+    nome: "Máscara Neon Glow",
+    preco: 75.9,
+    precoOriginal: 89.9,
+    descricao: "Máscara com efeito neon que revitaliza e ilumina os cabelos instantaneamente.",
+    imagem: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400",
+    categoria: "Tratamentos",
+    genero: "Feminino",
+    marca: "Neon Beauty",
+    avaliacao: 4.9,
+    desconto: 16,
+    emEstoque: true,
+    destaque: true,
+    trending: true,
+    produtosUtilizados: ["Proteínas Fluorescentes", "Ácidos Frutais", "Vitamina B12", "Colágeno Vegetal"],
   },
   {
-    id: "1001",
-    code: "p002",
-    name: "Óleo para Barba",
-    description: "Óleo hidratante para barba que amacia os fios e proporciona brilho natural.",
-    image: "https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=2787&auto=format&fit=crop",
-    price: 38,
-    category: "Barba",
-    quantity: 18,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 0,
+    id: "2",
+    nome: "Esmalte Holográfico",
+    preco: 35.5,
+    descricao: "Esmalte com efeito holográfico que muda de cor conforme a luz.",
+    imagem: "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=400",
+    categoria: "Unhas",
+    genero: "Feminino",
+    marca: "Holo Nails",
+    avaliacao: 4.8,
+    emEstoque: true,
+    novo: true,
+    produtosUtilizados: ["Pigmentos Holográficos", "Base Magnética", "Top Coat 3D"],
   },
   {
-    id: "1002",
-    code: "p003",
-    name: "Shampoo para Barba",
-    description: "Shampoo especial para limpeza da barba, removendo impurezas sem ressecar.",
-    image: "https://images.unsplash.com/photo-1589782431746-4a05f7d8c0f0?q=80&w=2787&auto=format&fit=crop",
-    price: 32,
-    category: "Barba",
-    quantity: 15,
-    inventoryStatus: "INSTOCK",
-    rating: 4,
-    discount: 5,
+    id: "3",
+    nome: "Shampoo Color Blast",
+    preco: 52.9,
+    descricao: "Shampoo que deposita cor temporária enquanto limpa os cabelos.",
+    imagem: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400",
+    categoria: "Cabelo",
+    genero: "Feminino",
+    marca: "Color Revolution",
+    avaliacao: 4.7,
+    emEstoque: true,
+    trending: true,
+    produtosUtilizados: ["Pigmentos Temporários", "Extratos Naturais", "Proteínas Vegetais"],
   },
   {
-    id: "1003",
-    code: "p004",
-    name: "Balm Pós-Barba",
-    description: "Balm calmante pós-barba que hidrata a pele e previne irritações.",
-    image: "https://images.unsplash.com/photo-1585751119414-ef2636f8aede?q=80&w=2787&auto=format&fit=crop",
-    price: 29,
-    category: "Barba",
-    quantity: 20,
-    inventoryStatus: "INSTOCK",
-    rating: 4,
-    discount: 0,
+    id: "4",
+    nome: "Sérum Anti-Gravity",
+    preco: 95.0,
+    descricao: "Sérum facial com tecnologia anti-gravidade para lifting instantâneo.",
+    imagem: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400",
+    categoria: "Skincare",
+    genero: "Feminino",
+    marca: "Future Skin",
+    avaliacao: 5.0,
+    emEstoque: false,
+    produtosUtilizados: ["Peptídeos Tensores", "Ácido Hialurônico", "Nanopartículas", "Vitamina C"],
   },
   {
-    id: "1004",
-    code: "p005",
-    name: "Cera para Cabelo",
-    description: "Cera modeladora com fixação média e acabamento natural para todos os tipos de cabelo.",
-    image: "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?q=80&w=2787&auto=format&fit=crop",
-    price: 42,
-    category: "Styling",
-    quantity: 12,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 15,
+    id: "5",
+    nome: "Kit Nail Art Futurista",
+    preco: 129.9,
+    precoOriginal: 180.0,
+    descricao: "Kit completo para nail art com produtos inovadores e ferramentas tech.",
+    imagem: "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=400",
+    categoria: "Kits",
+    genero: "Feminino",
+    marca: "Tech Nails",
+    avaliacao: 4.9,
+    desconto: 28,
+    emEstoque: true,
+    destaque: true,
+    trending: true,
+    produtosUtilizados: ["Gel UV", "Glitters Holográficos", "Adesivos 3D", "LED Pen", "Base Magnética"],
   },
   {
-    id: "1005",
-    code: "p006",
-    name: "Kit Barba Completo",
-    description: "Kit completo para cuidados com a barba, incluindo óleo, shampoo e pente.",
-    image: "https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=2787&auto=format&fit=crop",
-    price: 89,
-    category: "Kits",
-    quantity: 8,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 20,
+    id: "6",
+    nome: "Spray Texturizador Neon",
+    preco: 48.9,
+    descricao: "Spray que cria texturas incríveis e brilho neon nos cabelos.",
+    imagem: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400",
+    categoria: "Styling",
+    genero: "Feminino",
+    marca: "Texture Lab",
+    avaliacao: 4.6,
+    emEstoque: true,
+    produtosUtilizados: ["Polímeros Texturizantes", "Pigmentos Neon", "Óleos Essenciais"],
   },
 ]
 
 export default function FemininoModernoProdutos() {
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<Produto[]>([])
   const { adicionarProdutoCarrinho } = useGlobalState()
   const theme = themes.femininoModerno
+  const navigate = useNavigate();
 
   const customItemsToShow = {
     default: 1,
     sm: 1,
     md: 2,
     lg: 3,
+    xl: 4,
   }
 
   useEffect(() => {
     setProducts(list)
   }, [])
 
-  const productTemplate = (product: Product) => {
-    const hasDiscount = product.discount && product.discount > 0 ? true : false
+  const productTemplate = (produto: Produto) => {
+    const hasDiscount = produto.desconto && produto.desconto > 0 ? true : false
 
     return (
       <motion.div
-        className="rounded-lg shadow-lg p-4 m-2 relative overflow-hidden"
+        className="rounded-lg shadow-lg m-2 relative overflow-hidden"
         style={{
-          background: hasDiscount
-            ? `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`
-            : `linear-gradient(135deg, ${theme.colors.cardBackground}, ${theme.colors.accent}20)`,
+          background: `linear-gradient(135deg, ${theme.colors.cardBackground}, ${theme.colors.accent}20)`,
           borderRadius: theme.borderRadius.large,
-          boxShadow: `0 20px 40px -15px ${theme.colors.primary}30`,
+          boxShadow: theme.colors.boxShadow,
         }}
         whileHover={{ y: -5, transition: { duration: 0.3 } }}
         initial={{ opacity: 0, y: 20 }}
@@ -133,65 +145,100 @@ export default function FemininoModernoProdutos() {
               fontFamily: theme.fonts.heading,
             }}
           >
-            {product.discount}% OFF
+            {produto.desconto}% OFF
           </div>
         )}
 
-        {/* Imagem */}
-        <div className="mb-4 rounded-lg overflow-hidden">
-          <img
-            src={product.image || "/placeholder.svg"}
-            alt={product.name}
-            className="w-full h-52 object-cover transition duration-300 ease-in-out hover:scale-105"
-            style={{ borderRadius: theme.borderRadius.large }}
-          />
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          {produto.novo && (
+            <span
+              className="text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg animate-pulse"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${theme.colors.primary}, ${theme.colors.secondary})`,
+              }}
+            >
+              Novo
+            </span>
+          )}
         </div>
 
-        <div className="h-24">
+        {/* Imagem */}
+        <div className="relative">
+          <img
+            src={produto.imagem || "/placeholder.svg"}
+            alt={produto.nome}
+            className="w-full h-52 object-cover transition duration-300 ease-in-out hover:scale-105"
+            // style={{ borderRadius: theme.borderRadius.large }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(to top, ${theme.colors.primary}30, transparent)`, // 66 = ~40% de opacidade
+            }}
+          ></div>
+        </div>
+
+        <div className="h-34 p-4">
           {/* Informações */}
-          <h4
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs text-purple-400 font-bold">{produto.marca}</span>
+            <Sparkles size={10} className="text-pink-400" />
+            <span className="text-xs text-pink-400">{produto.categoria}</span>
+          </div>
+          <h3
             className="text-lg font-bold mb-1"
             style={{
-              color: hasDiscount ? "white" : theme.colors.text,
+              color: theme.colors.text,
               fontFamily: theme.fonts.heading,
             }}
           >
-            {product.name}
-          </h4>
+            {produto.nome}
+          </h3>
           <p
             className="text-sm mb-2 line-clamp-2"
             style={{
-              color: hasDiscount ? "rgba(255,255,255,0.9)" : theme.colors.textSecondary,
+              color: theme.colors.textSecondary,
               fontFamily: theme.fonts.body,
             }}
           >
-            {product.description}
+            {produto.descricao}
           </p>
+          <div className="flex items-center gap-1 mb-2">
+          {[...Array(5)].map((_, i) => (
+            <Star
+              key={i}
+              size={14}
+              className={i < Math.floor(produto.avaliacao) ? ` fill-current` : ""}
+              style={{ color: theme.colors.primary, transition: "color 0.3s" }}
+            />
+          ))}
+          <span className="text-sm ml-2 font-bold" style={{color: theme.colors.primary}}>({produto.avaliacao})</span>
+        </div>
           <div className="flex items-center justify-between">
             {hasDiscount && (
               <h6
                 className="text-sm line-through"
-                style={{ color: hasDiscount ? "rgba(255,255,255,0.7)" : theme.colors.textSecondary }}
+                style={{ color: theme.colors.textSecondary }}
               >
-                R${product.price},00
+                R${produto.preco},00
               </h6>
             )}
             <h3
               className="text-xl font-bold"
               style={{
-                color: hasDiscount ? "white" : theme.colors.primary,
+                color: theme.colors.primary,
                 fontFamily: theme.fonts.heading,
               }}
             >
               R$
-              {hasDiscount ? (product.price * (1 - product.discount / 100)).toFixed(2) : product.price.toFixed(2)}
+              {hasDiscount ? (produto.preco * (1 - (produto.desconto ?? 0) / 100)).toFixed(2) : produto.preco.toFixed(2)}
             </h3>
           </div>
         </div>
 
         {/* Botões */}
-        <div className="mt-14 flex justify-between items-center">
-          <Button
+        <div className="mt-14 p-4 flex justify-between items-center">
+          {/* <Button
             icon={() => (
               <PlusIcon size={18} className="mr-2" style={{ color: hasDiscount ? "white" : theme.colors.primary }} />
             )}
@@ -206,8 +253,20 @@ export default function FemininoModernoProdutos() {
               color: hasDiscount ? "white" : theme.colors.primary,
               borderRadius: theme.borderRadius.large,
             }}
+          /> */}
+          <BarbeariaButton 
+            leftIcon={ <Eye size={18} className="mr-2" style={{ color: theme.colors.primary }} />}
+            value="Detalhes"
+            variant="text"
+            className="border-none py-1 px-2 rounded-lg transition cursor-pointer"
+            style={{
+              color: theme.colors.primary,
+              // border: `1px solid ${theme.colors.primary}`,
+              borderRadius: theme.borderRadius.large
+            }}
+            onClick={() => adicionarProdutoCarrinho(produto)}
           />
-          <Button
+          {/* <Button
             icon={() => <ShoppingCart size={18} className="text-white mr-2" />}
             label="Adicionar"
             size="small"
@@ -217,7 +276,18 @@ export default function FemininoModernoProdutos() {
               color: hasDiscount ? theme.colors.primary : "white",
               borderRadius: theme.borderRadius.large,
             }}
-            onClick={() => adicionarProdutoCarrinho(product)}
+            onClick={() => adicionarProdutoCarrinho(produto)}
+          /> */}
+          <BarbeariaButton 
+            leftIcon={ <ShoppingCart size={18} color='white' />}
+            value="Adicionar"
+            className="border-none py-1 px-2 rounded-lg transition cursor-pointer"
+            style={{
+              background: theme.colors.backgroundLinear,
+              color: 'white',
+              borderRadius: theme.borderRadius.large
+            }}
+            onClick={() => adicionarProdutoCarrinho(produto)}
           />
         </div>
       </motion.div>
@@ -264,21 +334,22 @@ export default function FemininoModernoProdutos() {
         autoplay={true}
         interval={4000}
         itemsToShow={customItemsToShow}
-        className="max-w-full md:max-w-2xl lg:max-w-3xl 2xl:max-w-7xl mx-auto"
+        className="max-w-full md:max-w-4xl lg:max-w-6xl 2xl:max-w-7xl mx-auto"
         theme={theme}
       />
 
       <div className="flex flex-col items-center justify-center p-4 mt-8">
         <motion.button
-          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
+          className="px-6 py-3 rounded-lg cursor-pointer font-medium transition-all duration-300 flex items-center gap-2"
           style={{
-            backgroundColor: theme.colors.primary,
+            background: theme.colors.backgroundLinear,
             color: "white",
             borderRadius: theme.borderRadius.large,
             fontFamily: theme.fonts.heading,
           }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => {navigate('/produtos')}}
         >
           <Sparkles size={18} />
           VER TODOS OS PRODUTOS

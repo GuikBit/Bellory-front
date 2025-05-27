@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { CarrinhoCompras, GlobalState, Product, UserLogado } from "../utils/interfaces";
+import { CarrinhoCompras, GlobalState, Product, Produto, UserLogado } from "../utils/interfaces";
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
 
@@ -38,7 +38,7 @@ export const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
     setCarrinhoState(cart);
   };
 
-  const adicionarProdutoCarrinho = (produto: Product) => {
+  const adicionarProdutoCarrinho = (produto: Produto) => {
     const novoCarrinho: CarrinhoCompras = { ...carrinho };
 
     if (!novoCarrinho.produtos) {

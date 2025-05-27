@@ -75,6 +75,7 @@ export interface Produto {
   novo?: boolean
   destaque?: boolean
   produtosUtilizados?: string[]
+  trending?: boolean
 }
 
 export interface ProductCarrinho extends Product {
@@ -90,7 +91,7 @@ export interface Pagamento {
 
 export interface CarrinhoCompras {
     cliente?: Cliente;
-    produtos?: (Product & { quantidade: number })[];
+    produtos?: (Produto & { quantidade: number })[];
     pagamento?: Pagamento;
 
     
@@ -106,7 +107,7 @@ export interface GlobalState {
     carrinho: CarrinhoCompras | null;
     setCarrinho: (carrinho: CarrinhoCompras | null) => void;
 
-    adicionarProdutoCarrinho: (produto: Product) => void;
+    adicionarProdutoCarrinho: (produto: Produto) => void;
 }
   
 

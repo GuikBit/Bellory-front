@@ -143,14 +143,14 @@ export default function FemininoModernoProdutosDetalhes() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-indigo-900 text-white py-8">
+    <div className="min-h-screen bg-white text-white py-8">
       {/* Background futurista */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.15),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(236,72,153,0.15),transparent_50%)]"></div>
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Breadcrumb */}
@@ -187,7 +187,12 @@ export default function FemininoModernoProdutosDetalhes() {
               />
 
               {/* Overlay futurista */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `linear-gradient(to top, ${theme.colors.primary}30, transparent)`, // 66 = ~40% de opacidade
+                }}
+              ></div>
 
               {produto.desconto && (
                 <div className="absolute top-4 right-4">

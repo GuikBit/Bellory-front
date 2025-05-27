@@ -40,7 +40,6 @@ const MasculinoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
       console.log(produtoId, novaQuantidade)
     }
   }
-  setDescontoCupom(0)
   return (
     <div
       className="min-h-screen py-12 relative overflow-hidden"
@@ -152,7 +151,7 @@ const MasculinoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {/* <currentTheme.icon size={20} /> */}
+                  
                   EXPLORAR PRODUTOS
                 </motion.button>
               </div>
