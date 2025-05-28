@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Sparkles, Star } from "lucide-react"
 import { themes } from "../../theme/theme"
+import { BarbeariaButton } from "../ui"
 
 const list = [
   {
@@ -174,6 +175,17 @@ const FemininoModernoServicos = () => {
                 <Star size={16} />
                 AGENDAR
               </motion.button>
+
+              {/* <BarbeariaButton 
+                value="AGENDAR"
+                leftIcon={<Star size={20} />}
+                className="w-full py-4 text-white rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 shadow-lg border disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{
+                  background: theme.colors.backgroundLinear,
+                  color: 'white',
+                  borderRadius: theme.borderRadius.large
+                }}
+              /> */}
             </div>
           </motion.div>
         ))}

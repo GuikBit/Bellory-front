@@ -22,6 +22,7 @@ import {
 } from "lucide-react"
 // import { useGlobalState } from "../../global/ContextGlobalState"
 import { themes } from "../../theme/theme"
+import { BarbeariaButton } from "../ui"
 
 interface ProdutoDetalhes {
   id: string
@@ -159,7 +160,7 @@ export default function FemininoModernoProdutosDetalhes() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <span>Produtos Futuristas</span>
+          <span>Produtos</span>
           <ChevronRight size={16} />
           <span>{produto.categoria}</span>
           <ChevronRight size={16} />
@@ -196,7 +197,12 @@ export default function FemininoModernoProdutosDetalhes() {
 
               {produto.desconto && (
                 <div className="absolute top-4 right-4">
-                  <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
+                  <span
+                    className="text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg animate-pulse"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, ${theme.colors.primary}, ${theme.colors.secondary})`,
+                    }}
+                  >
                     -{produto.desconto}%
                   </span>
                 </div>
@@ -204,9 +210,14 @@ export default function FemininoModernoProdutosDetalhes() {
 
               {produto.trending && (
                 <div className="absolute top-4 left-4">
-                  <span className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    TRENDING
-                  </span>
+                   <span
+                      className="text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg animate-pulse"
+                      style={{
+                        backgroundImage: `linear-gradient(to right, ${theme.colors.primary}, ${theme.colors.secondary})`,
+                      }}
+                    >
+                      Novo
+                    </span>
                 </div>
               )}
 
@@ -259,27 +270,34 @@ export default function FemininoModernoProdutosDetalhes() {
                 <span className="text-sm text-pink-400">{produto.categoria}</span>
               </div>
 
-              <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-[#FF69B4] via-[#FF69B4] to-[#FFC0CB] bg-clip-text text-transparent">
                 {produto.nome}
               </h1>
-
+              
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      size={16}
-                      className={i < Math.floor(produto.avaliacao) ? "text-pink-400 fill-current" : "text-purple-600"}
+                      size={14}
+                      className={i < Math.floor(produto.avaliacao) ? ` fill-current` : ""}
+                      style={{ color: theme.colors.primary, transition: "color 0.3s" }}
                     />
                   ))}
                 </div>
-                <span className="text-sm text-purple-300 font-bold">({produto.totalAvaliacoes} reviews)</span>
+                <span className="text-sm ml-2 font-bold" style={{color: theme.colors.primary+`80`}}>({produto.totalAvaliacoes} reviews)</span>
               </div>
 
-              <p className="text-purple-200 mb-6">{produto.descricao}</p>
+              <p
+                className="text-sm mb-2 line-clamp-2"
+                style={{
+                  color: theme.colors.textSecondary,
+                  fontFamily: theme.fonts.body,
+                }}
+              >{produto.descricao}</p>
 
               {/* Produtos utilizados */}
-              {produto.produtosUtilizados && (
+              {/* {produto.produtosUtilizados && (
                 <div className="bg-purple-800/20 backdrop-blur-sm p-4 rounded-2xl border border-purple-500/30 mb-6">
                   <h4 className="font-bold text-pink-400 mb-2">Ingredientes Tech</h4>
                   <div className="flex flex-wrap gap-2">
@@ -293,7 +311,7 @@ export default function FemininoModernoProdutosDetalhes() {
                     ))}
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
 
             {/* Preço */}
@@ -305,9 +323,16 @@ export default function FemininoModernoProdutosDetalhes() {
             >
               <div className="flex items-center gap-3 mb-4">
                 {produto.precoOriginal && (
-                  <span className="text-lg text-purple-400 line-through">R$ {produto.precoOriginal.toFixed(2)}</span>
+                  <span className="text-lg line-through" 
+                    style={{
+                    color: theme.colors.textSecondary,
+                    fontFamily: theme.fonts.body,
+                    }}
+                  >
+                    R$ {produto.precoOriginal.toFixed(2)}
+                  </span>
                 )}
-                <span className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="text-3xl font-bold bg-gradient-to-r from-[#FF69B4] to-[#FF69B4] bg-clip-text text-transparent">
                   R$ {produto.preco.toFixed(2)}
                 </span>
               </div>
@@ -315,17 +340,24 @@ export default function FemininoModernoProdutosDetalhes() {
               {/* Quantidade */}
               <div className="flex items-center gap-4 mb-6">
                 <span className="text-sm font-bold text-pink-400">Quantidade:</span>
-                <div className="flex items-center gap-2 bg-purple-700/30 rounded-xl p-1 border border-purple-500/30">
+                <div className="flex items-center gap-2  rounded-xl p-1 border border-purple-500/30">
                   <button
                     onClick={() => setQuantidade(Math.max(1, quantidade - 1))}
-                    className="w-8 h-8 flex items-center justify-center hover:bg-purple-500/20 rounded-lg transition-colors text-purple-400"
+                    className="w-8 h-8 flex items-center justify-center hover:bg-pink-500/10 rounded-lg transition-colors text-purple-600"
                   >
                     <Minus size={16} />
                   </button>
-                  <span className="w-12 text-center font-bold">{quantidade}</span>
+                  <span className="w-12 text-center font-bold"
+                   style={{
+                    color: theme.colors.textSecondary,
+                    fontFamily: theme.fonts.body,
+                    }}
+                  >
+                    {quantidade}
+                  </span>
                   <button
                     onClick={() => setQuantidade(quantidade + 1)}
-                    className="w-8 h-8 flex items-center justify-center hover:bg-purple-500/20 rounded-lg transition-colors text-purple-400"
+                    className="w-8 h-8 flex items-center justify-center hover:bg-pink-500/10 rounded-lg transition-colors text-purple-600"
                   >
                     <Plus size={16} />
                   </button>
@@ -333,8 +365,8 @@ export default function FemininoModernoProdutosDetalhes() {
               </div>
 
               {/* Botões */}
-              <div className="flex gap-3 mb-6">
-                <Button
+              <div className="flex gap-3 mb-6 justify-between">
+                {/* <Button
                   icon={() => <ShoppingCart size={18} />}
                   className="flex-1 py-3 rounded-xl font-bold transition-all shadow-lg"
                   style={{
@@ -345,22 +377,36 @@ export default function FemininoModernoProdutosDetalhes() {
                 //   onClick={() => adicionarProdutoCarrinho({ ...produto, quantidade })}
                 >
                   Adicionar ao Carrinho
-                </Button>
+                </Button> */}
 
-                <button
-                  onClick={() => setFavorito(!favorito)}
-                  className={`p-3 rounded-xl border transition-all ${
-                    favorito
-                      ? "bg-red-500 border-red-500 text-white"
-                      : "border-purple-500/30 text-purple-400 hover:border-red-500 hover:text-red-500"
-                  }`}
-                >
-                  <Heart size={18} className={favorito ? "fill-current" : ""} />
-                </button>
+                <BarbeariaButton 
+                  leftIcon={ <ShoppingCart size={18} color='white' />}
+                  value="Adicionar ao Carrinho"
+                  className="border-none py-3 rounded-xl cursor-pointer font-bold transition-all shadow-lg"
+                  style={{
+                    background: theme.colors.backgroundLinear,
+                    color: 'white',
+                    borderRadius: theme.borderRadius.large
+                  }}
+                  onClick={() => adicionarProdutoCarrinho({ ...produto, quantidade })}
+                />
 
-                <button className="p-3 rounded-xl border border-purple-500/30 text-purple-400 hover:border-pink-400 hover:text-pink-400 transition-all">
-                  <Share2 size={18} />
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setFavorito(!favorito)}
+                    className={`p-3 rounded-xl border transition-all ${
+                      favorito
+                        ? "bg-red-500 border-red-500 text-white"
+                        : "border-purple-500/30 text-purple-400 hover:border-red-500 hover:text-red-500"
+                    }`}
+                  >
+                    <Heart size={18} className={favorito ? "fill-current" : ""} />
+                  </button>
+
+                  <button className="p-3 rounded-xl border border-purple-500/30 text-purple-400 hover:border-pink-400 hover:text-pink-400 transition-all">
+                    <Share2 size={18} />
+                  </button>
+                </div>
               </div>
 
               {/* Garantias */}
@@ -384,7 +430,7 @@ export default function FemininoModernoProdutosDetalhes() {
 
         {/* Abas de Informações */}
         <motion.div
-          className="bg-purple-800/20 backdrop-blur-xl rounded-2xl overflow-hidden border border-purple-500/30"
+          className=" backdrop-blur-xl rounded-2xl overflow-hidden border border-purple-500/30"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -397,8 +443,8 @@ export default function FemininoModernoProdutosDetalhes() {
                 onClick={() => setAbaSelecionada(aba.id)}
                 className={`px-6 py-4 font-bold transition-all whitespace-nowrap ${
                   abaSelecionada === aba.id
-                    ? "text-pink-400 border-b-2 border-pink-400 bg-purple-500/10"
-                    : "text-purple-300 hover:text-pink-300"
+                    ? "text-pink-600 border-b-2 border-pink-400 bg-pink-300/10"
+                    : "text-pink-400/80 hover:text-pink-400"
                 }`}
               >
                 {aba.label}
@@ -410,13 +456,23 @@ export default function FemininoModernoProdutosDetalhes() {
           <div className="p-6">
             {abaSelecionada === "descricao" && (
               <div className="space-y-4">
-                <h3 className="text-xl font-bold mb-4 text-pink-400">Descrição Futurista</h3>
-                <p className="text-purple-200 leading-relaxed">{produto.descricaoCompleta}</p>
+                <h3 className="text-xl font-bold mb-4 text-pink-400">Descrição</h3>
+                <p className="leading-relaxed" 
+                  style={{
+                    color: theme.colors.textSecondary,
+                    fontFamily: theme.fonts.body,
+                  }}
+                >{produto.descricaoCompleta}</p>
 
-                <h4 className="text-lg font-bold mt-6 mb-3 text-purple-400">Informações Tech</h4>
+                <h4 className="text-lg font-bold mt-6 mb-3 text-pink-400">Informações Tech</h4>
                 <ul className="space-y-2">
                   {produto.informacoesImportantes.map((info, index) => (
-                    <li key={index} className="flex items-center gap-2 text-purple-200">
+                    <li key={index} className="flex items-center gap-2" 
+                      style={{
+                        color: theme.colors.textSecondary,
+                        fontFamily: theme.fonts.body,
+                      }}
+                    >
                       <Check size={16} className="text-green-400" />
                       {info}
                     </li>

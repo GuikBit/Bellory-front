@@ -3,9 +3,10 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Avatar } from "primereact/avatar"
-import { Trash2, ShoppingBag, CreditCard, ArrowRight, Plus, Minus, Star } from "lucide-react"
+import { Trash2, ShoppingBag, CreditCard, ArrowRight, Plus, Minus, Star, Sparkles, ShoppingCart } from "lucide-react"
 import { useTheme } from "../../contexts/Theme-context"
 import { CupomDesconto } from "../Cupom/theme-cupom"
+import { BarbeariaButton } from "../ui"
 
 
 interface Produto {
@@ -43,10 +44,10 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
   return (
     <div
       className="min-h-screen py-12 relative overflow-hidden"
-      style={{ backgroundColor: currentTheme.colors.background }}
+      style={{ backgroundColor: 'white'}}
     >
       {/* Elementos decorativos modernos */}
-      <div
+      {/* <div
         className="absolute inset-0 opacity-15"
         style={{ background: `radial-gradient(circle at 30% 20%, ${currentTheme.colors.primary}, transparent 50%)` }}
       ></div>
@@ -65,47 +66,25 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
         style={{
           background: `linear-gradient(to top right, ${currentTheme.colors.accent}, ${currentTheme.colors.primary})`,
         }}
-      ></div>
+      ></div> */}
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1
-            className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent"
-            style={{
-              backgroundImage: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.accent})`,
-            }}
-          >
-            CARRINHO DIGITAL
+        <motion.div className="text-center mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#FF69B4] via-[#FF69B4] to-[#FFC0CB] bg-clip-text text-transparent">
+            Carrinho de compras
           </h1>
-          <div className="flex items-center justify-center mb-4">
-            <div
-              className="h-[2px] w-16"
-              style={{
-                background: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.accent})`,
-              }}
-            ></div>
-            <Star className="mx-4" size={24} style={{ color: currentTheme.colors.accent }} />
-            <div
-              className="h-[2px] w-16"
-              style={{
-                background: `linear-gradient(to right, ${currentTheme.colors.accent}, ${currentTheme.colors.primary})`,
-              }}
-            ></div>
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-[2px] w-16 "style={{ backgroundColor: currentTheme.colors.primary }}></div>
+            <Sparkles size={24} style={{ color: currentTheme.colors.primary }} />
+            <div className="h-[2px] w-16 "style={{ backgroundColor: currentTheme.colors.primary }}></div>
           </div>
-          <p className="font-medium" style={{ color: currentTheme.colors.muted }}>
-            Estilo e inovação em cada compra
-          </p>
+          
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8 w-full mx-auto">
           {/* Lista de produtos */}
           <motion.div
-            className="flex-grow backdrop-blur-xl rounded-2xl shadow-2xl p-6 border"
+            className="flex-grow backdrop-blur-xl rounded-2xl shadow-lg p-6 border"
             style={{
               backgroundColor: `${currentTheme.colors.surface}20`,
               borderColor: `${currentTheme.colors.primary}30`,
@@ -118,17 +97,18 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
               <div
                 className="p-3 rounded-xl border"
                 style={{
-                  background: `linear-gradient(to bottom right, ${currentTheme.colors.primary}20, ${currentTheme.colors.accent}20)`,
-                  borderColor: `${currentTheme.colors.primary}30`,
+                  
+                  borderColor: `${currentTheme.colors.primary}60`,
                 }}
               >
-                <ShoppingBag size={24} style={{ color: currentTheme.colors.accent }} />
+                <ShoppingBag size={24} style={{ color: currentTheme.colors.primary }} />
               </div>
               <h2 className="text-xl font-semibold" style={{ color: currentTheme.colors.text }}>
                 Produtos Selecionados
               </h2>
             </div>
 
+           
             {produtos.length === 0 ? (
               <div className="text-center py-16">
                 <div className="mb-6">
@@ -163,7 +143,7 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                 </motion.button>
               </div>
             ) : (
-              <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
+              <div className="space-y-4 max-h-[500px] overflow-y-auto p-5">
                 {produtos.map((produto, index) => (
                   <motion.div
                     key={produto.id}
@@ -182,13 +162,13 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                         image={produto.image}
                         size="large"
                         shape="circle"
-                        className="border-2 shadow-lg"
-                        style={{ borderColor: currentTheme.colors.accent }}
+                        className="border-2 shadow-lg overflow-hidden"
+                        style={{ borderColor: currentTheme.colors.secondary }}
                       />
                       <div
                         className="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
                         style={{
-                          background: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.accent})`,
+                          background: `${currentTheme.colors.primary}`,
                         }}
                       >
                         {produto.quantidade}
@@ -199,7 +179,7 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                       <h3 className="font-semibold text-lg" style={{ color: currentTheme.colors.text }}>
                         {produto.name}
                       </h3>
-                      <p className="font-medium" style={{ color: currentTheme.colors.accent }}>
+                      <p className="font-medium" style={{ color: currentTheme.colors.primary }}>
                         R$ {produto.price.toFixed(2)}
                       </p>
                     </div>
@@ -214,31 +194,33 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                       <motion.button
                         className="w-8 h-8 flex items-center justify-center rounded-lg transition-all"
                         style={{
-                          backgroundColor: currentTheme.colors.primary,
-                          color: "white",
+                          backgroundColor: `white`,
+                          color: currentTheme.colors.primary,
                         }}
                         onClick={() => handleQuantidadeChange(produto.id, produto.quantidade - 1)}
                         whileHover={{
                           scale: 1.1,
-                          background: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.accent})`,
+                          background: `${currentTheme.colors.primary}20`,
                         }}
                         whileTap={{ scale: 0.9 }}
                       >
                         <Minus size={14} />
                       </motion.button>
+
                       <span className="w-8 text-center font-medium" style={{ color: currentTheme.colors.text }}>
                         {produto.quantidade}
                       </span>
+                      
                       <motion.button
                         className="w-8 h-8 flex items-center justify-center rounded-lg transition-all"
                         style={{
-                          backgroundColor: currentTheme.colors.primary,
-                          color: "white",
+                          backgroundColor: `white`,
+                          color: currentTheme.colors.primary,
                         }}
                         onClick={() => handleQuantidadeChange(produto.id, produto.quantidade + 1)}
                         whileHover={{
                           scale: 1.1,
-                          background: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.accent})`,
+                          background: `${currentTheme.colors.primary}20`,
                         }}
                         whileTap={{ scale: 0.9 }}
                       >
@@ -247,15 +229,15 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                     </div>
 
                     <div className="text-right min-w-[100px]">
-                      <p className="font-bold text-lg" style={{ color: currentTheme.colors.accent }}>
+                      <p className="font-bold text-lg" style={{ color: currentTheme.colors.primary }}>
                         R$ {(produto.price * produto.quantidade).toFixed(2)}
                       </p>
                     </div>
 
                     <motion.button
-                      className="text-red-400 hover:text-red-300 p-2 hover:bg-red-500/10 rounded-lg transition-all"
+                      className="text-red-500 hover:text-red-300 p-2 hover:bg-red-500 rounded-lg transition-all"
                       onClick={() => {}}
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={{ scale: 1.1 , color: `white`, background: `#FB2C36`}}
                       whileTap={{ scale: 0.9 }}
                     >
                       <Trash2 size={18} />
@@ -264,11 +246,12 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                 ))}
               </div>
             )}
+           
           </motion.div>
 
           {/* Resumo */}
           <motion.div
-            className="lg:w-[400px] backdrop-blur-xl rounded-2xl shadow-2xl p-6 border h-fit"
+            className="lg:w-[400px] backdrop-blur-xl rounded-2xl shadow-lg p-6 border h-fit"
             style={{
               backgroundColor: `${currentTheme.colors.surface}20`,
               borderColor: `${currentTheme.colors.primary}30`,
@@ -281,11 +264,11 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
               <div
                 className="p-3 rounded-xl border"
                 style={{
-                  background: `linear-gradient(to bottom right, ${currentTheme.colors.primary}20, ${currentTheme.colors.accent}20)`,
-                  borderColor: `${currentTheme.colors.primary}30`,
+                  
+                  borderColor: `${currentTheme.colors.primary}60`,
                 }}
               >
-                <CreditCard size={24} style={{ color: currentTheme.colors.accent }} />
+                <CreditCard size={24} style={{ color: currentTheme.colors.primary }} />
               </div>
               <h2 className="text-xl font-semibold" style={{ color: currentTheme.colors.text }}>
                 Checkout Moderno
@@ -293,9 +276,9 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
             </div>
 
             <div className="space-y-4 mb-6">
-              <div className="flex justify-between py-3 border-b" style={{ borderColor: currentTheme.colors.border }}>
+              <div className="flex justify-between py-3 border-b border-gray-300">
                 <span style={{ color: currentTheme.colors.muted }}>Subtotal:</span>
-                <span className="font-medium" style={{ color: currentTheme.colors.text }}>
+                <span className="font-medium" style={{ color: currentTheme.colors.text }} >
                   R$ {subtotal.toFixed(2)}
                 </span>
               </div>
@@ -306,6 +289,58 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                   Método de pagamento:
                 </p>
                 <div className="grid grid-cols-2 gap-3">
+
+                {metodoPagamento === "pix" ?(
+                  <BarbeariaButton 
+                    value="PIX (10% OFF)"
+                    className="border-none py-1 rounded-lg transition cursor-pointer"
+                    style={{
+                      background: currentTheme.colors.backgroundLinear,
+                      color: 'white',
+                      borderRadius: currentTheme.borderRadius.large
+                    }}
+                    onClick={() => setMetodoPagamento("pix")}
+                  />
+                ):(
+                  <BarbeariaButton                    
+                    value="PIX (10% OFF)"
+                    variant="outline"
+                    className="py-1 rounded-lg transition cursor-pointer"
+                    style={{
+                      color: currentTheme.colors.primary,
+                      // border: `1px solid ${currentTheme.colors.primary}`,
+                      borderRadius: currentTheme.borderRadius.large
+                    }}
+                    onClick={() => setMetodoPagamento("pix")}
+                  />
+                )}
+
+                {metodoPagamento === "cartao" ?(
+                  <BarbeariaButton 
+                    value="CARTÃO"
+                    className="border-none py-1 rounded-lg transition cursor-pointer"
+                    style={{
+                      background: currentTheme.colors.backgroundLinear,
+                      color: 'white',
+                      borderRadius: currentTheme.borderRadius.large
+                    }}
+                    onClick={() => setMetodoPagamento("cartao")}
+                  />
+                ):(
+                  <BarbeariaButton                    
+                    value="CARTÃO"
+                    variant="outline"
+                    className="py-1 rounded-lg transition cursor-pointer"
+                    style={{
+                      color: currentTheme.colors.primary,
+                      // border: `1px solid ${currentTheme.colors.primary}`,
+                      borderRadius: currentTheme.borderRadius.large
+                    }}
+                    onClick={() => setMetodoPagamento("cartao")}
+                  />
+                )}
+                  
+{/* 
                   <motion.button
                     className={`py-3 px-4 rounded-xl text-sm font-medium transition-all ${
                       metodoPagamento === "pix" ? "text-white shadow-lg border" : "border"
@@ -325,6 +360,10 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                   >
                     PIX (10% OFF)
                   </motion.button>
+                  
+
+
+
                   <motion.button
                     className={`py-3 px-4 rounded-xl text-sm font-medium transition-all ${
                       metodoPagamento === "cartao" ? "text-white shadow-lg border" : "border"
@@ -343,7 +382,7 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                     whileTap={{ scale: 0.98 }}
                   >
                     CARTÃO
-                  </motion.button>
+                  </motion.button> */}
                 </div>
               </div>
 
@@ -352,9 +391,9 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
 
               {/* Descontos */}
               {descontoTotal > 0 && (
-                <div className="flex justify-between py-3 border-b" style={{ borderColor: currentTheme.colors.border }}>
+                <div className="flex justify-between py-3 border-b border-gray-300">
                   <span style={{ color: currentTheme.colors.muted }}>Descontos:</span>
-                  <span className="text-green-400 font-medium">- R$ {descontoTotal.toFixed(2)}</span>
+                  <span className="text-green-700 font-medium">- R$ {descontoTotal.toFixed(2)}</span>
                 </div>
               )}
 
@@ -367,11 +406,11 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
                 }}
               >
                 <span style={{ color: currentTheme.colors.text }}>Total:</span>
-                <span style={{ color: currentTheme.colors.accent }}>R$ {total.toFixed(2)}</span>
+                <span style={{ color: currentTheme.colors.primary }}>R$ {total.toFixed(2)}</span>
               </div>
             </div>
 
-            <motion.button
+            {/* <motion.button
               className="w-full py-4 text-white rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 shadow-lg border disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
                 background: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.accent})`,
@@ -383,8 +422,20 @@ const FemininoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
             >
               FINALIZAR COMPRA
               <ArrowRight size={20} />
-            </motion.button>
+            </motion.button> */}
 
+            <BarbeariaButton 
+              value="FINALIZAR COMPRA"
+              rightIcon={<ArrowRight size={20} />}
+              className="w-full py-4 text-white rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-3 shadow-lg border disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{
+                background: currentTheme.colors.backgroundLinear,
+                color: 'white',
+                borderRadius: currentTheme.borderRadius.large
+              }}
+              disabled={produtos.length === 0}
+              onClick={() => setMetodoPagamento("cartao")}
+            />
             <div className="text-center mt-4">
               <p className="text-sm" style={{ color: currentTheme.colors.muted }}>
                 ⚡ Pagamento rápido e seguro

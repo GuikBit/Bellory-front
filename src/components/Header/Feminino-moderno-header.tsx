@@ -76,7 +76,6 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
         { name: "Plano Premium", path: "/planos" },
       ],
     },
-    { name: "Blog", path: "/blog" },
     { name: "Sobre", path: "/sobre" },
   ]
 
@@ -111,10 +110,10 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
 
   // Elementos decorativos
   const sparkleElements = [
-    { top: "10%", left: "5%", delay: 0, size: 16 },
-    { top: "15%", right: "10%", delay: 1.5, size: 12 },
-    { top: "60%", left: "15%", delay: 0.8, size: 14 },
-    { top: "30%", right: "20%", delay: 2, size: 10 },
+    { top: "10%", left: "5%", delay: 0, size: 22 },
+    { top: "15%", right: "10%", delay: 1.5, size: 16 },
+    { top: "60%", left: "30%", delay: 0.8, size: 18 },
+    { top: "30%", right: "20%", delay: 2, size: 14 },
   ]
 
   return (
@@ -152,7 +151,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
             repeatDelay: 3,
           }}
         >
-          <Sparkles size={elem.size} style={{ color: `${theme.colors.primary}70` }} />
+          <Sparkles size={elem.size} style={{ color: `${theme.colors.primary}` }} />
         </motion.div>
       ))}
 
@@ -263,10 +262,10 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                   onClick={() => setActiveNavItem(item.name)}
                 >
                   <motion.div
-                    className="px-3 py-2 font-medium text-sm rounded-full relative group cursor-pointer"
+                    className="py-2 px-5 font-semibold text-base  rounded-full relative group cursor-pointer "
                     style={{
-                      color: activeNavItem === item.name ? theme.colors.buttonText : theme.colors.text,
-                      background: activeNavItem === item.name ? theme.colors.primary : "transparent",
+                      color: activeNavItem === item.name ? 'white' : '#525252',
+                      background: activeNavItem === item.name ? theme.colors.backgroundLinear : "transparent",
                       fontFamily: theme.fonts.body,
                     }}
                     onClick={(e) => {
@@ -292,7 +291,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                         <motion.div
                           className="absolute top-full left-0 mt-1 py-2 rounded-md shadow-lg min-w-[200px] z-20"
                           style={{
-                            background: theme.colors.background,
+                            background: '#ffffff',
                             border: `1px solid ${theme.colors.secondary}20`,
                           }}
                           initial="closed"
@@ -314,7 +313,7 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                 setActiveDropdown(null)
                               }}
                               variants={itemVariants}
-                              whileHover={{ x: 2, backgroundColor: `${theme.colors.secondary}20` }}
+                              whileHover={{ x: 2, backgroundColor: `${theme.colors.secondary}30` }}
                             >
                               <Star size={10} className="inline-block mr-2" style={{ color: theme.colors.primary }} />
                               {subItem.name}
@@ -331,16 +330,16 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
           </nav>
 
           {/* Right side actions */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-5">
             {/* Shopping Cart */}
-            <motion.div className="relative">
+            <motion.div className="relative ">              
               <motion.button
                 className="p-2 rounded-full transition-colors duration-300"
                 style={{
-                  backgroundColor: theme.colors.secondary,
+                  backgroundColor: theme.colors.secondary+'99',
                   color: theme.colors.buttonText,
                 }}
-                whileHover={{ scale: 1.05, backgroundColor: adjustColor(theme.colors.secondary, -10) }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {navigate('/carrinho')}}
               >
@@ -360,16 +359,41 @@ const FemininoModernoHeader = ({ cartItemCount = 0 }: HeaderProps) => {
               </motion.button>
             </motion.div>
 
+            <motion.button
+              className="p-2 rounded-full transition-colors duration-300"
+              style={{
+                backgroundColor: theme.colors.secondary+'99',
+                color: theme.colors.buttonText,
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {}}
+            >
+              <User size={18} />
+              {cartItemCount > 0 && (
+                <motion.span
+                  className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
+                  style={{ background: theme.colors.primary, color: theme.colors.buttonText }}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                
+                >
+                  {cartItemCount}
+                </motion.span>
+              )}
+            </motion.button>
+
             {/* Login Button - Desktop */}
             <motion.button
               className="hidden md:flex items-center px-5 py-2 rounded-full font-medium transition-colors duration-300"
               style={{
-                background: theme.colors.primary,
-                color: theme.colors.buttonText,
+                background: theme.colors.backgroundLinear,
+                color: 'white',
               }}
               whileHover={{
                 scale: 1.05,
-                background: adjustColor(theme.colors.primary, -10),
+                // background: adjustColor(theme.colors.primary, -10),
               }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {navigate('/login')}}

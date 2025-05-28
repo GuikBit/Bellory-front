@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Clock, DollarSign, Filter, Star, User, Sparkles, Zap } from "lucide-react"
 import { themes } from "../../theme/theme"
+import { BarbeariaButton } from "../ui"
 
 const servicos = [
   {
@@ -88,7 +89,7 @@ const FemininoModernoServicosDetalhados = () => {
   })
 
   return (
-    <div className="min-h-screen py-12" style={{ backgroundColor: theme.colors.background }}>
+    <div className="min-h-screen py-12" style={{ backgroundColor: '#fff' }}>
       {/* Modern decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 opacity-10">
@@ -123,8 +124,8 @@ const FemininoModernoServicosDetalhados = () => {
           transition={{ delay: 0.2 }}
           className="flex flex-wrap gap-4 justify-center mb-8 p-6 rounded-lg"
           style={{
-            background: `linear-gradient(135deg, ${theme.colors.primary}20, ${theme.colors.secondary}20)`,
-            border: `2px solid ${theme.colors.accent}`,
+            background: `white`,
+            border: `2px solid ${theme.colors.primary}40`,
           }}
         >
           <div className="flex items-center gap-2">
@@ -137,11 +138,12 @@ const FemininoModernoServicosDetalhados = () => {
           <select
             value={filtroCategoria}
             onChange={(e) => setFiltroCategoria(e.target.value)}
-            className="px-4 py-2 rounded-lg font-bold"
+            className="px-4 py-2 rounded-lg font-medium"
             style={{
-              background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
-              color: "white",
-              border: "none",
+              background: `white`,
+              color: 'black',
+              border: `2px solid ${theme.colors.primary}40`,
+              
             }}
           >
             {categorias.map((categoria) => (
@@ -154,11 +156,12 @@ const FemininoModernoServicosDetalhados = () => {
           <select
             value={filtroGenero}
             onChange={(e) => setFiltroGenero(e.target.value)}
-            className="px-4 py-2 rounded-lg font-bold"
+            className="px-4 py-2 rounded-lg font-medium"
             style={{
-              background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
-              color: "white",
-              border: "none",
+              background: `white`,
+              color: 'black',
+              border: `2px solid ${theme.colors.primary}40`,
+              paddingRight: '2.5rem',
             }}
           >
             <option value="Todos">TODOS OS GÊNEROS</option>
@@ -182,14 +185,13 @@ const FemininoModernoServicosDetalhados = () => {
               transition={{ delay: index * 0.1 }}
               whileHover={{
                 y: -15,
-                rotateY: 5,
                 transition: { duration: 0.3 },
               }}
-              className="rounded-lg overflow-hidden shadow-lg relative"
+              className="rounded-lg overflow-hidden shadow-lg relative "
               style={{
-                background: `linear-gradient(135deg, ${theme.colors.cardBackground}, ${theme.colors.accent}20)`,
+                background: `#fff`,
                 borderRadius: theme.borderRadius.large,
-                boxShadow: `0 20px 40px -15px ${theme.colors.primary}30`,
+                boxShadow: theme.colors.boxShadow,
               }}
             >
               <div className="relative h-48 overflow-hidden">
@@ -198,16 +200,22 @@ const FemininoModernoServicosDetalhados = () => {
                   alt={servico.nome}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `linear-gradient(to top, ${theme.colors.primary}20, transparent)`, // 66 = ~40% de opacidade
+                  }}
+                />
 
                 <motion.div
                   className="absolute top-4 right-4"
                   animate={{
-                    rotate: 360,
+                    // rotate: 360,
                     scale: [1, 1.2, 1],
                   }}
                   transition={{
-                    rotate: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                    // rotate: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
                     scale: { duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
                   }}
                 >
@@ -218,7 +226,7 @@ const FemininoModernoServicosDetalhados = () => {
                   <div
                     className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
                     style={{
-                      background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
+                      background: `${theme.colors.backgroundLinear}`,
                       color: "white",
                     }}
                   >
@@ -233,7 +241,7 @@ const FemininoModernoServicosDetalhados = () => {
                 </div>
               </div>
 
-              <div className="p-6">
+              <div className="p-6 h-100 flex flex-col justify-between">
                 <p className="text-sm mb-4" style={{ color: theme.colors.textSecondary, fontFamily: theme.fonts.body }}>
                   {servico.descricao}
                 </p>
@@ -277,7 +285,7 @@ const FemininoModernoServicosDetalhados = () => {
                   )}
                 </div>
 
-                <motion.button
+                {/* <motion.button
                   className="w-full mt-6 py-3 rounded-lg flex items-center justify-center gap-2 font-bold"
                   style={{
                     background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
@@ -292,7 +300,19 @@ const FemininoModernoServicosDetalhados = () => {
                 >
                   <Star size={16} />
                   AGENDAR
-                </motion.button>
+                </motion.button> */}
+
+              <BarbeariaButton 
+                value="AGENDAR"
+                leftIcon={<Star size={16} />}
+                className="w-full mt-6 py-3 cursor-pointer text-white rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{
+                  background: theme.colors.backgroundLinear,
+                  color: 'white',
+                  borderRadius: theme.borderRadius.large
+                }}
+              />
+
               </div>
             </motion.div>
           ))}
