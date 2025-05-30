@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Facebook, Instagram, Phone, MapPin, Mail, Twitter, Heart, Send, ExternalLink, Calendar } from "lucide-react"
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 // import Logo3D from "../Fragments/Logo3D"
 
 

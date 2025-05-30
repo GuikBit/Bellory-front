@@ -1,6 +1,6 @@
 // src/components/ThemeSwitcherDropdown.tsx
 import React, { useState, useEffect } from 'react'; // Adicionado React para FC e useEffect
-import { useTheme } from '../../contexts/Theme-context'; // Seu hook de tema
+import { useTheme } from '../../global/Theme-context'; // Seu hook de tema
 import { themes } from '../../theme/theme'; // Seu objeto de temas
 // Supondo que 'themes' tenha uma tipagem como:
 // interface Theme { name: string; /* ...outras propriedades de cor */ }

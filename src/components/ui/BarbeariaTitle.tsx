@@ -4,7 +4,7 @@ import type { HTMLAttributes } from "react"
 import { Scissors } from "lucide-react"
 import { motion } from "framer-motion"
 import { UTILS } from "../../styles/theme-guid"
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 
 const { cn } = UTILS
 

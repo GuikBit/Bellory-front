@@ -1,4 +1,4 @@
-import { useTheme } from "../../contexts/Theme-context";
+import { useTheme } from "../../global/Theme-context";
 import FemininoEleganteAbout from "./Feminino-elegante-about";
 import FemininoModernoAbout from "./Feminino-moderno-about";
 import MasculinoClassicoAbout from "./Masculino-classico-about";

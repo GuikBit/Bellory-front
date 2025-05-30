@@ -18,7 +18,7 @@ import {
   Flower,
   Calendar,
 } from "lucide-react"
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 // import Logo3D from "../Fragments/Logo3D"
 import { useNavigate } from "react-router"
 import ThemeSwitcherDropdown from "../Fragments/SelectTheme"
@@ -234,10 +234,10 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <motion.div
-                    className="px-2 py-1 font-medium text-base relative group cursor-pointer"
+                    className="px-2 py-1 font-bold text-xl relative group cursor-pointer"
                     style={{
-                      color: activeDropdown === item.name ? theme.colors.primary : theme.colors.text,
-                      fontFamily: theme.fonts.body,
+                      color: theme.colors.primary,
+                      fontFamily: theme.fonts.heading,
                     }}
                     onClick={(e) => {
                       e.preventDefault()
@@ -279,10 +279,10 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                           {item.dropdown.map((subItem, subIndex) => (
                             <motion.div
                               key={subIndex}
-                              className="block px-4 py-2 hover:bg-opacity-5 transition-colors duration-200 cursor-pointer"
+                              className="flex flex-row justify-start items-center px-4 py-2 text-xl hover:bg-opacity-5 transition-colors duration-200 cursor-pointer"
                               style={{
-                                color: theme.colors.text,
-                                fontFamily: theme.fonts.body,
+                                color: theme.colors.primary,
+                                fontFamily: theme.fonts.heading,
                               }}
                               onClick={(e) => {
                                 e.preventDefault()
@@ -290,8 +290,9 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                                 setActiveDropdown(null)
                               }}
                               variants={itemVariants}
-                              whileHover={{ x: 2, backgroundColor: `${theme.colors.primary}10` }}
+                              whileHover={{ x: 2, backgroundColor: `${theme.colors.primary}30` }}
                             >
+                               <Flower size={18} style={{ color: theme.colors.primary }} className="mr-3" />
                               {subItem.name}
                             </motion.div>
                           ))}
@@ -359,11 +360,12 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
 
             {/* Appointment Button - Desktop */}
             <motion.button
-              className="hidden md:flex items-center px-5 py-1.5 rounded-full font-medium transition-colors duration-300 border"
+              className="hidden md:flex items-center px-5 py-1.5 rounded-full font-medium transition-colors duration-300 border text-lg"
               style={{
                 background: "transparent",
                 color: theme.colors.primary,
                 borderColor: theme.colors.primary,
+                fontFamily: theme.fonts.heading,
               }}
               whileHover={{
                 scale: 1.02,
@@ -376,10 +378,11 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
             </motion.button>
 
             <motion.button
-              className="hidden md:flex items-center px-4 py-2 rounded-full font-medium transition-colors duration-300"
+              className="hidden md:flex items-center px-6 py-2 rounded-full font-medium transition-colors duration-300 text-lg"
               style={{
                 background: theme.colors.primary,
                 color: theme.colors.buttonText,
+                fontFamily: theme.fonts.heading,
               }}
               whileHover={{
                 scale: 1.05,

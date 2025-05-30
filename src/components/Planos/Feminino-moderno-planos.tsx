@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Check, X, Scissors, Crown, CreditCard, Star } from 'lucide-react'
-import { useTheme } from "../../contexts/Theme-context"
+import { Check, X, Scissors, Crown, CreditCard, Star, ArrowRight } from 'lucide-react'
+import { useTheme } from "../../global/Theme-context"
+import { BarbeariaButton } from "../ui"
 
 
 const FemininoModernoPlanos = () => {
@@ -17,7 +18,7 @@ const FemininoModernoPlanos = () => {
       descricaoBreve: "Cuidados essenciais para sua beleza",
       precoMensal: 79.90,
       precoAnual: 64.90, // preço mensal no plano anual
-      icone: <Scissors size={28} className="text-purple-500" />,
+      icone: <Scissors size={28} color={currentTheme.colors.primary} />,
       destaque: false,
       beneficios: [
         "2 cortes de cabelo por mês",
@@ -40,7 +41,7 @@ const FemininoModernoPlanos = () => {
       descricaoBreve: "Experiência completa de beleza e bem-estar",
       precoMensal: 129.90,
       precoAnual: 99.90, // preço mensal no plano anual
-      icone: <Crown size={28} className="text-purple-500" />,
+      icone: <Crown size={28} color={currentTheme.colors.primary} />,
       destaque: true,
       beneficios: [
         "Cortes de cabelo ilimitados",
@@ -58,9 +59,9 @@ const FemininoModernoPlanos = () => {
   ]
 
   return (
-    <section className="py-20 bg-gray-900 relative overflow-hidden">
+    <section className="py-20 bg-white relative overflow-hidden">
       {/* Elementos decorativos de fundo */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-500/20 blur-3xl rounded-full -translate-x-1/2 translate-y-1/2"></div>
       
       {/* Padrão geométrico moderno */}
@@ -96,17 +97,66 @@ const FemininoModernoPlanos = () => {
           </p>
 
           {/* Toggle de período */}
-          <div className="flex items-center justify-center bg-gray-800/50 backdrop-blur-sm p-1 rounded-full mb-8 border border-gray-700">
-            <button
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                periodo === "mensal" ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white" : "text-gray-400 hover:text-white"
-              }`}
+          <div className="flex items-center justify-center gap-4 p-1 rounded-full mb-8" style={{ border: `1px solid ${currentTheme.colors.primary}` }}>
+
+            { periodo === "mensal" ? (
+              <BarbeariaButton
+              value="MENSAL"
+              className="shadow-lg "
+              style={{
+                background: currentTheme.colors.backgroundLinear,
+                color: 'white',
+                fontSize: '15px',
+                fontWeight: 'bold',
+                borderRadius: '50px'
+              }}
               onClick={() => setPeriodo("mensal")}
-              style={{ fontFamily: currentTheme.fonts.body }}
-            >
-              MENSAL
-            </button>
-            <button
+            />
+            ):(
+              <BarbeariaButton
+                value="MENSAL"
+                className="shadow-lg "
+                style={{
+                  background: '#efefef',
+                  color: '#656565',
+                  fontSize: '15px',
+                  borderRadius: '50px'
+                }}
+                onClick={() => setPeriodo("mensal")}
+              />
+            )}
+
+            { periodo === "anual" ? (
+              <BarbeariaButton
+                value="ANUAL"
+                className="shadow-lg "
+                style={{
+                  background: currentTheme.colors.backgroundLinear,
+                  color: 'white',
+                  fontWeight: 'bold',
+                  fontSize: '15px',
+                  borderRadius: '50px'
+                }}
+                onClick={() => setPeriodo("anual")}
+              >
+                <span className="ml-1 text-xs bg-green-500 text-white px-2 py-0.5 rounded-full">-20%</span>
+              </BarbeariaButton>
+            ):(
+              <BarbeariaButton
+                value="ANUAL"
+                className="shadow-lg "
+                style={{
+                  background: '#efefef',
+                  color: '#656565',
+                  fontSize: '15px',
+                  borderRadius: '50px'
+                }}
+                onClick={() => setPeriodo("anual")}
+              />
+            )}
+            
+
+            {/* <button
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                 periodo === "anual" ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white" : "text-gray-400 hover:text-white"
               }`}
@@ -115,7 +165,7 @@ const FemininoModernoPlanos = () => {
             >
               ANUAL
               <span className="ml-1 text-xs bg-green-500 text-white px-2 py-0.5 rounded-full">-20%</span>
-            </button>
+            </button> */}
           </div>
         </motion.div>
 
@@ -123,40 +173,41 @@ const FemininoModernoPlanos = () => {
           {planos.map((plano, index) => (
             <motion.div
               key={plano.id}
-              className={`rounded-xl overflow-hidden backdrop-blur-sm ${
+              className={`rounded-xl overflow-hidden backdrop-blur-sm shadow-xl ${
                 plano.destaque
-                  ? "bg-gradient-to-br from-gray-800/80 to-gray-900/80 border border-purple-500/30"
-                  : "bg-gray-800/50 border border-gray-700/50 scale-95"
-              } shadow-xl`}
+                  ? " "
+                  : " scale-95"
+              } `}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              style={{ border: plano.destaque ? `2px solid ${currentTheme.colors.primary}` : `2px solid #dcdcdc` }}
             >
               {plano.destaque && (
-                <div className="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-center py-1 text-sm font-medium">
+                <div className=" text-white text-center py-1 text-sm font-bold" style={{ background: currentTheme.colors.primary }}>
                   MAIS POPULAR
                 </div>
               )}
 
               <div className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="p-2 rounded-lg bg-gray-700/50">
+                  <div className="p-3 rounded-lg " style={{border: `2px solid ${currentTheme.colors.primary}`}}>
                     {plano.icone}
                   </div>
-                  <h3 className="text-2xl font-bold text-white ml-3" style={{ fontFamily: currentTheme.fonts.heading }}>
+                  <h3 className="text-2xl font-bold ml-3" style={{ fontFamily: currentTheme.fonts.heading }}>
                     {plano.nome}
                   </h3>
                 </div>
 
-                <p className="text-gray-400 mb-6" style={{ fontFamily: currentTheme.fonts.body }}>
+                <p className="text-gray-500 mb-6" style={{ fontFamily: currentTheme.fonts.body }}>
                   {plano.descricaoBreve}
                 </p>
 
                 <div className="mb-8">
                   <div className="flex items-baseline">
-                    <span className="text-4xl font-bold text-white" style={{ fontFamily: currentTheme.fonts.heading }}>
+                    <span className="text-4xl font-bold" style={{ fontFamily: currentTheme.fonts.heading }}>
                       R$ {periodo === "mensal" ? plano.precoMensal.toFixed(2) : plano.precoAnual.toFixed(2)}
                     </span>
                     <span className="text-gray-400 ml-2" style={{ fontFamily: currentTheme.fonts.body }}>/mês</span>
@@ -169,29 +220,25 @@ const FemininoModernoPlanos = () => {
                 </div>
 
                 <motion.button
-                  className={`w-full py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors ${
-                    plano.destaque
-                      ? "bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white"
-                      : "bg-gray-700/70 hover:bg-gray-600/70 text-white border border-gray-600/50"
-                  }`}
+                  className={`w-full py-3 rounded-2xl font-medium flex items-center justify-center gap-2 transition-colors text-white cursor-pointer `}
                   whileTap={{ scale: 0.97 }}
-                  style={{ fontFamily: currentTheme.fonts.body }}
+                  style={{ fontFamily: currentTheme.fonts.body, background: plano.destaque?currentTheme.colors.primary : currentTheme.colors.primary+"99" }}
                 >
                   <CreditCard size={18} />
                   ASSINAR {plano.nome}
                 </motion.button>
 
                 <div className="mt-8">
-                  <p className="font-medium text-white mb-4" style={{ fontFamily: currentTheme.fonts.heading }}>
+                  <p className="font-medium  mb-4" style={{ fontFamily: currentTheme.fonts.heading }}>
                     O que está incluso:
                   </p>
                   <ul className="space-y-3">
                     {plano.beneficios.map((beneficio, i) => (
                       <li key={i} className="flex items-start">
                         <div className="p-1 rounded-full bg-green-500/20 mr-2 flex-shrink-0 mt-0.5">
-                          <Check size={14} className="text-green-500" />
+                          <Check size={14} className="text-green-700" />
                         </div>
-                        <span className="text-gray-300" style={{ fontFamily: currentTheme.fonts.body }}>
+                        <span className="text-gray-600" style={{ fontFamily: currentTheme.fonts.body }}>
                           {beneficio}
                         </span>
                       </li>
@@ -200,7 +247,7 @@ const FemininoModernoPlanos = () => {
 
                   {plano.naoIncluido && plano.naoIncluido.length > 0 && (
                     <>
-                      <p className="font-medium text-white mt-6 mb-4" style={{ fontFamily: currentTheme.fonts.heading }}>
+                      <p className="font-medium mt-6 mb-4" style={{ fontFamily: currentTheme.fonts.heading }}>
                         Não incluso:
                       </p>
                       <ul className="space-y-3">
@@ -209,7 +256,7 @@ const FemininoModernoPlanos = () => {
                             <div className="p-1 rounded-full bg-red-500/20 mr-2 flex-shrink-0 mt-0.5">
                               <X size={14} className="text-red-500" />
                             </div>
-                            <span className="text-gray-400" style={{ fontFamily: currentTheme.fonts.body }}>
+                            <span className="text-gray-600" style={{ fontFamily: currentTheme.fonts.body }}>
                               {item}
                             </span>
                           </li>
@@ -223,18 +270,32 @@ const FemininoModernoPlanos = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-gray-400 mb-6" style={{ fontFamily: currentTheme.fonts.body }}>
+        <div className="flex flex-col justify-center items-center mt-12">
+          <p className="text-gray-500 mb-6" style={{ fontFamily: currentTheme.fonts.body }}>
             Todos os planos incluem acesso ao aplicativo móvel e cancelamento a qualquer momento.
           </p>
-          <motion.button
+          {/* <motion.button
             className="px-6 py-3 bg-gray-700/70 hover:bg-gray-600/70 text-white rounded-lg font-medium transition-colors border border-gray-600/50"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{ fontFamily: currentTheme.fonts.body }}
           >
             Ver todos os detalhes dos planos
-          </motion.button>
+          </motion.button> */}
+
+          <BarbeariaButton
+            value="Ver todos os detalhes dos planos"
+            rightIcon={<ArrowRight size={20} />}
+            className="w-100 shadow-lg "
+            style={{
+              background: currentTheme.colors.backgroundLinear,
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '17px',
+              borderRadius: currentTheme.borderRadius.large
+            }}
+            onClick={() => {}}
+          />
         </div>
       </div>
     </section>

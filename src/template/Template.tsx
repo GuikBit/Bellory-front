@@ -26,7 +26,7 @@
 "use client"
 
 
-import { useTheme } from "../contexts/Theme-context"
+import { useTheme } from "../global/Theme-context"
 import ThemeHeader from "../components/Header/theme-header"
 import ThemeFooter from "../components/Footer/theme-footer"
 import { Outlet } from "react-router"

@@ -3,7 +3,7 @@
 
 
 // import { useGlobalState } from "../global/ContextGlobalState"
-import { useTheme } from "../contexts/Theme-context" 
+import { useTheme } from "../global/Theme-context" 
 import { BarbeariaTitle } from "../components/ui" 
 import ThemeFeedback from "../components/Feedbacks.tsx/theme-feedback"
 import ThemeAgendamento from "../components/Agendamento/theme-agendamento"

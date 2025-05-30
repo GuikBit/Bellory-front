@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { useTheme } from "../contexts/Theme-context"
+import { useTheme } from "../global/Theme-context"
 
 export function ThemeStyles() {
   const { currentTheme } = useTheme()

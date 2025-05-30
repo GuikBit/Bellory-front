@@ -20,7 +20,7 @@ import {
   Youtube,
   Star,
 } from "lucide-react"
-import { useTheme } from "../contexts/Theme-context"
+import { useTheme } from "../global/Theme-context"
 // import Logo3D from "./Fragments/Logo3D"
 
 const Footer = () => {

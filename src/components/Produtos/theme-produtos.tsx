@@ -1,6 +1,6 @@
 "use client"
 
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 import FemininoEleganteProdutos from "./Feminino-elegante-produtos"
 import FemininoModernoProdutos from "./Feminino-moderno-produtos"
 import MasculinoClassicoProdutos from "./Masculino-classico-produtos"

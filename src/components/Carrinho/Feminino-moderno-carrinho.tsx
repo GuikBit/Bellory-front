@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Avatar } from "primereact/avatar"
 import { Trash2, ShoppingBag, CreditCard, ArrowRight, Plus, Minus, Star, Sparkles, ShoppingCart } from "lucide-react"
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 import { CupomDesconto } from "../Cupom/theme-cupom"
 import { BarbeariaButton } from "../ui"
 

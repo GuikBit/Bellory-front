@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
+
 
 interface StepIndicatorProps {
   step: number

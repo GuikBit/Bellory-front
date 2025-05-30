@@ -5,7 +5,7 @@ import { useState } from "react"
 import { AnimatePresence, motion }
 from "framer-motion"
 import { Star, ChevronLeft, ChevronRight, MessageSquare, UserCheck, Heart } from "lucide-react" // Adicionando ícones
-import { useTheme } from "../contexts/Theme-context" // Importar o hook do tema
+import { useTheme } from "../global/Theme-context" // Importar o hook do tema
 import { BarbeariaTitle, BarbeariaButton } from "./ui" // Seus componentes de UI
 
 const testimonialsData = [ // Renomeado para evitar conflito se importado em outro lugar

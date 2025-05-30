@@ -1,7 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
-import { useTheme } from "../contexts/Theme-context"
+import { useTheme } from "../global/Theme-context"
 
 type ThemeSelectorProps = {
   onSelect?: (themeId: string) => void

@@ -16,7 +16,7 @@ import {
   User,
   Search,
 } from "lucide-react"
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 // import Logo3D from "../Fragments/Logo3D";
 import { useNavigate } from "react-router"
 import ThemeSwitcherDropdown from "../Fragments/SelectTheme"

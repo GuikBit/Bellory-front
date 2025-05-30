@@ -22,7 +22,7 @@ import {
 } from "lucide-react"
 import logo from "../assets/logo.png"
 import { useGlobalState } from "../global/ContextGlobalState"
-import { useTheme } from "../contexts/Theme-context"
+import { useTheme } from "../global/Theme-context"
 
 const Header = () => {
   const navigate = useNavigate()

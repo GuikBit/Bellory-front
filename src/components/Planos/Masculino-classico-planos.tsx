@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Check, X, Scissors, Crown, CreditCard, Award } from 'lucide-react'
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 
 
 const MasculinoClassicoPlanos = () => {

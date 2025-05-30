@@ -1,8 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Users, Clock, Flower, Heart, Calendar } from "lucide-react"
+import { Award, Users, Clock, Flower, Heart, Calendar, Calendar1, ArrowRight, Settings } from "lucide-react"
 import { themes } from "../../theme/theme"
+import EleganteSubTitleIcon from "../Fragments/Feminino/EleganteSubTitleIcon"
+import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
+import { BarbeariaButton } from "../ui"
 
 
 const FemininoEleganteAbout = () => {
@@ -43,50 +46,8 @@ const FemininoEleganteAbout = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <div className="flex items-center mb-6">
-              <motion.div
-                className="h-px w-16"
-                style={{ backgroundColor: theme.colors.primary }}
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              ></motion.div>
-              <motion.div
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  rotate: { duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
-                  scale: { duration: 3, repeat: Number.POSITIVE_INFINITY },
-                }}
-              >
-                <Flower className="mx-4" size={24} style={{ color: theme.colors.primary }} />
-              </motion.div>
-              <motion.div
-                className="h-px w-16"
-                style={{ backgroundColor: theme.colors.primary }}
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              ></motion.div>
-            </div>
+            <EleganteSubTitle title="Sobre nos" />
 
-            <motion.h2
-              className="text-3xl md:text-4xl font-normal mb-6"
-              style={{
-                color: theme.colors.text,
-                fontFamily: theme.fonts.heading,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Sobre Nós
-            </motion.h2>
 
             <motion.p
               className="text-lg mb-6 leading-relaxed italic"
@@ -144,6 +105,35 @@ const FemininoEleganteAbout = () => {
                 <Calendar size={18} />
                 Nossa Jornada
               </motion.button>
+
+              {/* <BarbeariaButton
+                value="Nossa história"
+                leftIcon={<Calendar size={20}/>}
+                variant="primary"
+                rounded="md"
+                size="sm"
+                onClick={() => window.location.href = "/agendamento"}
+                className=""
+                style={{
+                }}
+                // whileHover={{
+                //   backgroundColor: theme.colors.primary,
+                //   color: "white",
+                //   boxShadow: `0 10px 25px -5px ${theme.colors.primary}30`,
+                // }}
+              />     */}
+
+            <BarbeariaButton variant="primary" size="lg" rounded="full" leftIcon={<Heart />}>
+              Curtir
+            </BarbeariaButton>
+            <BarbeariaButton variant="outline" size="sm" rounded="lg" rightIcon={<ArrowRight />}>
+              Próximo
+            </BarbeariaButton>
+            <BarbeariaButton variant="ghost" size="xl" rounded="md" leftIcon={<Settings />} rightIcon={<ArrowRight />}>
+              Configurar
+            </BarbeariaButton>
+
+
             </motion.div>
           </motion.div>
 

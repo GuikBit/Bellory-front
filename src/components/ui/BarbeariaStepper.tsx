@@ -4,7 +4,8 @@ import React, { useState, Children, useRef, useLayoutEffect, type HTMLAttributes
 import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { ArrowLeft, ArrowRight, Save, Scissors } from "lucide-react"
 import { BarbeariaStepConnector, BarbeariaStepIndicator } from "./BarbeariaStepperIndicator"
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
+
 
 
 interface StepperProps extends HTMLAttributes<HTMLDivElement> {

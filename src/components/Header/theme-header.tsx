@@ -1,6 +1,6 @@
 "use client"
 
-import { useTheme } from "../../contexts/Theme-context"
+import { useTheme } from "../../global/Theme-context"
 import FemininoEleganteHeader from "./Feminino-elegante-header"
 import FemininoModernoHeader from "./Feminino-moderno-header"
 import MasculinoClassicoHeader from "./Masculino-classico-header"
