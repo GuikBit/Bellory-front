@@ -164,7 +164,7 @@ export default function FemininoModernoProdutosLista() {
         style={{
           background: `linear-gradient(135deg, ${theme.colors.cardBackground}, ${theme.colors.accent}20)`,
           borderRadius: theme.borderRadius.large,
-          boxShadow: theme.colors.boxShadow,
+          boxShadow: theme.colors.primary,
         }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}

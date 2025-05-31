@@ -2,9 +2,11 @@
 
 import React, { useState, Children, useRef, useLayoutEffect, type HTMLAttributes, type ReactNode } from "react"
 import { motion, AnimatePresence, type Variants } from "framer-motion"
-import { ArrowLeft, ArrowRight, Save, Scissors } from "lucide-react"
+import { ArrowLeft, ArrowRight, Save } from "lucide-react"
 import { BarbeariaStepConnector, BarbeariaStepIndicator } from "./BarbeariaStepperIndicator"
 import { useTheme } from "../../global/Theme-context"
+import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
+import BarbeariaButton from "./BarbeariaButton"
 
 
 
@@ -87,15 +89,15 @@ export default function BarbeariaStepper({
   return (
     <div className="flex items-center justify-center" {...rest}>
       <div
-        className={`mx-auto w-full border rounded-xl ${stepCircleContainerClassName}`}
+        className={`mx-auto w-full border rounded-xl pt-15 ${stepCircleContainerClassName}`}
         style={{
-          backgroundColor: currentTheme.colors.cardBackground,
+          // backgroundColor: currentTheme.colors.cardBackground,
           borderColor: currentTheme.colors.secondary,
           borderRadius: currentTheme.borderRadius.large,
         }}
       >
         {/* Título do stepper */}
-        <div className="flex flex-col items-center justify-center pt-8 pb-4">
+        {/* <div className="flex flex-col items-center justify-center pt-8 pb-4">
           <h2
             className="text-2xl font-bold mb-2"
             style={{
@@ -110,7 +112,9 @@ export default function BarbeariaStepper({
             <Scissors className="mx-2" size={16} style={{ color: currentTheme.colors.primary }} />
             <div className="h-[1px] w-12" style={{ backgroundColor: currentTheme.colors.primary }}></div>
           </div>
-        </div>
+        </div> */}
+
+        {/* <EleganteSubTitle title="Agendamento" /> */}
 
         {/* Indicadores de etapa */}
         <div className={`${stepContainerClassName} flex w-full items-center px-8 pb-8`}>
@@ -159,38 +163,16 @@ export default function BarbeariaStepper({
         {!isCompleted && (
           <div className={`  ${footerClassName}`}>
             <div className={`mb-10 px-8 flex ${currentStep !== 1 ? "justify-between" : "justify-end"}`}>
+              
               {currentStep !== 1 && (
-                <motion.button
-                  onClick={handleBack}
-                  className="cursor-pointer rounded-lg py-2.5 px-4 font-bold transition flex items-center justify-center"
-                  style={{
-                    backgroundColor: "transparent",
-                    color: currentTheme.colors.primary,
-                    borderRadius: currentTheme.borderRadius.medium,
-                  }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  // {...backButtonProps}
-                >
-                  <ArrowLeft size={20} className="mr-2" />
-                  {backButtonText}
-                </motion.button>
+
+                <BarbeariaButton variant="ghost" onClick={handleBack} leftIcon={<ArrowLeft size={20} />}>{backButtonText}</BarbeariaButton>
               )}
-              <motion.button
-                onClick={isLastStep ? handleComplete : handleNext}
-                className="flex items-center justify-center cursor-pointer rounded-lg py-2.5 px-4 transition font-bold"
-                style={{
-                  backgroundColor: isLastStep ? "#22c55e" : currentTheme.colors.primary,
-                  color: "#FFFFFF",
-                  borderRadius: currentTheme.borderRadius.medium,
-                }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                // {...nextButtonProps}
-              >
-                {isLastStep ? <Save size={20} className="mr-2" /> : <ArrowRight size={20} className="mr-2" />}
+
+              <BarbeariaButton variant={isLastStep ? "success" : 'primary'} onClick={isLastStep ? handleComplete : handleNext} rightIcon={isLastStep ?<Save size={20} /> : <ArrowRight size={20} />}>
                 {isLastStep ? "Agendar" : nextButtonText}
-              </motion.button>
+              </BarbeariaButton>
+
             </div>
           </div>
         )}

@@ -2,8 +2,10 @@
 
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { Star, ChevronLeft, ChevronRight, Heart, Flower } from "lucide-react"
+import { Star, ChevronLeft, ChevronRight, Heart, Flower, Settings } from "lucide-react"
 import { themes } from "../../theme/theme"
+import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
+import { BarbeariaButton } from "../ui"
 
 
 const testimonialsData = [
@@ -73,9 +75,9 @@ const FemininoEleganteFeedback = () => {
   const currentTestimonial = testimonialsData[currentIndex]
 
   return (
-    <section className="py-20 relative overflow-hidden" style={{ backgroundColor: theme.colors.accent }}>
+    <section className="py-20 relative overflow-hidden" >
       {/* Elegant decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
           <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -89,10 +91,10 @@ const FemininoEleganteFeedback = () => {
             <path d="M0 0L100 0L50 100L0 0Z" fill={theme.colors.primary} />
           </svg>
         </div>
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center mb-16">
+        {/* <div className="flex flex-col items-center mb-16">
           <h2
             className="text-3xl font-normal mb-3"
             style={{
@@ -107,7 +109,9 @@ const FemininoEleganteFeedback = () => {
             <Flower size={18} style={{ color: theme.colors.primary }} />
             <div className="h-px w-12" style={{ backgroundColor: theme.colors.primary }}></div>
           </div>
-        </div>
+        </div> */}
+
+        <EleganteSubTitle title="Depoimentos" />
 
         <div className="max-w-4xl mx-auto relative">
           <AnimatePresence mode="wait">
@@ -127,7 +131,7 @@ const FemininoEleganteFeedback = () => {
             >
               <Heart
                 size={32}
-                className="absolute -top-3 -right-3 opacity-30"
+                className="absolute top-3 right-3 opacity-30"
                 style={{ color: theme.colors.primary }}
               />
 
@@ -188,25 +192,8 @@ const FemininoEleganteFeedback = () => {
 
           {/* Navigation Controls - Elegant Style */}
           <div className="flex justify-center items-center mt-10 gap-6">
-            <button
-              className="p-2 transition-all duration-300 hover:bg-opacity-20 border"
-              onClick={prevTestimonial}
-              aria-label="Depoimento anterior"
-              style={{
-                borderColor: theme.colors.primary,
-                color: theme.colors.primary,
-                borderRadius: theme.borderRadius.medium,
-                backgroundColor: `${theme.colors.primary}10`,
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = `${theme.colors.primary}20`
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = `${theme.colors.primary}10`
-              }}
-            >
-              <ChevronLeft size={20} />
-            </button>
+
+            <BarbeariaButton iconOnly aria-label="Depoimento anterior" leftIcon={<ChevronLeft />} onClick={prevTestimonial} variant="outline" />
 
             <div className="flex items-center gap-2">
               {testimonialsData.map((_, index) => (
@@ -215,7 +202,7 @@ const FemininoEleganteFeedback = () => {
                   onClick={() => setCurrentIndex(index)}
                   className="w-2 h-2 rounded-full transition-all duration-300 transform focus:outline-none"
                   style={{
-                    backgroundColor: index === currentIndex ? theme.colors.primary : theme.colors.textSecondary,
+                    backgroundColor: index === currentIndex ? theme.colors.primary : theme.colors.accent,
                     transform: index === currentIndex ? "scale(1.5)" : "scale(1)",
                   }}
                   aria-label={`Ir para depoimento ${index + 1}`}
@@ -223,25 +210,7 @@ const FemininoEleganteFeedback = () => {
               ))}
             </div>
 
-            <button
-              className="p-2 transition-all duration-300 hover:bg-opacity-20 border"
-              onClick={nextTestimonial}
-              aria-label="Próximo depoimento"
-              style={{
-                borderColor: theme.colors.primary,
-                color: theme.colors.primary,
-                borderRadius: theme.borderRadius.medium,
-                backgroundColor: `${theme.colors.primary}10`,
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = `${theme.colors.primary}20`
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = `${theme.colors.primary}10`
-              }}
-            >
-              <ChevronRight size={20} />
-            </button>
+            <BarbeariaButton iconOnly aria-label="Depoimento anterior" leftIcon={<ChevronRight />} onClick={nextTestimonial} variant="outline" />
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ const { cn } = UTILS
 
 interface BarbeariaButtonProps extends Omit<HTMLMotionProps<"button">, "size"> {
   /** Variante visual do botão */
-  variant?: "primary" | "secondary" | "outline" | "text" | "ghost"
+  variant?: "primary" | "secondary" | "outline" | "text" | "ghost" | "error" | "success" | "warning" | "info"
   /** Tamanho do botão */
   size?: "xs" | "sm" | "md" | "lg" | "xl"
   /** Estilo do border radius */
@@ -132,7 +132,7 @@ const BarbeariaButton = forwardRef<HTMLButtonElement, BarbeariaButtonProps>(
         fontSize: config.fontSize,
         minHeight: config.minHeight,
         borderRadius: getBorderRadius(),
-        fontFamily: currentTheme.fonts?.body || "inherit",
+        fontFamily: currentTheme.fonts?.heading || "inherit",
         fontWeight: "500",
         border: "1px solid transparent",
         cursor: disabled || isLoading ? "not-allowed" : "pointer",
@@ -153,11 +153,39 @@ const BarbeariaButton = forwardRef<HTMLButtonElement, BarbeariaButtonProps>(
     const getVariantStyles = () => {
       const primary = getThemeColor("primary", "#3b82f6")
       const secondary = getThemeColor("secondary", "#6b7280")
+      const success = getThemeColor("success", "#059669")
+      const error = getThemeColor("error", "#DC2626")
+      const warning = getThemeColor("warning", "#D97706")
+      const info = getThemeColor("info", "#7C3AED")
       const background = getThemeColor("background", "#ffffff")
       const text = getThemeColor("text", "#1f2937")
       const buttonText = getThemeColor("buttonText", "#ffffff")
 
       switch (variant) {
+        case "warning":
+          return {
+            backgroundColor: warning,
+            color: buttonText,
+            borderColor: warning,
+          }
+        case "info":
+          return {
+            backgroundColor: info,
+            color: buttonText,
+            borderColor: info,
+          }
+        case "error":
+          return {
+            backgroundColor: error,
+            color: buttonText,
+            borderColor: error,
+          }
+        case "success":
+          return {
+            backgroundColor: success,
+            color: buttonText,
+            borderColor: success,
+          }
         case "primary":
           return {
             backgroundColor: primary,

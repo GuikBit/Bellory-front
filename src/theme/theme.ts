@@ -625,7 +625,7 @@ export const themes = {
       buttonText: "#FFFFFF",
       backgroundLinear: "linear-gradient(135deg, #B08D9A, #D8BFD8)",
 
-      success: "#059669",
+      success: "#22C55E",
       warning: "#D97706",
       error: "#DC2626",
       info: "#7C3AED",

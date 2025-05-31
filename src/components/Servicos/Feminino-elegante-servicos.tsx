@@ -1,8 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Flower, Heart } from "lucide-react"
+import { ArrowRight, Flower, Heart, Settings } from "lucide-react"
 import { themes } from "../../theme/theme"
+import { BarbeariaButton } from "../ui"
 
 const list = [
   {
@@ -64,9 +65,9 @@ const FemininoEleganteServicos = () => {
   const theme = themes.femininoElegante
 
   return (
-    <div className="relative" style={{ backgroundColor: theme.colors.accent }}>
+    <div className="relative" >
       {/* Elegant decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
           <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -80,7 +81,7 @@ const FemininoEleganteServicos = () => {
             <path d="M0 0L100 0L50 100L0 0Z" fill={theme.colors.primary} />
           </svg>
         </div>
-      </div>
+      </div> */}
 
       <div className="py-8">
         <motion.div
@@ -127,7 +128,7 @@ const FemininoEleganteServicos = () => {
                     ease: "easeInOut",
                   }}
                 >
-                  <Flower size={24} style={{ color: theme.colors.primary }} />
+                  <Flower size={24} style={{ color: theme.colors.accent }} />
                 </motion.div>
 
                 {/* Elegant corner decoration */}
@@ -137,17 +138,17 @@ const FemininoEleganteServicos = () => {
                   </svg>
                 </div>
 
-                <div className="absolute bottom-0 left-0 p-4">
+                <div className="absolute bottom-0 left-0 m-2 py-2 p-4 bg-blur-lg bg-white/10 backdrop-blur-md rounded-3xl">
                   <h3 className="text-xl font-semibold text-white mb-1" style={{ fontFamily: theme.fonts.heading }}>
                     {service.title}
                   </h3>
-                  <p className="font-semibold" style={{ color: theme.colors.primary }}>
+                  <p className="font-semibold" style={{ color: theme.colors.accent }}>
                     R$ {service.price.toFixed(2)}
                   </p>
                 </div>
               </div>
 
-              <div className="p-4">
+              <div className="p-4 min-h-45 flex flex-col justify-between">
                 <p
                   className="text-sm mb-4 italic"
                   style={{
@@ -158,30 +159,21 @@ const FemininoEleganteServicos = () => {
                   {service.description}
                 </p>
 
-                <motion.button
-                  className="w-full py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 font-medium border"
-                  style={{
-                    backgroundColor: `${theme.colors.primary}10`,
-                    color: theme.colors.primary,
-                    borderColor: theme.colors.primary,
-                    borderRadius: theme.borderRadius.medium,
-                    fontFamily: theme.fonts.heading,
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  whileHover={{
-                    backgroundColor: theme.colors.primary,
-                    color: "white",
-                    boxShadow: `0 10px 25px -5px ${theme.colors.primary}30`,
-                  }}
-                >
-                  <Heart size={16} />
+                <BarbeariaButton variant="outline" size="lg" rounded="lg" leftIcon={<Heart size={18} />}>
                   Agendar
-                </motion.button>
+                </BarbeariaButton>
+
               </div>
             </motion.div>
           ))}
         </motion.div>
-      </div>
+
+        <div className="mt-25 text-center">
+          <BarbeariaButton variant="primary" size="xl" rounded="full" rightIcon={<ArrowRight />}>
+            Ver todos os serviços
+          </BarbeariaButton>
+        </div>
+    </div>
     </div>
   )
 }

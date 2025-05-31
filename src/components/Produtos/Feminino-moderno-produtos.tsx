@@ -128,7 +128,7 @@ export default function FemininoModernoProdutos() {
         style={{
           background: `linear-gradient(135deg, ${theme.colors.cardBackground}, ${theme.colors.accent}20)`,
           borderRadius: theme.borderRadius.large,
-          boxShadow: theme.colors.boxShadow,
+          boxShadow: theme.colors.background,
         }}
         whileHover={{ y: -5, transition: { duration: 0.3 } }}
         initial={{ opacity: 0, y: 20 }}

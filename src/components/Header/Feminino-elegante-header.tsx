@@ -22,6 +22,7 @@ import { useTheme } from "../../global/Theme-context"
 // import Logo3D from "../Fragments/Logo3D"
 import { useNavigate } from "react-router"
 import ThemeSwitcherDropdown from "../Fragments/SelectTheme"
+import { BarbeariaButton } from "../ui"
 
 
 interface HeaderProps {
@@ -347,7 +348,7 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
             </motion.div>
 
             {/* User Profile */}
-            <motion.button
+            {/* <motion.button
               className="p-2 rounded-full transition-colors duration-300 hidden md:flex"
               style={{
                 backgroundColor: "transparent",
@@ -356,10 +357,10 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
               whileTap={{ scale: 0.95 }}
             >
               <User size={18} style={{ color: theme.colors.primary }} />
-            </motion.button>
+            </motion.button> */}
 
             {/* Appointment Button - Desktop */}
-            <motion.button
+            {/* <motion.button
               className="hidden md:flex items-center px-5 py-1.5 rounded-full font-medium transition-colors duration-300 border text-lg"
               style={{
                 background: "transparent",
@@ -375,25 +376,13 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
             >
               <Calendar size={16} className="mr-2" />
               Agendar
-            </motion.button>
+            </motion.button> */}
+            <div className="hidden md:flex gap-4">
+              <BarbeariaButton className="hidden md:flex" variant="outline" rounded="full" leftIcon={<Calendar size={16} />}>Agendar</BarbeariaButton>
 
-            <motion.button
-              className="hidden md:flex items-center px-6 py-2 rounded-full font-medium transition-colors duration-300 text-lg"
-              style={{
-                background: theme.colors.primary,
-                color: theme.colors.buttonText,
-                fontFamily: theme.fonts.heading,
-              }}
-              whileHover={{
-                scale: 1.05,
-                background: adjustColor(theme.colors.primary, -15),
-              }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {navigate('/login')}}
-            >
-              Login
-            </motion.button>
-
+              <BarbeariaButton className="hidden md:flex" variant="primary" rounded="full" leftIcon={<User size={16} />} onClick={() => {navigate('/login')}}>Login</BarbeariaButton>
+            </div>
+       
             {/* Mobile Menu Toggle */}
             <motion.button
               className="md:hidden p-2 rounded-full transition-colors duration-300"
@@ -443,7 +432,7 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                 {navItems.map((item, index) => (
                   <div key={index}>
                     <div
-                      className="flex items-center justify-between py-2 border-b"
+                      className="flex items-center justify-between py-2 px-4 border-b"
                       style={{
                         borderColor: `${theme.colors.secondary}30`,
                       }}
@@ -454,10 +443,11 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                       }}
                     >
                       <span
-                        className="font-medium cursor-pointer"
+                        className="cursor-pointer font-bold text-lg"
                         style={{
-                          color: activeDropdown === item.name ? theme.colors.primary : theme.colors.text,
-                          fontFamily: theme.fonts.body,
+                          color: theme.colors.primary,
+                          fontFamily: theme.fonts.heading,
+
                         }}
                       >
                         {item.name}
@@ -489,10 +479,10 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
                             {item.dropdown.map((subItem, subIndex) => (
                               <motion.div
                                 key={subIndex}
-                                className="block py-2 transition-colors duration-200"
+                                className="block py-2 transition-colors duration-200 font-bold text-lg"
                                 style={{
-                                  color: theme.colors.textSecondary,
-                                  fontFamily: theme.fonts.body,
+                                  color: theme.colors.primary,
+                                  fontFamily: theme.fonts.heading,
                                 }}
                                 variants={itemVariants}
                               >
@@ -513,43 +503,15 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
               </nav>
 
               <div className="mt-6 flex justify-center">
-                <motion.button
-                  className="w-full py-3 px-4 rounded-full font-medium transition-colors duration-300 flex items-center justify-center border"
-                  style={{
-                    background: "transparent",
-                    color: theme.colors.primary,
-                    borderColor: theme.colors.primary,
-                    fontFamily: theme.fonts.body,
-                  }}
-                  whileHover={{
-                    scale: 1.02,
-                    backgroundColor: `${theme.colors.primary}10`,
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Calendar size={18} className="mr-2" />
+                <BarbeariaButton fullWidth variant="outline" rounded="full" leftIcon={<Calendar size={20} />}>
                   Agendar Horário
-                </motion.button>
+                </BarbeariaButton>                
               </div>
 
               <div className="mt-4 flex justify-center">
-                <motion.button
-                  className="w-full py-3 px-4 rounded-full font-medium transition-colors duration-300 flex items-center justify-center border mt-2"
-                  style={{
-                    background: theme.colors.primary,
-                    color: theme.colors.buttonText,
-                    borderColor: theme.colors.primary,
-                    fontFamily: theme.fonts.body,
-                  }}
-                  whileHover={{
-                    scale: 1.02,
-                    backgroundColor: adjustColor(theme.colors.primary, -10),
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <User size={18} className="mr-2" />
+                <BarbeariaButton fullWidth variant="primary" rounded="full" leftIcon={<User size={20} />} onClick={() => {navigate('/login')}}>
                   Login / Cadastro
-                </motion.button>
+                </BarbeariaButton>
               </div>
 
               <div className="mt-6 grid grid-cols-3 gap-4">

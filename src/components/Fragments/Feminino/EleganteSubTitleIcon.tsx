@@ -1,6 +1,7 @@
 import { Flower } from "lucide-react"
 import { motion } from "framer-motion"
 import { themes } from "../../../theme/theme";
+import { cn } from "../../../lib/utils";
 
 
 
@@ -42,7 +43,7 @@ const EleganteSubTitle = ({title}:{title: any}) => {
                 ></motion.div>
            </div>
             <motion.h2
-              className="text-3xl md:text-4xl font-normal mb-6"
+              className={cn("text-3xl md:text-4xl font-normal mb-6", )}
               style={{
                 color: theme.colors.text,
                 fontFamily: theme.fonts.heading,

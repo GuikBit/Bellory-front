@@ -3,96 +3,108 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "primereact/button"
-import { PlusIcon, ShoppingCart, Flower } from "lucide-react"
-import { Product } from "../../utils/interfaces"
+import { PlusIcon, ShoppingCart, Flower, ArrowRight } from "lucide-react"
+import { Product, Produto } from "../../utils/interfaces"
 import { useGlobalState } from "../../global/ContextGlobalState"
 import { themes } from "../../theme/theme"
 import Carousel from "../Fragments/Carousel"
+import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
+import { BarbeariaButton } from "../ui"
 
 
 const list = [
   {
-    id: "1000",
-    code: "p001",
-    name: "Pomada Modeladora",
-    description: "Pomada modeladora com fixação forte e acabamento matte para um visual moderno.",
-    image: "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?q=80&w=2787&auto=format&fit=crop",
-    price: 45,
-    category: "Styling",
-    quantity: 24,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 10,
+    id: "1",
+    nome: "Máscara Neon Glow",
+    preco: 75.9,
+    precoOriginal: 89.9,
+    descricao: "Máscara com efeito neon que revitaliza e ilumina os cabelos instantaneamente.",
+    imagem: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400",
+    categoria: "Tratamentos",
+    genero: "Feminino",
+    marca: "Neon Beauty",
+    avaliacao: 4.9,
+    desconto: 16,
+    emEstoque: true,
+    destaque: true,
+    trending: true,
+    produtosUtilizados: ["Proteínas Fluorescentes", "Ácidos Frutais", "Vitamina B12", "Colágeno Vegetal"],
   },
   {
-    id: "1001",
-    code: "p002",
-    name: "Óleo para Barba",
-    description: "Óleo hidratante para barba que amacia os fios e proporciona brilho natural.",
-    image: "https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=2787&auto=format&fit=crop",
-    price: 38,
-    category: "Barba",
-    quantity: 18,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 0,
+    id: "2",
+    nome: "Esmalte Holográfico",
+    preco: 35.5,
+    descricao: "Esmalte com efeito holográfico que muda de cor conforme a luz.",
+    imagem: "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=400",
+    categoria: "Unhas",
+    genero: "Feminino",
+    marca: "Holo Nails",
+    avaliacao: 4.8,
+    emEstoque: true,
+    novo: true,
+    produtosUtilizados: ["Pigmentos Holográficos", "Base Magnética", "Top Coat 3D"],
   },
   {
-    id: "1002",
-    code: "p003",
-    name: "Shampoo para Barba",
-    description: "Shampoo especial para limpeza da barba, removendo impurezas sem ressecar.",
-    image: "https://images.unsplash.com/photo-1589782431746-4a05f7d8c0f0?q=80&w=2787&auto=format&fit=crop",
-    price: 32,
-    category: "Barba",
-    quantity: 15,
-    inventoryStatus: "INSTOCK",
-    rating: 4,
-    discount: 5,
+    id: "3",
+    nome: "Shampoo Color Blast",
+    preco: 52.9,
+    descricao: "Shampoo que deposita cor temporária enquanto limpa os cabelos.",
+    imagem: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400",
+    categoria: "Cabelo",
+    genero: "Feminino",
+    marca: "Color Revolution",
+    avaliacao: 4.7,
+    emEstoque: true,
+    trending: true,
+    produtosUtilizados: ["Pigmentos Temporários", "Extratos Naturais", "Proteínas Vegetais"],
   },
   {
-    id: "1003",
-    code: "p004",
-    name: "Balm Pós-Barba",
-    description: "Balm calmante pós-barba que hidrata a pele e previne irritações.",
-    image: "https://images.unsplash.com/photo-1585751119414-ef2636f8aede?q=80&w=2787&auto=format&fit=crop",
-    price: 29,
-    category: "Barba",
-    quantity: 20,
-    inventoryStatus: "INSTOCK",
-    rating: 4,
-    discount: 0,
+    id: "4",
+    nome: "Sérum Anti-Gravity",
+    preco: 95.0,
+    descricao: "Sérum facial com tecnologia anti-gravidade para lifting instantâneo.",
+    imagem: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400",
+    categoria: "Skincare",
+    genero: "Feminino",
+    marca: "Future Skin",
+    avaliacao: 5.0,
+    emEstoque: false,
+    produtosUtilizados: ["Peptídeos Tensores", "Ácido Hialurônico", "Nanopartículas", "Vitamina C"],
   },
   {
-    id: "1004",
-    code: "p005",
-    name: "Cera para Cabelo",
-    description: "Cera modeladora com fixação média e acabamento natural para todos os tipos de cabelo.",
-    image: "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?q=80&w=2787&auto=format&fit=crop",
-    price: 42,
-    category: "Styling",
-    quantity: 12,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 15,
+    id: "5",
+    nome: "Kit Nail Art Futurista",
+    preco: 129.9,
+    precoOriginal: 180.0,
+    descricao: "Kit completo para nail art com produtos inovadores e ferramentas tech.",
+    imagem: "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=400",
+    categoria: "Kits",
+    genero: "Feminino",
+    marca: "Tech Nails",
+    avaliacao: 4.9,
+    desconto: 28,
+    emEstoque: true,
+    destaque: true,
+    trending: true,
+    produtosUtilizados: ["Gel UV", "Glitters Holográficos", "Adesivos 3D", "LED Pen", "Base Magnética"],
   },
   {
-    id: "1005",
-    code: "p006",
-    name: "Kit Barba Completo",
-    description: "Kit completo para cuidados com a barba, incluindo óleo, shampoo e pente.",
-    image: "https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=2787&auto=format&fit=crop",
-    price: 89,
-    category: "Kits",
-    quantity: 8,
-    inventoryStatus: "INSTOCK",
-    rating: 5,
-    discount: 20,
+    id: "6",
+    nome: "Spray Texturizador Neon",
+    preco: 48.9,
+    descricao: "Spray que cria texturas incríveis e brilho neon nos cabelos.",
+    imagem: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400",
+    categoria: "Styling",
+    genero: "Feminino",
+    marca: "Texture Lab",
+    avaliacao: 4.6,
+    emEstoque: true,
+    produtosUtilizados: ["Polímeros Texturizantes", "Pigmentos Neon", "Óleos Essenciais"],
   },
 ]
 
 export default function FemininoEleganteProdutos() {
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<Produto[]>([])
   const { adicionarProdutoCarrinho } = useGlobalState()
   const theme = themes.femininoElegante
 
@@ -107,8 +119,8 @@ export default function FemininoEleganteProdutos() {
     setProducts(list)
   }, [])
 
-  const productTemplate = (product: Product) => {
-    const hasDiscount = product.discount && product.discount > 0 ? true : false
+  const productTemplate = (product: Produto) => {
+    const hasDiscount = product.desconto && product.desconto > 0 ? true : false
 
     return (
       <motion.div
@@ -135,15 +147,15 @@ export default function FemininoEleganteProdutos() {
               fontFamily: theme.fonts.heading,
             }}
           >
-            {product.discount}% OFF
+            {product.desconto}% OFF
           </div>
         )}
 
         {/* Imagem */}
         <div className="mb-4 rounded-lg overflow-hidden">
           <img
-            src={product.image || "/placeholder.svg"}
-            alt={product.name}
+            src={product.imagem || "/placeholder.svg"}
+            alt={product.nome}
             className="w-full h-52 object-cover transition duration-300 ease-in-out hover:scale-105"
             style={{ borderRadius: theme.borderRadius.medium }}
           />
@@ -158,7 +170,7 @@ export default function FemininoEleganteProdutos() {
               fontFamily: theme.fonts.heading,
             }}
           >
-            {product.name}
+            {product.nome}
           </h4>
           <p
             className="text-sm mb-2 line-clamp-2 italic"
@@ -167,12 +179,12 @@ export default function FemininoEleganteProdutos() {
               fontFamily: theme.fonts.body,
             }}
           >
-            {product.description}
+            {product.descricao}
           </p>
           <div className="flex items-center justify-between">
             {hasDiscount && (
               <h6 className="text-sm line-through" style={{ color: theme.colors.textSecondary }}>
-                R${product.price},00
+                R${product.preco},00
               </h6>
             )}
             <h3
@@ -183,7 +195,9 @@ export default function FemininoEleganteProdutos() {
               }}
             >
               R$
-              {hasDiscount ? (product.price * (1 - product.discount / 100)).toFixed(2) : product.price.toFixed(2)}
+              {hasDiscount
+                ? (product.preco * (1 - ((product.desconto ?? 0) / 100)))
+                : product.preco}
             </h3>
           </div>
         </div>
@@ -221,8 +235,8 @@ export default function FemininoEleganteProdutos() {
   }
 
   return (
-    <div className="relative" style={{ backgroundColor: theme.colors.accent }}>
-      {/* Elegant decorative elements */}
+    <div className="relative py-20 "  style={{ backgroundColor: theme.colors.accent }}>
+      
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
           <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -239,7 +253,7 @@ export default function FemininoEleganteProdutos() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center mb-8 py-8">
+      {/* <div className="flex flex-col items-center mb-8 py-8">
         <h2
           className="text-3xl font-normal mb-3"
           style={{
@@ -254,34 +268,52 @@ export default function FemininoEleganteProdutos() {
           <Flower size={18} style={{ color: theme.colors.primary }} />
           <div className="h-px w-12" style={{ backgroundColor: theme.colors.primary }}></div>
         </div>
-      </div>
+      </div> */}
 
-      <Carousel
-        items={products}
-        renderItem={productTemplate}
-        autoplay={true}
-        interval={4000}
-        itemsToShow={customItemsToShow}
-        className="max-w-full md:max-w-2xl lg:max-w-3xl 2xl:max-w-7xl mx-auto"
-        theme={theme}
-      />
-
-      <div className="flex flex-col items-center justify-center p-4 mt-8 pb-8">
-        <motion.button
-          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 border"
-          style={{
-            backgroundColor: theme.colors.primary,
-            color: "white",
-            borderColor: theme.colors.primary,
-            borderRadius: theme.borderRadius.medium,
-            fontFamily: theme.fonts.heading,
-          }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          className="flex flex-col items-center justify-center mb-10"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-          <Flower size={18} />
-          VER TODOS OS PRODUTOS
-        </motion.button>
+          <EleganteSubTitle title="Nossos produtos" />
+        
+
+          <motion.p
+            className="text-lg mb-6 leading-relaxed italic"
+            style={{
+              color: theme.colors.textSecondary,
+              fontFamily: theme.fonts.body,
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Assine um de nossos planos e tenha acesso a benefícios exclusivos, economize em serviços e eleve sua
+            experiência de beleza e bem-estar.
+          </motion.p>
+
+        </motion.div>
+
+        <Carousel
+          items={products}
+          renderItem={productTemplate}
+          autoplay={true}
+          interval={4000}
+          itemsToShow={customItemsToShow}
+          className="max-w-full md:max-w-2xl lg:max-w-3xl 2xl:max-w-7xl mx-auto"
+          theme={theme}
+        />
+
+        <div className="mt-16 text-center">
+          <BarbeariaButton variant="primary" size="xl" rounded="full" rightIcon={<ArrowRight />}>
+            Ver todos os produtos
+          </BarbeariaButton>
+        </div>
+        
       </div>
     </div>
   )

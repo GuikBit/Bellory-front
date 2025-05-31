@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Users, Clock, Flower, Heart, Calendar, Calendar1, ArrowRight, Settings } from "lucide-react"
+import { Award, Users, Clock, Flower, Heart, Calendar, Calendar1, ArrowRight, Settings, Scissors } from "lucide-react"
 import { themes } from "../../theme/theme"
 import EleganteSubTitleIcon from "../Fragments/Feminino/EleganteSubTitleIcon"
 import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
@@ -86,7 +86,7 @@ const FemininoEleganteAbout = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              <motion.button
+              {/* <motion.button
                 className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 border"
                 style={{
                   backgroundColor: `${theme.colors.primary}10`,
@@ -104,35 +104,11 @@ const FemininoEleganteAbout = () => {
               >
                 <Calendar size={18} />
                 Nossa Jornada
-              </motion.button>
+              </motion.button> */}
 
-              {/* <BarbeariaButton
-                value="Nossa história"
-                leftIcon={<Calendar size={20}/>}
-                variant="primary"
-                rounded="md"
-                size="sm"
-                onClick={() => window.location.href = "/agendamento"}
-                className=""
-                style={{
-                }}
-                // whileHover={{
-                //   backgroundColor: theme.colors.primary,
-                //   color: "white",
-                //   boxShadow: `0 10px 25px -5px ${theme.colors.primary}30`,
-                // }}
-              />     */}
-
-            <BarbeariaButton variant="primary" size="lg" rounded="full" leftIcon={<Heart />}>
-              Curtir
-            </BarbeariaButton>
-            <BarbeariaButton variant="outline" size="sm" rounded="lg" rightIcon={<ArrowRight />}>
-              Próximo
-            </BarbeariaButton>
-            <BarbeariaButton variant="ghost" size="xl" rounded="md" leftIcon={<Settings />} rightIcon={<ArrowRight />}>
-              Configurar
-            </BarbeariaButton>
-
+              <BarbeariaButton variant="outline" size="lg" rounded="full"  leftIcon={<Scissors className="-rotate-45" />}>
+                Nossa Jornada
+              </BarbeariaButton>
 
             </motion.div>
           </motion.div>

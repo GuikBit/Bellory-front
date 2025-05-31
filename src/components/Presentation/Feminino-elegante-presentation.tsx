@@ -83,7 +83,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
         </div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center bg-blur-lg bg-white/10 backdrop-blur-md p-30 rounded-2xl shadow-lg">
         <motion.div
           initial={{ y: -50, opacity: 0, scale: 0.8 }}
           animate={{ y: 0, opacity: 1, scale: 1 }}
@@ -95,7 +95,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
 
         {/* Elegant title with floating elements */}
         <motion.div
-          className="relative mb-6"
+          className="relative mb-6 "
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
@@ -103,14 +103,14 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
           <motion.h1
             className="text-4xl md:text-6xl font-normal"
             style={{
-              color: theme.colors.text,
+              color: theme.colors.accent,
               fontFamily: theme.fonts.heading,
             }}
             animate={{
               textShadow: [
-                `0 0 30px ${theme.colors.primary}40`,
-                `0 0 50px ${theme.colors.primary}60`,
-                `0 0 30px ${theme.colors.primary}40`,
+                `0 0 30px ${theme.colors.accent}40`,
+                `0 0 50px ${theme.colors.accent}60`,
+                `0 0 30px ${theme.colors.accent}40`,
               ],
             }}
             transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
@@ -128,7 +128,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
             }}
             transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
           >
-            <Flower size={28} style={{ color: theme.colors.primary }} />
+            <Flower size={28} style={{ color: theme.colors.accent }} />
           </motion.div>
 
           <motion.div
@@ -140,7 +140,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
             }}
             transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
           >
-            <Heart size={24} style={{ color: theme.colors.primary }} />
+            <Heart size={24} style={{ color: theme.colors.accent }} />
           </motion.div>
         </motion.div>
 
@@ -156,9 +156,9 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
             style={{ backgroundColor: theme.colors.primary }}
             animate={{
               background: [
-                `linear-gradient(90deg, transparent, ${theme.colors.primary}, transparent)`,
-                `linear-gradient(90deg, ${theme.colors.primary}, transparent, ${theme.colors.primary})`,
-                `linear-gradient(90deg, transparent, ${theme.colors.primary}, transparent)`,
+                `linear-gradient(90deg, transparent, ${theme.colors.accent}, transparent)`,
+                `linear-gradient(90deg, ${theme.colors.accent}, transparent, ${theme.colors.accent})`,
+                `linear-gradient(90deg, transparent, ${theme.colors.accent}, transparent)`,
               ],
             }}
             transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
@@ -173,16 +173,16 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
               scale: { duration: 2, repeat: Number.POSITIVE_INFINITY },
             }}
           >
-            <Flower className="mx-4" style={{ color: theme.colors.primary }} size={28} />
+            <Flower className="mx-4" style={{ color: theme.colors.accent }} size={28} />
           </motion.div>
           <motion.div
             className="h-px w-16"
-            style={{ backgroundColor: theme.colors.primary }}
+            style={{ backgroundColor: theme.colors.accent }}
             animate={{
               background: [
-                `linear-gradient(90deg, transparent, ${theme.colors.primary}, transparent)`,
-                `linear-gradient(90deg, ${theme.colors.primary}, transparent, ${theme.colors.primary})`,
-                `linear-gradient(90deg, transparent, ${theme.colors.primary}, transparent)`,
+                `linear-gradient(90deg, transparent, ${theme.colors.accent}, transparent)`,
+                `linear-gradient(90deg, ${theme.colors.accent}, transparent, ${theme.colors.accent})`,
+                `linear-gradient(90deg, transparent, ${theme.colors.accent}, transparent)`,
               ],
             }}
             transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, delay: 1.5 }}
@@ -192,7 +192,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
         <motion.p
           className="text-lg md:text-xl max-w-2xl mb-8 italic"
           style={{
-            color: theme.colors.textSecondary,
+            color: theme.colors.border,
             fontFamily: theme.fonts.body,
           }}
           initial={{ opacity: 0 }}
@@ -205,7 +205,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
 
         {/* Elegant action buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex flex-col sm:flex-row gap-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 1 }}
@@ -215,8 +215,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <BarbeariaButton variant="primary" size="lg" onClick={onAgendarClick} className="flex items-center gap-2">
-              <Calendar size={20} />
+            <BarbeariaButton variant="primary" size="lg" rounded="full" onClick={onAgendarClick} leftIcon={<Calendar size={20} />}>
               Agendar Horário
             </BarbeariaButton>
           </motion.div>
@@ -226,8 +225,7 @@ const FemininoElegantePresentation = ({ onAgendarClick, onScrollToNext }: Femini
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <BarbeariaButton variant="secondary" size="lg" className="flex items-center gap-2">
-              <Heart size={20} />
+            <BarbeariaButton variant="secondary" size="lg" rounded="full" leftIcon={<Heart size={20} />} onClick={onScrollToNext}>             
               Nossos Tratamentos
             </BarbeariaButton>
           </motion.div>

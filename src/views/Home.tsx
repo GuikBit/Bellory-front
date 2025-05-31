@@ -12,6 +12,7 @@ import ThemeServicos from "../components/Servicos/theme-servicos"
 import ThemeAbout from "../components/About/theme-about"
 import ThemePresentation from "../components/Presentation/theme-presentation"
 import ThemePlanos from "../components/Planos/theme-planos"
+import EleganteSubTitle from "../components/Fragments/Feminino/EleganteSubTitleIcon"
 
 const Home = () => {
 
@@ -37,17 +38,8 @@ const Home = () => {
       {/* Services Section */}
       <div className="py-20" style={{ backgroundColor: currentTheme.colors.background }}>
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center mb-12">
-            <h2
-              className="text-3xl font-bold mb-3"
-              style={{
-                color: currentTheme.colors.text,
-                fontFamily: currentTheme.fonts.heading,
-              }}
-            >
-              Nossos Serviços
-            </h2>
-          </div>
+
+          <EleganteSubTitle title="Nossos Serviços" />
           <ThemeServicos />
         </div>
       </div>
@@ -56,33 +48,11 @@ const Home = () => {
 
       <ThemeFeedback />
 
-      <section
-        className="py-20"
-        style={{ backgroundColor: currentTheme.colors.cardBackground }}
-      >
-        <div className="container mx-auto px-4">
-          <BarbeariaTitle
-            title="NOSSOS PRODUTOS"
-            subtitle="Produtos premium para cuidados masculinos, selecionados para garantir os melhores resultados."
-          />
-          <ThemeProdutos />
-        </div>
-      </section>
+      <ThemeProdutos />
 
-      <section
-        className="py-20"
-        style={{ backgroundColor: currentTheme.colors.background }}
-      >
-        <div className="container mx-auto px-4">
-          <BarbeariaTitle
-            title="AGENDAMENTO RÁPIDO"
-            subtitle="Agende seu horário em poucos passos e garanta o melhor atendimento."
-          />
-          <div className="max-w-4xl h-auto mx-auto rounded-lg shadow-lg">
-            <ThemeAgendamento />
-          </div>
-        </div>
-      </section>
+      <div className=" h-auto mx-auto rounded-lg">
+        <ThemeAgendamento />
+      </div>      
     </div>
   )
 }
