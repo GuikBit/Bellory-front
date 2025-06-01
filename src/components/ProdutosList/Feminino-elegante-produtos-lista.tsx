@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "primereact/button"
-import { ShoppingCart, Eye, Filter, Search, Star, Heart, Grid3X3, List, Flower } from "lucide-react"
+import { ShoppingCart, Eye, Filter, Search, Star, Heart, Grid3X3, List, Flower, PlusIcon } from "lucide-react"
 import { themes } from "../../theme/theme"
+import { BarbeariaButton } from "../ui"
 // import { useGlobalState } from "../../global/ContextGlobalState"
 
 
@@ -166,125 +167,234 @@ export default function FemininoEleganteProdutosLista() {
     setProdutosFiltrados(resultado)
   }, [filtros, busca])
 
-  const renderProdutoCard = (produto: Produto, index: number) => (
-    <motion.div
-      key={produto.id}
-      className="bg-white rounded-3xl overflow-hidden shadow-xl border border-rose-200 hover:border-rose-400 transition-all duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-    >
-      <div className="relative">
-        <img src={produto.imagem || "/placeholder.svg"} alt={produto.nome} className="w-full h-48 object-cover" />
+  // const renderProdutoCard = (produto: Produto, index: number) => (
+  //   <motion.div
+  //     key={produto.id}
+  //     className="bg-white rounded-3xl overflow-hidden shadow-xl border border-rose-200 hover:border-rose-400 transition-all duration-300"
+  //     initial={{ opacity: 0, y: 20 }}
+  //     animate={{ opacity: 1, y: 0 }}
+  //     transition={{ duration: 0.3, delay: index * 0.1 }}
+  //     whileHover={{ y: -8, scale: 1.02 }}
+  //   >
+  //     <div className="relative">
+  //       <img src={produto.imagem || "/placeholder.svg"} alt={produto.nome} className="w-full h-48 object-cover" />
 
-        {/* Overlay elegante */}
-        <div className="absolute inset-0 bg-gradient-to-t from-rose-900/20 to-transparent"></div>
+  //       {/* Overlay elegante */}
+  //       <div className="absolute inset-0 bg-gradient-to-t from-rose-900/20 to-transparent"></div>
 
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-2">
-          {produto.novo && (
-            <span className="bg-gradient-to-r from-rose-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
-              NOVO
-            </span>
-          )}
-          {produto.destaque && (
-            <span className="bg-gradient-to-r from-purple-500 to-rose-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
-              PREMIUM
-            </span>
-          )}
-          {produto.desconto && (
-            <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
-              -{produto.desconto}%
-            </span>
-          )}
-        </div>
+  //       {/* Badges */}
+  //       <div className="absolute top-3 left-3 flex flex-col gap-2">
+  //         {produto.novo && (
+  //           <span className="bg-gradient-to-r from-rose-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
+  //             NOVO
+  //           </span>
+  //         )}
+  //         {produto.destaque && (
+  //           <span className="bg-gradient-to-r from-purple-500 to-rose-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
+  //             PREMIUM
+  //           </span>
+  //         )}
+  //         {produto.desconto && (
+  //           <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
+  //             -{produto.desconto}%
+  //           </span>
+  //         )}
+  //       </div>
 
-        {!produto.emEstoque && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <span className="text-white font-medium text-lg">ESGOTADO</span>
-          </div>
-        )}
-      </div>
+  //       {!produto.emEstoque && (
+  //         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+  //           <span className="text-white font-medium text-lg">ESGOTADO</span>
+  //         </div>
+  //       )}
+  //     </div>
 
-      <div className="p-5">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs text-rose-600 font-medium">{produto.marca}</span>
-          <Heart size={10} className="text-rose-500" />
-          <span className="text-xs text-rose-500">{produto.categoria}</span>
-        </div>
+  //     <div className="p-5">
+  //       <div className="flex items-center gap-2 mb-3">
+  //         <span className="text-xs text-rose-600 font-medium">{produto.marca}</span>
+  //         <Heart size={10} className="text-rose-500" />
+  //         <span className="text-xs text-rose-500">{produto.categoria}</span>
+  //       </div>
 
-        <h3 className="font-serif font-semibold text-lg mb-2 text-rose-900">{produto.nome}</h3>
-        <p className="text-rose-700 text-sm mb-3 line-clamp-2 italic">{produto.descricao}</p>
+  //       <h3 className="font-serif font-semibold text-lg mb-2 text-rose-900">{produto.nome}</h3>
+  //       <p className="text-rose-700 text-sm mb-3 line-clamp-2 italic">{produto.descricao}</p>
 
-        {/* Produtos utilizados */}
-        {produto.produtosUtilizados && (
-          <div className="mb-3">
-            <p className="text-xs text-rose-600 font-medium mb-1">Produtos utilizados:</p>
-            <div className="flex flex-wrap gap-1">
-              {produto.produtosUtilizados.slice(0, 2).map((prod, i) => (
-                <span key={i} className="text-xs bg-rose-100 text-rose-700 px-2 py-1 rounded-full">
-                  {prod}
-                </span>
-              ))}
-              {produto.produtosUtilizados.length > 2 && (
-                <span className="text-xs text-rose-500">+{produto.produtosUtilizados.length - 2}</span>
-              )}
+  //       {/* Produtos utilizados */}
+  //       {produto.produtosUtilizados && (
+  //         <div className="mb-3">
+  //           <p className="text-xs text-rose-600 font-medium mb-1">Produtos utilizados:</p>
+  //           <div className="flex flex-wrap gap-1">
+  //             {produto.produtosUtilizados.slice(0, 2).map((prod, i) => (
+  //               <span key={i} className="text-xs bg-rose-100 text-rose-700 px-2 py-1 rounded-full">
+  //                 {prod}
+  //               </span>
+  //             ))}
+  //             {produto.produtosUtilizados.length > 2 && (
+  //               <span className="text-xs text-rose-500">+{produto.produtosUtilizados.length - 2}</span>
+  //             )}
+  //           </div>
+  //         </div>
+  //       )}
+
+  //       <div className="flex items-center gap-1 mb-4">
+  //         {[...Array(5)].map((_, i) => (
+  //           <Star
+  //             key={i}
+  //             size={14}
+  //             className={i < Math.floor(produto.avaliacao) ? "text-rose-400 fill-current" : "text-rose-200"}
+  //           />
+  //         ))}
+  //         <span className="text-sm text-rose-600 ml-2 font-medium">({produto.avaliacao})</span>
+  //       </div>
+
+  //       <div className="flex items-center justify-between mb-5">
+  //         <div>
+  //           {produto.precoOriginal && (
+  //             <span className="text-sm text-rose-400 line-through mr-2">R$ {produto.precoOriginal.toFixed(2)}</span>
+  //           )}
+  //           <span className="text-xl font-semibold text-rose-800">R$ {produto.preco.toFixed(2)}</span>
+  //         </div>
+  //       </div>
+
+  //       <div className="flex gap-3">
+  //         <Button
+  //           icon={() => <Eye size={16} />}
+  //           className="flex-1 py-3 text-sm rounded-2xl border border-rose-300 hover:bg-rose-50 transition-all"
+  //           style={{
+  //             color: theme.colors.primary,
+  //             backgroundColor: "transparent",
+  //           }}
+  //           onClick={() => {
+  //             /* Navegar para detalhes */
+  //           }}
+  //         >
+  //           Detalhes
+  //         </Button>
+  //         <Button
+  //           icon={() => <ShoppingCart size={16} />}
+  //           className="flex-1 py-3 text-sm rounded-2xl transition-all shadow-lg"
+  //           style={{
+  //             background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
+  //             color: "white",
+  //             border: "none",
+  //           }}
+  //           disabled={!produto.emEstoque}
+  //           // onClick={() => cc(produto)}
+  //         >
+  //           Carrinho
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   </motion.div>
+  // )
+
+    const productTemplate = (product: Produto) => {
+      const hasDiscount = product.desconto && product.desconto > 0 ? true : false
+      
+      return (
+        <motion.div
+          className="rounded-lg shadow-lg p-4 m-2 relative overflow-hidden border"
+          style={{
+            backgroundColor: theme.colors.cardBackground,
+            borderColor: theme.colors.primary,
+            borderRadius: theme.borderRadius.large,
+            boxShadow: hasDiscount
+              ? `0 15px 30px -10px ${theme.colors.primary}30`
+              : `0 15px 30px -10px rgba(176, 141, 154, 0.15)`,
+          }}
+          whileHover={{ y: -5, transition: { duration: 0.3 } }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {/* Tag de Promoção */}
+          {hasDiscount && (
+            <div
+              className="absolute top-4 right-0 text-white text-xs font-semibold px-3 py-1 shadow-md z-10"
+              style={{
+                backgroundColor: theme.colors.primary,
+                fontFamily: theme.fonts.heading,
+              }}
+            >
+              {product.desconto}% OFF
             </div>
-          </div>
-        )}
-
-        <div className="flex items-center gap-1 mb-4">
-          {[...Array(5)].map((_, i) => (
-            <Star
-              key={i}
-              size={14}
-              className={i < Math.floor(produto.avaliacao) ? "text-rose-400 fill-current" : "text-rose-200"}
+          )}
+  
+          {/* Imagem */}
+          <div className="mb-4 rounded-lg overflow-hidden">
+            <img
+              src={product.imagem || "/placeholder.svg"}
+              alt={product.nome}
+              className="w-full h-52 object-cover transition border duration-300 ease-in-out hover:scale-105"
+              style={{ borderRadius: theme.borderRadius.medium,borderColor: theme.colors.secondary }}
             />
-          ))}
-          <span className="text-sm text-rose-600 ml-2 font-medium">({produto.avaliacao})</span>
-        </div>
-
-        <div className="flex items-center justify-between mb-5">
-          <div>
-            {produto.precoOriginal && (
-              <span className="text-sm text-rose-400 line-through mr-2">R$ {produto.precoOriginal.toFixed(2)}</span>
-            )}
-            <span className="text-xl font-semibold text-rose-800">R$ {produto.preco.toFixed(2)}</span>
           </div>
-        </div>
-
-        <div className="flex gap-3">
-          <Button
-            icon={() => <Eye size={16} />}
-            className="flex-1 py-3 text-sm rounded-2xl border border-rose-300 hover:bg-rose-50 transition-all"
-            style={{
-              color: theme.colors.primary,
-              backgroundColor: "transparent",
-            }}
-            onClick={() => {
-              /* Navegar para detalhes */
-            }}
-          >
-            Detalhes
-          </Button>
-          <Button
-            icon={() => <ShoppingCart size={16} />}
-            className="flex-1 py-3 text-sm rounded-2xl transition-all shadow-lg"
-            style={{
-              background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
-              color: "white",
-              border: "none",
-            }}
-            disabled={!produto.emEstoque}
-            // onClick={() => adicionarProdutoCarrinho(produto)}
-          >
-            Carrinho
-          </Button>
-        </div>
-      </div>
-    </motion.div>
-  )
+  
+  
+  
+          <div className="h-55 flex flex-col justify-between">
+            {/* Informações */}
+  
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xs font-medium" style={{color: theme.colors.textSecondary}}>{product.marca}</span>
+              <Heart size={10} className=""style={{color: theme.colors.info}} />
+              <span className="text-xs " style={{color: theme.colors.inputFocus}}>{product.categoria}</span>
+            </div>
+  
+            <h4
+              className="text-lg font-semibold mb-1"
+              style={{
+                color: theme.colors.text,
+                fontFamily: theme.fonts.heading,
+              }}
+            >
+              {product.nome}
+            </h4>
+  
+            <p
+              className="text-sm mb-2 line-clamp-2 italic"
+              style={{
+                color: theme.colors.textSecondary,
+                fontFamily: theme.fonts.body,
+              }}
+            >
+              {product.descricao}
+            </p>
+  
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  size={14}
+                  className={i < Math.floor(product.avaliacao) ? "fill-current" : ""}
+                  style={{
+                    color: i < Math.floor(product.avaliacao) ? theme.colors.primary : theme.colors.textSecondary,
+                  }}
+                />
+              ))}
+              <span className="text-sm ml-2 font-medium" style={{color: theme.colors.primary}}>({product.avaliacao})</span>
+            </div>
+  
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                {product.precoOriginal && (
+                  <span className="text-sm line-through mr-2" style={{ color: theme.colors.error, fontFamily: theme.fonts.heading }} >R$ { product.precoOriginal.toFixed(2) }</span>
+                )}
+                <span className="text-xl font-semibold" style={{ color: theme.colors.text,  fontFamily: theme.fonts.heading }}>R$ {product.preco.toFixed(2)}</span>
+              </div>
+            </div>          
+          </div>
+  
+          {/* Botões */}
+          <div className=" flex justify-between items-center">
+  
+            <BarbeariaButton variant="outline" onClick={()=>{navigate('/produtos/1')}} leftIcon={<PlusIcon size={16}/>} rounded="full" size="sm">Detalhes</BarbeariaButton>
+  
+            <BarbeariaButton variant="primary" onClick={() => adicionarProdutoCarrinho(product)} leftIcon={<ShoppingCart size={16}/>} rounded="full" size="sm">Adicionar</BarbeariaButton>
+  
+          </div>
+        </motion.div>
+      )
+    }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 text-rose-900 py-8">

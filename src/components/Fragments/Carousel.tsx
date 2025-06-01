@@ -3,6 +3,8 @@
 import type React from "react"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion } from "framer-motion"
+import { BarbeariaButton } from "../ui"
+import { ChevronLeft, Settings } from "lucide-react"
 
 // --- Helper: Debounce Function ---
 function debounce(func: any, wait: any) {
@@ -276,7 +278,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
           <>
             <button
               onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 transition-all duration-200"
+              className="absolute left-0 top-1/2 cursor-pointer -translate-y-1/2 z-20 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 hover:border hover:scale-105 transition-all duration-200"
               style={{
                 ...buttonStyle,
                 
@@ -296,7 +298,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
 
             <button
               onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 transition-all duration-200"
+              className="absolute right-0 top-1/2 cursor-pointer -translate-y-1/2 z-20 p-2 rounded-full shadow-md focus:outline-none focus:ring-2 hover:border hover:scale-105 transition-all duration-200"
               style={{
                 ...buttonStyle,
                

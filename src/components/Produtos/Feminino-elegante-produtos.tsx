@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "primereact/button"
-import { PlusIcon, ShoppingCart, Flower, ArrowRight } from "lucide-react"
+import { PlusIcon, ShoppingCart, Flower, ArrowRight, Heart, Star } from "lucide-react"
 import { Product, Produto } from "../../utils/interfaces"
 import { useGlobalState } from "../../global/ContextGlobalState"
 import { themes } from "../../theme/theme"
 import Carousel from "../Fragments/Carousel"
 import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
 import { BarbeariaButton } from "../ui"
+import { useNavigate } from "react-router"
 
 
 const list = [
@@ -107,7 +108,7 @@ export default function FemininoEleganteProdutos() {
   const [products, setProducts] = useState<Produto[]>([])
   const { adicionarProdutoCarrinho } = useGlobalState()
   const theme = themes.femininoElegante
-
+  const navigate = useNavigate();
   const customItemsToShow = {
     default: 1,
     sm: 1,
@@ -121,7 +122,7 @@ export default function FemininoEleganteProdutos() {
 
   const productTemplate = (product: Produto) => {
     const hasDiscount = product.desconto && product.desconto > 0 ? true : false
-
+    
     return (
       <motion.div
         className="rounded-lg shadow-lg p-4 m-2 relative overflow-hidden border"
@@ -156,13 +157,22 @@ export default function FemininoEleganteProdutos() {
           <img
             src={product.imagem || "/placeholder.svg"}
             alt={product.nome}
-            className="w-full h-52 object-cover transition duration-300 ease-in-out hover:scale-105"
-            style={{ borderRadius: theme.borderRadius.medium }}
+            className="w-full h-52 object-cover transition border duration-300 ease-in-out hover:scale-105"
+            style={{ borderRadius: theme.borderRadius.medium,borderColor: theme.colors.secondary }}
           />
         </div>
 
-        <div className="h-24">
+
+
+        <div className="h-55 flex flex-col justify-between">
           {/* Informações */}
+
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs font-medium" style={{color: theme.colors.textSecondary}}>{product.marca}</span>
+            <Heart size={10} className=""style={{color: theme.colors.info}} />
+            <span className="text-xs " style={{color: theme.colors.inputFocus}}>{product.categoria}</span>
+          </div>
+
           <h4
             className="text-lg font-semibold mb-1"
             style={{
@@ -172,6 +182,7 @@ export default function FemininoEleganteProdutos() {
           >
             {product.nome}
           </h4>
+
           <p
             className="text-sm mb-2 line-clamp-2 italic"
             style={{
@@ -181,54 +192,38 @@ export default function FemininoEleganteProdutos() {
           >
             {product.descricao}
           </p>
-          <div className="flex items-center justify-between">
-            {hasDiscount && (
-              <h6 className="text-sm line-through" style={{ color: theme.colors.textSecondary }}>
-                R${product.preco},00
-              </h6>
-            )}
-            <h3
-              className="text-xl font-semibold"
-              style={{
-                color: theme.colors.primary,
-                fontFamily: theme.fonts.heading,
-              }}
-            >
-              R$
-              {hasDiscount
-                ? (product.preco * (1 - ((product.desconto ?? 0) / 100)))
-                : product.preco}
-            </h3>
+
+          <div className="flex items-center gap-1 mb-4">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                size={14}
+                className={i < Math.floor(product.avaliacao) ? "fill-current" : ""}
+                style={{
+                  color: i < Math.floor(product.avaliacao) ? theme.colors.primary : theme.colors.textSecondary,
+                }}
+              />
+            ))}
+            <span className="text-sm ml-2 font-medium" style={{color: theme.colors.primary}}>({product.avaliacao})</span>
           </div>
+
+          <div className="flex items-center justify-between mb-5">
+            <div>
+              {product.precoOriginal && (
+                <span className="text-sm line-through mr-2" style={{ color: theme.colors.error, fontFamily: theme.fonts.heading }} >R$ { product.precoOriginal.toFixed(2) }</span>
+              )}
+              <span className="text-xl font-semibold" style={{ color: theme.colors.text,  fontFamily: theme.fonts.heading }}>R$ {product.preco.toFixed(2)}</span>
+            </div>
+          </div>          
         </div>
 
         {/* Botões */}
-        <div className="mt-14 flex justify-between items-center">
-          <Button
-            icon={() => <PlusIcon size={18} className="mr-2" style={{ color: theme.colors.primary }} />}
-            label="Ver mais"
-            size="small"
-            text
-            className="border py-1 px-2 rounded-lg transition"
-            style={{
-              backgroundColor: `${theme.colors.primary}10`,
-              color: theme.colors.primary,
-              borderColor: theme.colors.primary,
-              borderRadius: theme.borderRadius.medium,
-            }}
-          />
-          <Button
-            icon={() => <ShoppingCart size={18} className="text-white mr-2" />}
-            label="Adicionar"
-            size="small"
-            className="border-none py-1 px-2 rounded-lg transition"
-            style={{
-              backgroundColor: theme.colors.primary,
-              color: "white",
-              borderRadius: theme.borderRadius.medium,
-            }}
-            onClick={() => adicionarProdutoCarrinho(product)}
-          />
+        <div className=" flex justify-between items-center">
+
+          <BarbeariaButton variant="outline" onClick={()=>{navigate('/produtos/1')}} leftIcon={<PlusIcon size={16}/>} rounded="full" size="sm">Detalhes</BarbeariaButton>
+
+          <BarbeariaButton variant="primary" onClick={() => adicionarProdutoCarrinho(product)} leftIcon={<ShoppingCart size={16}/>} rounded="full" size="sm">Adicionar</BarbeariaButton>
+
         </div>
       </motion.div>
     )
