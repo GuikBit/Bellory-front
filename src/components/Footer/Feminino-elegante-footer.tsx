@@ -52,8 +52,8 @@ const FemininoEleganteFooter = () => {
   }
 
   return (
-    <footer style={{ fontFamily: theme.fonts.body }}>
-      <div className="relative overflow-hidden" style={{ backgroundColor: theme.colors.background }}>
+    <footer style={{ fontFamily: theme.fonts.body}}>
+      <div className="relative overflow-hidden" style={{ backgroundColor: theme.colors.accent+'40' }}>
         {/* Elementos decorativos */}
         <div
           className="absolute top-0 left-0 w-full h-[1px]"

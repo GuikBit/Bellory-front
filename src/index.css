@@ -116,6 +116,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: 50px !important;
+}
+
+html{
+  scroll-padding-top: 50px !important;
 }
 
 /* Scrollbar personalizada e outras animações que você já tem */

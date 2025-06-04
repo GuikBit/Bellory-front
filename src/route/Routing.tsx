@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from "../components/Fragments/ScrollToTop";
 // Removed duplicate import of Template
 // Lazy load all components
 const Template = lazy(() => import("../template/Template"));
@@ -39,6 +40,7 @@ function Routing() {
   return (
     <Router>
       <Suspense fallback={<LoadingFallback />}>
+        <ScrollToTop />
         <Routes>
           <Route element={<Template />}>
             <Route index element={<Home />} />

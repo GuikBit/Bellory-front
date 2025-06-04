@@ -14,8 +14,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
-          name: "Barbearia Bigode",
-          short_name: "Bigode",
+          name: "Looksy",
+          short_name: "Looksy",
           description: "Descrição do seu PWA",
           start_url: "/",
           display: "standalone",
@@ -41,7 +41,7 @@ export default defineConfig({
               purpose: "any maskable"
             }
           ],
-          id: "Barbearia do Bigode",
+          id: "Looksy",
           orientation: 'natural',
           categories: [
             "business",

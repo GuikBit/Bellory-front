@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Clock, DollarSign, Filter, Heart, User, Flower, Sparkles } from "lucide-react"
 import { themes } from "../../theme/theme"
+import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
 
 const servicos = [
   {
@@ -103,7 +104,7 @@ const FemininoEleganteServicosDetalhados = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+        {/* <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
           <h1
             className="text-4xl font-semibold mb-4"
             style={{ color: theme.colors.primary, fontFamily: theme.fonts.heading }}
@@ -116,7 +117,9 @@ const FemininoEleganteServicosDetalhados = () => {
           >
             Cuidados especiais com produtos premium para realçar sua beleza natural
           </p>
-        </motion.div>
+        </motion.div> */}
+
+        <EleganteSubTitle title="Nossos Serviços" />
 
         {/* Filtros Elegantes */}
         <motion.div

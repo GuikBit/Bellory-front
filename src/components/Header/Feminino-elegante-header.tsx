@@ -120,7 +120,7 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
       style={{
         background: scrolled
           ? `rgba(${theme.isDark ? "18, 18, 18, 0.95" : "255, 255, 255, 0.95"})`
-          : theme.colors.background,
+          : theme.colors.accent+'40' ,
         borderBottom: `1px solid ${theme.colors.secondary}30`,
         boxShadow: scrolled ? "0 4px 10px rgba(0, 0, 0, 0.05)" : "none",
         backdropFilter: scrolled ? "blur(10px)" : "none",

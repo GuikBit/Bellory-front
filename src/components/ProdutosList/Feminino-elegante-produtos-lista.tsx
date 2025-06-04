@@ -6,6 +6,9 @@ import { Button } from "primereact/button"
 import { ShoppingCart, Eye, Filter, Search, Star, Heart, Grid3X3, List, Flower, PlusIcon } from "lucide-react"
 import { themes } from "../../theme/theme"
 import { BarbeariaButton } from "../ui"
+import { useGlobalState } from "../../global/ContextGlobalState"
+import { useNavigate } from "react-router"
+import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
 // import { useGlobalState } from "../../global/ContextGlobalState"
 
 
@@ -126,7 +129,9 @@ export default function FemininoEleganteProdutosLista() {
   const [visualizacao, setVisualizacao] = useState<"grid" | "lista">("grid")
   const [mostrarFiltros, setMostrarFiltros] = useState(false)
 
-  // const { adicionarProdutoCarrinho } = useGlobalState();
+  const navigate = useNavigate();
+
+  const { adicionarProdutoCarrinho } = useGlobalState();
   const theme = themes.femininoElegante
 
   const categorias = ["Todos", ...Array.from(new Set(produtos.map((p) => p.categoria)))]
@@ -287,11 +292,12 @@ export default function FemininoEleganteProdutosLista() {
   //   </motion.div>
   // )
 
-    const productTemplate = (product: Produto) => {
+    const productTemplate = (product: Produto, index: number) => {
       const hasDiscount = product.desconto && product.desconto > 0 ? true : false
       
       return (
         <motion.div
+          key={index}
           className="rounded-lg shadow-lg p-4 m-2 relative overflow-hidden border"
           style={{
             backgroundColor: theme.colors.cardBackground,
@@ -397,7 +403,7 @@ export default function FemininoEleganteProdutosLista() {
     }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 text-rose-900 py-8">
+    <div className="min-h-screen py-12" style={{ backgroundColor: theme.colors.accent }} >
       {/* Background decorativo */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-rose-200/30 to-pink-200/30 rounded-full translate-x-1/2 -translate-y-1/2"></div>
@@ -406,7 +412,7 @@ export default function FemininoEleganteProdutosLista() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div className="text-center mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+        {/* <motion.div className="text-center mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-4xl font-serif font-bold mb-4 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
             Produtos Elegantes
           </h1>
@@ -416,46 +422,30 @@ export default function FemininoEleganteProdutosLista() {
             <div className="h-[2px] w-16 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full"></div>
           </div>
           <p className="text-rose-700 mt-2 italic">Beleza e sofisticação em cada produto</p>
-        </motion.div>
+        </motion.div> */}
+        <EleganteSubTitle title="Nossos Produtos" />
 
         {/* Barra de busca e controles */}
         <div className="mb-6 space-y-4">
           <div className="flex flex-col md:flex-row gap-4 items-center">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-rose-500" size={20} />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2" size={20} color={theme.colors.primary} />
               <input
                 type="text"
-                placeholder="Buscar produtos elegantes..."
-                className="w-full pl-10 pr-4 py-3 bg-white border border-rose-200 rounded-2xl text-rose-900 focus:outline-none focus:border-rose-400 transition-all"
+                placeholder="Pesquisar produtos..."
+                className="w-full pl-10 pr-4 py-3 bg-white border focus:outline-none transition-all"
                 value={busca}
+                style={{
+                  borderColor: theme.colors.primary,
+                  borderRadius: theme.borderRadius.full
+                }}
                 onChange={(e) => setBusca(e.target.value)}
               />
             </div>
 
-            <div className="flex gap-3">
-              <Button
-                icon={() => <Filter size={18} />}
-                className="px-4 py-3 rounded-2xl border transition-all"
-                style={{
-                  backgroundColor: mostrarFiltros ? `${theme.colors.primary}20` : "transparent",
-                  color: theme.colors.primary,
-                  borderColor: mostrarFiltros ? theme.colors.primary : theme.colors.secondary,
-                }}
-                onClick={() => setMostrarFiltros(!mostrarFiltros)}
-              >
-                Filtros
-              </Button>
-
-              <Button
-                icon={() => (visualizacao === "grid" ? <List size={18} /> : <Grid3X3 size={18} />)}
-                className="px-4 py-3 rounded-2xl border transition-all"
-                style={{
-                  borderColor: theme.colors.primary,
-                  color: theme.colors.primary,
-                  backgroundColor: "transparent",
-                }}
-                onClick={() => setVisualizacao(visualizacao === "grid" ? "lista" : "grid")}
-              />
+            <div className="flex items-center gap-3">
+              <BarbeariaButton iconOnly rounded="full" leftIcon={<Filter size={26} />} onClick={() => setMostrarFiltros(!mostrarFiltros)} variant="outline" />
+              <BarbeariaButton iconOnly rounded="full" leftIcon={visualizacao === "grid" ? <List size={26} /> : <Grid3X3 size={26} />} onClick={() => setVisualizacao(visualizacao === "grid" ? "lista" : "grid")} variant="outline" />
             </div>
           </div>
 
@@ -463,18 +453,25 @@ export default function FemininoEleganteProdutosLista() {
           <AnimatePresence>
             {mostrarFiltros && (
               <motion.div
-                className="bg-white p-5 rounded-2xl border border-rose-200 shadow-lg"
+                className="bg-white p-5 rounded-2xl border"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
+                style={{
+                  borderColor: theme.colors.accent
+                }}
               >
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-rose-800">Categoria</label>
+                    <label className="block text-sm font-medium mb-2" style={{color: theme.colors.text}}>Categoria</label>
                     <select
-                      className="w-full p-3 bg-rose-50 border border-rose-200 rounded-2xl text-rose-900 focus:border-rose-400 transition-all"
+                      className="w-full p-3 border transition-all"
                       value={filtros.categoria}
                       onChange={(e) => setFiltros({ ...filtros, categoria: e.target.value })}
+                      style={{
+                        borderColor: theme.colors.primary+'99',
+                        borderRadius: theme.borderRadius.full
+                      }}
                     >
                       {categorias.map((cat) => (
                         <option key={cat} value={cat}>
@@ -485,11 +482,15 @@ export default function FemininoEleganteProdutosLista() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-rose-800">Gênero</label>
+                    <label className="block text-sm font-medium mb-2" style={{color: theme.colors.text}}>Gênero</label>
                     <select
-                      className="w-full p-3 bg-rose-50 border border-rose-200 rounded-2xl text-rose-900 focus:border-rose-400 transition-all"
+                      className="w-full p-3 border transition-all"
                       value={filtros.genero}
                       onChange={(e) => setFiltros({ ...filtros, genero: e.target.value })}
+                      style={{
+                        borderColor: theme.colors.primary+'99',
+                        borderRadius: theme.borderRadius.full
+                      }}
                     >
                       {generos.map((gen) => (
                         <option key={gen} value={gen}>
@@ -500,11 +501,15 @@ export default function FemininoEleganteProdutosLista() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-rose-800">Ordenar por</label>
+                    <label className="block text-sm font-medium mb-2" style={{color: theme.colors.text}}>Ordenar por</label>
                     <select
-                      className="w-full p-3 bg-rose-50 border border-rose-200 rounded-2xl text-rose-900 focus:border-rose-400 transition-all"
+                      className="w-full p-3 border transition-all"
                       value={filtros.ordenacao}
                       onChange={(e) => setFiltros({ ...filtros, ordenacao: e.target.value })}
+                      style={{
+                        borderColor: theme.colors.primary+'99',
+                        borderRadius: theme.borderRadius.full
+                      }}
                     >
                       <option value="nome">Nome</option>
                       <option value="preco-menor">Menor preço</option>
@@ -520,7 +525,7 @@ export default function FemininoEleganteProdutosLista() {
 
         {/* Resultados */}
         <div className="mb-4">
-          <p className="text-rose-700">
+          <p className="">
             {produtosFiltrados.length} produto{produtosFiltrados.length !== 1 ? "s" : ""} elegante
             {produtosFiltrados.length !== 1 ? "s" : ""} encontrado{produtosFiltrados.length !== 1 ? "s" : ""}
           </p>
@@ -533,7 +538,7 @@ export default function FemininoEleganteProdutosLista() {
               visualizacao === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"
             }`}
           >
-            {produtosFiltrados.map((produto, index) => renderProdutoCard(produto, index))}
+            {produtosFiltrados.map((produto, index) => productTemplate(produto, index))}
           </div>
         ) : (
           <div className="text-center py-16">
