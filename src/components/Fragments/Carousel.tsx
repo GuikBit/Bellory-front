@@ -3,8 +3,6 @@
 import type React from "react"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion } from "framer-motion"
-import { BarbeariaButton } from "../ui"
-import { ChevronLeft, Settings } from "lucide-react"
 
 // --- Helper: Debounce Function ---
 function debounce(func: any, wait: any) {

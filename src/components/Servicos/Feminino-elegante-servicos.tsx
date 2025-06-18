@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Flower, Heart, Settings } from "lucide-react"
+import { ArrowRight, Flower, Heart } from "lucide-react"
 import { themes } from "../../theme/theme"
 import { BarbeariaButton } from "../ui"
 

@@ -108,7 +108,7 @@ export const useThemeHelpers = () => {
   }
 
   // Função para obter cores de contraste automático
-  const getContrastColor = (backgroundColor: string) => {
+  const getContrastColor = () => {
     // Lógica simples - pode ser melhorada
     return isDarkTheme() ? getColor("text", "#FFFFFF") : getColor("text", "#000000")
   }

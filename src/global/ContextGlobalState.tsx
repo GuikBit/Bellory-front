@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { CarrinhoCompras, GlobalState, Product, Produto, UserLogado } from "../utils/interfaces";
+import { CarrinhoCompras, GlobalState, Produto, UserLogado } from "../utils/interfaces";
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
 

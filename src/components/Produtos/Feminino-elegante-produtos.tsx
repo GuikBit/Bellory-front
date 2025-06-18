@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Button } from "primereact/button"
-import { PlusIcon, ShoppingCart, Flower, ArrowRight, Heart, Star } from "lucide-react"
-import { Product, Produto } from "../../utils/interfaces"
+import { PlusIcon, ShoppingCart, ArrowRight, Heart, Star } from "lucide-react"
+import { Produto } from "../../utils/interfaces"
 import { useGlobalState } from "../../global/ContextGlobalState"
 import { themes } from "../../theme/theme"
 import Carousel from "../Fragments/Carousel"

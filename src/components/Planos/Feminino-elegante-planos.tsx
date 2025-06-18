@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Check, X, Scissors, Crown, CreditCard, Heart, Settings, ArrowRight } from 'lucide-react'
+import { Check, X, Scissors, Crown, CreditCard, ArrowRight } from 'lucide-react'
 import { useTheme } from "../../global/Theme-context"
 import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
 import { BarbeariaButton } from "../ui"

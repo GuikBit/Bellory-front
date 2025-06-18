@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Tag, Check, X, Star } from "lucide-react"
+import { Tag, Check, X } from "lucide-react"
 import { themes } from "../../theme/theme"
 import { BarbeariaButton } from "../ui"
 

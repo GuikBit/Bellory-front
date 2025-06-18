@@ -1010,7 +1010,7 @@ export const getThemeValue = (theme: Theme, path: string, fallback: any = undefi
 }
 
 // Função para criar variações de cor (mais claro/escuro)
-export const createColorVariations = (baseColor: string, steps = 5) => {
+export const createColorVariations = (baseColor: string) => {
   // Esta função pode ser implementada para gerar variações automáticas
   // Por enquanto, retorna o objeto base
   return {

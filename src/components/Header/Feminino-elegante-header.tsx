@@ -580,19 +580,19 @@ const FemininoEleganteHeader = ({ cartItemCount = 0 }: HeaderProps) => {
 }
 
 // Função para ajustar a cor (escurecer/clarear)
-function adjustColor(color: string, percent: number) {
-  // Converter hex para RGB
-  let r = Number.parseInt(color.substring(1, 3), 16)
-  let g = Number.parseInt(color.substring(3, 5), 16)
-  let b = Number.parseInt(color.substring(5, 7), 16)
+// function adjustColor(color: string, percent: number) {
+//   // Converter hex para RGB
+//   let r = Number.parseInt(color.substring(1, 3), 16)
+//   let g = Number.parseInt(color.substring(3, 5), 16)
+//   let b = Number.parseInt(color.substring(5, 7), 16)
 
-  // Ajustar valores
-  r = Math.max(0, Math.min(255, r + percent))
-  g = Math.max(0, Math.min(255, g + percent))
-  b = Math.max(0, Math.min(255, b + percent))
+//   // Ajustar valores
+//   r = Math.max(0, Math.min(255, r + percent))
+//   g = Math.max(0, Math.min(255, g + percent))
+//   b = Math.max(0, Math.min(255, b + percent))
 
-  // Converter de volta para hex
-  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
-}
+//   // Converter de volta para hex
+//   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
+// }
 
 export default FemininoEleganteHeader

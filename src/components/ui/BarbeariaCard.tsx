@@ -126,7 +126,7 @@ const BarbeariaCard = forwardRef<HTMLDivElement, BarbeariaCardProps>(
 
     // Configurações de elevação/sombra
     const getElevationStyles = () => {
-      const primary = getThemeColor("primary", "#3b82f6")
+      // const primary = getThemeColor("primary", "#3b82f6")
       const isDark = currentTheme.isDark
 
       const shadowColor = isDark ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.1)"

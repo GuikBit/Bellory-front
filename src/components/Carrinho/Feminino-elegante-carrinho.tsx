@@ -189,7 +189,7 @@ const FemininoEleganteCarrinho = ({ carrinho }: CarrinhoProps) => {
                         {produto.name}
                       </h3>
                       <p className="font-medium" style={{ color: currentTheme.colors.primary }}>
-                        R$ {produto.price.toFixed(2)}
+                        R$ {produto.price}
                       </p>
                     </div>
 

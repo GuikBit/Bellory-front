@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "primereact/button"
-import { ShoppingCart, Eye, Filter, Search, Star, Sparkles, Grid3X3, List, Zap } from "lucide-react"
+import { ShoppingCart, Eye, Filter, Search, Star, Sparkles, Grid3X3, List } from "lucide-react"
 import { themes } from "../../theme/theme"
 import { Produto } from "../../utils/interfaces"
 import { BarbeariaButton } from "../ui"

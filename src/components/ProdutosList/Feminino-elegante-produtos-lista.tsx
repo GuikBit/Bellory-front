@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "primereact/button"
-import { ShoppingCart, Eye, Filter, Search, Star, Heart, Grid3X3, List, Flower, PlusIcon } from "lucide-react"
+import { ShoppingCart, Filter, Search, Star, Heart, Grid3X3, List, PlusIcon } from "lucide-react"
 import { themes } from "../../theme/theme"
 import { BarbeariaButton } from "../ui"
 import { useGlobalState } from "../../global/ContextGlobalState"
@@ -29,6 +28,8 @@ interface Produto {
   destaque?: boolean
   produtosUtilizados?: string[]
 }
+
+
 
 const produtos: Produto[] = [
   {

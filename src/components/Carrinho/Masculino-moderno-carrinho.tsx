@@ -26,7 +26,7 @@ interface CarrinhoProps {
 const MasculinoModernoCarrinho = ({ carrinho }: CarrinhoProps) => {
   const { currentTheme } = useTheme()
   const produtos = carrinho?.produtos || []
-  const [descontoCupom, setDescontoCupom] = useState(0)
+  const [descontoCupom] = useState(0)
   const [metodoPagamento, setMetodoPagamento] = useState("pix")
 
   const subtotal = produtos.reduce((total: any, item: any) => total + item.price * item.quantidade, 0)

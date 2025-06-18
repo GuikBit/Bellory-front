@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Button } from "primereact/button"
 import {
   ShoppingCart,
   Heart,
@@ -388,7 +387,7 @@ export default function FemininoModernoProdutosDetalhes() {
                     color: 'white',
                     borderRadius: theme.borderRadius.large
                   }}
-                  onClick={() => adicionarProdutoCarrinho({ ...produto, quantidade })}
+                  // onClick={() => adicionarProdutoCarrinho({ ...produto, quantidade })}
                 />
 
                 <div className="flex items-center gap-3">

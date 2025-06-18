@@ -1,9 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Users, Clock, Flower, Heart, Calendar, Calendar1, ArrowRight, Settings, Scissors } from "lucide-react"
+import { Award, Users, Clock, Heart,Scissors } from "lucide-react"
 import { themes } from "../../theme/theme"
-import EleganteSubTitleIcon from "../Fragments/Feminino/EleganteSubTitleIcon"
 import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
 import { BarbeariaButton } from "../ui"
 

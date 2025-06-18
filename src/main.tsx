@@ -5,7 +5,7 @@ import { classNames } from 'primereact/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalStateProvider } from './global/ContextGlobalState.tsx';
 import Routing from './route/Routing.tsx';
-import { ThemeProvider, useTheme } from './global/Theme-context.tsx';
+import { ThemeProvider } from './global/Theme-context.tsx';
 
 addLocale('pt-BR', {
   firstDayOfWeek: 0,

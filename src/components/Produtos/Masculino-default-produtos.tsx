@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { Button } from "primereact/button"
 import { PlusIcon, ShoppingCart, Flame } from "lucide-react"
 import { Product } from "../../utils/interfaces"
-import { useGlobalState } from "../../global/ContextGlobalState"
 import { themes } from "../../theme/theme"
 import Carousel from "../Fragments/Carousel"
 
@@ -91,7 +90,7 @@ const list = [
 
 export default function MasculineDefaultProdutos() {
   const [products, setProducts] = useState<Product[]>([])
-  const { adicionarProdutoCarrinho } = useGlobalState()
+  // const { adicionarProdutoCarrinho } = useGlobalState()
   const theme = themes.masculine_default
 
   const customItemsToShow = {
@@ -207,7 +206,7 @@ export default function MasculineDefaultProdutos() {
               color: "white",
               borderRadius: theme.borderRadius.small,
             }}
-            onClick={() => adicionarProdutoCarrinho(product)}
+            // onClick={() => adicionarProdutoCarrinho(product)}
           />
         </div>
       </motion.div>

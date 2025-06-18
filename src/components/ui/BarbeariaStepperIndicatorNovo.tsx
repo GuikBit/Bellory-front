@@ -42,7 +42,7 @@ export function BarbeariaStepIndicator({
   const status = currentStep === step ? "active" : currentStep < step ? "inactive" : "complete"
   const { currentTheme } = useTheme()
   const { getColor, getBorderRadius, getTransition } = useThemeHelpers()
-
+  console.log(template)
   // Configurações de tamanho
   const sizeConfig = {
     sm: {

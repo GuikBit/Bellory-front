@@ -6,7 +6,6 @@ import { Button } from "primereact/button"
 import Carousel from "./Fragments/Carousel"
 import { PlusIcon, ShoppingCart, Scissors } from "lucide-react"
 import type { Product } from "../utils/interfaces"
-import { useGlobalState } from "../global/ContextGlobalState"
 
 // Produtos atualizados com imagens e descrições mais adequadas para barbearia
 const list = [
@@ -92,7 +91,7 @@ const list = [
 
 export default function Produtos() {
   const [products, setProducts] = useState<Product[]>([])
-  const { adicionarProdutoCarrinho } = useGlobalState()
+  // const { adicionarProdutoCarrinho } = useGlobalState()
 
   const customItemsToShow = {
     default: 1, // 1 item em telas extra pequenas (mobile)
@@ -161,7 +160,7 @@ export default function Produtos() {
             size="small"
             security="warning"
             className="!bg-amber-600 !hover:bg-amber-700 border-none !text-white py-1 px-2 rounded-lg transition"
-            onClick={() => adicionarProdutoCarrinho(product)}
+            // onClick={() => adicionarProdutoCarrinho(product)}
           />
         </div>
       </motion.div>

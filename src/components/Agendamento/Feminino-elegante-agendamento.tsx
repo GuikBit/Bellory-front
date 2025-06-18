@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Ban, Calendar, Clock, BadgeIcon as IdCard, Phone, User, Scissors, Check, Flower } from "lucide-react"
+import { Ban, Calendar, Clock, BadgeIcon as IdCard, Phone, User, Scissors, Check } from "lucide-react"
 import { Calendar as CalendarInput } from "primereact/calendar"
 import { NovoAgendamento } from "../../utils/interfaces"
 import { themes } from "../../theme/theme"

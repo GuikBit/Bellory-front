@@ -157,8 +157,8 @@ const BarbeariaButton = forwardRef<HTMLButtonElement, BarbeariaButtonProps>(
       const error = getThemeColor("error", "#DC2626")
       const warning = getThemeColor("warning", "#D97706")
       const info = getThemeColor("info", "#7C3AED")
-      const background = getThemeColor("background", "#ffffff")
-      const text = getThemeColor("text", "#1f2937")
+      // const background = getThemeColor("background", "#ffffff")
+      // const text = getThemeColor("text", "#1f2937")
       const buttonText = getThemeColor("buttonText", "#ffffff")
 
       switch (variant) {

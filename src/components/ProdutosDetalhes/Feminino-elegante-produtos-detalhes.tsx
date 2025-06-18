@@ -37,6 +37,7 @@ interface ProdutoDetalhes {
   totalAvaliacoes: number
   desconto?: number
   emEstoque: boolean
+  destaque?: boolean
   comoUsar: string[]
   informacoesImportantes: string[]
   ingredientes: string[]

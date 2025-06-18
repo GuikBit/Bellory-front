@@ -191,7 +191,7 @@ const FemininoModernoServicosDetalhados = () => {
               style={{
                 background: `#fff`,
                 borderRadius: theme.borderRadius.large,
-                boxShadow: theme.colors.boxShadow,
+                boxShadow: theme.colors.accent,
               }}
             >
               <div className="relative h-48 overflow-hidden">

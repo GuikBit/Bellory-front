@@ -5,7 +5,6 @@ import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { ArrowLeft, ArrowRight, Save } from "lucide-react"
 import { BarbeariaStepConnector, BarbeariaStepIndicator } from "./BarbeariaStepperIndicator"
 import { useTheme } from "../../global/Theme-context"
-import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
 import BarbeariaButton from "./BarbeariaButton"
 
 

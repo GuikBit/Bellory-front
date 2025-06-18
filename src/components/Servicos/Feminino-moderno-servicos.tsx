@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { Sparkles, Star } from "lucide-react"
 import { themes } from "../../theme/theme"
-import { BarbeariaButton } from "../ui"
 
 const list = [
   {

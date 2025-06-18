@@ -9,7 +9,7 @@ import { useThemeHelpers } from "./useThemeHelpers"
  */
 export function usePrimeTheme() {
   const { currentTheme } = useTheme()
-  const { getColor, getBorderRadius, getShadow, getTransition } = useThemeHelpers()
+  const { getColor, getTransition } = useThemeHelpers()
 
   // Transições personalizadas baseadas no tema atual
   const TRANSITIONS = {
@@ -46,10 +46,12 @@ export function usePrimeTheme() {
     // Botões
     button: {
       root: ({ props, context }: { props: any; context: any }) => {
+
+        console.log(context)
         // Cores personalizadas baseadas no tema atual
         const primaryColor = getColor("primary", "#3B82F6")
-        const secondaryColor = getColor("secondary", "#6B7280")
-        const textColor = getColor("text", "#374151")
+        // const secondaryColor = getColor("secondary", "#6B7280")
+        // const textColor = getColor("text", "#374151")
         const buttonTextColor = getColor("buttonText", "#FFFFFF")
 
         // Classes base

@@ -110,7 +110,7 @@ function BarbeariaStepIndicator({
   icon,
   onClickStep,
 }: BarbeariaStepIndicatorProps) {
-  const { getColor, getBorderRadius } = useThemeHelpers();
+  const { getColor } = useThemeHelpers();
 
   const sizeConfig = {
     sm: {
@@ -279,7 +279,7 @@ export default function BarbeariaStepper({
   const isCompleted = currentStep > totalSteps
   const isLastStep = currentStep === totalSteps
   const { currentTheme } = useTheme()
-  const { getColor, getShadow, getBorderRadius, getSpacing, getTransition } = useThemeHelpers()
+  const { getColor, getShadow, getBorderRadius, getTransition } = useThemeHelpers()
 
   // Configurações de tamanho
   const sizeConfig = {
@@ -383,7 +383,7 @@ export default function BarbeariaStepper({
   // Renderizar o cabeçalho
   const renderStepperHeader = () => {
     if (renderHeader) {
-      return renderHeader({ title, subtitle })
+      return renderHeader({ title })
     }
 
     if (!title && !subtitle) return null
@@ -695,7 +695,7 @@ export default function BarbeariaStepper({
             }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            {...backButtonProps}
+            // {...backButtonProps}
           >
             <ArrowLeft size={Number.parseInt(sizeConfig[size].iconSize)} style={{ marginRight: "0.5rem" }} />
             {backButtonText}
@@ -720,7 +720,7 @@ export default function BarbeariaStepper({
           }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          {...(isLastStep ? completeButtonProps : nextButtonProps)}
+          // {...(isLastStep ? completeButtonProps : nextButtonProps)}
         >
           {isLastStep ? (
             <>
@@ -851,7 +851,7 @@ interface StepProps {
   className?: string
 }
 
-export function BarbeariaStep({ children, title, icon, className = "" }: StepProps) {
+export function BarbeariaStep({ children, className = "" }: StepProps) {
   return (
     <div className={`barberia-step ${className}`} style={{ padding: "1rem 1.5rem" }}>
       {children}
