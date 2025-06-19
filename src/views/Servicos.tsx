@@ -1,4 +1,4 @@
-import ThemeServicosDetalhados from "../components/ServicosDetalhados/theme-servicos-detalhados";
+import ThemeServicosDetalhados from "../components/Externo/ServicosDetalhados/theme-servicos-detalhados";
 
 const Servicos = () => {    
 

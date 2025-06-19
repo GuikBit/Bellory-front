@@ -1,4 +1,4 @@
-import ThemeAuth from "../components/Auth/theme-auth"
+import ThemeAuth from "../components/Externo/Auth/theme-auth"
 
 const Auth = () => {
   return (

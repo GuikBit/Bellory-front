@@ -1,4 +1,4 @@
-import ThemeProdutosLista from "../components/ProdutosList/theme-produtos-lista";
+import ThemeProdutosLista from "../components/Externo/ProdutosList/theme-produtos-lista";
 
 const Produtos = () => {
 

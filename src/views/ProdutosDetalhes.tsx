@@ -1,4 +1,4 @@
-import ThemeProdutosDetalhes from "../components/ProdutosDetalhes/theme-produtos-detalhes";
+import ThemeProdutosDetalhes from "../components/Externo/ProdutosDetalhes/theme-produtos-detalhes";
 
 
 const ProdutosDetalhes = () => {

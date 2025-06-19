@@ -101,13 +101,18 @@ export interface GlobalState {
     novoAgendamento: boolean; 
     setNovoAgendamento: (item: boolean)=>void;
 
-    userLogado: UserLogado | null;
-    setUserLogado: (userLogado: UserLogado | null) => void;
-
     carrinho: CarrinhoCompras | null;
     setCarrinho: (carrinho: CarrinhoCompras | null) => void;
 
     adicionarProdutoCarrinho: (produto: Produto) => void;
 }
-  
+
+export interface AuthState {
+
+  userLogado: UserLogado | null;
+  token: string | null;
+  login: (user: UserLogado) => void;
+  logout: () => void;
+  isAutenticado: () => boolean;
+}
 

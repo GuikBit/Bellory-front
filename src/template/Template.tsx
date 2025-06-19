@@ -27,8 +27,8 @@
 
 
 import { useTheme } from "../global/Theme-context"
-import ThemeHeader from "../components/Header/theme-header"
-import ThemeFooter from "../components/Footer/theme-footer"
+import ThemeHeader from "../components/Externo/Header/theme-header"
+import ThemeFooter from "../components/Externo/Footer/theme-footer"
 import { Outlet } from "react-router"
 
 

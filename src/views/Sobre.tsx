@@ -1,4 +1,4 @@
-import ThemeSobre from "../components/Sobre/theme-sobre";
+import ThemeSobre from "../components/Externo/Sobre/theme-sobre";
 
 const Sobre = () => {   
 

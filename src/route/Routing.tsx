@@ -1,9 +1,11 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from "../components/Fragments/ScrollToTop";
+import ProtectedRoute from "../components/Externo/Auth/ProtectedRoute";
 // Removed duplicate import of Template
 // Lazy load all components
 const Template = lazy(() => import("../template/Template"));
+const AuthTemplate = lazy(() => import("../template/AuthTemplate"));
 const Home = lazy(() => import("../views/Home"));
 const Sobre = lazy(() => import("../views/Sobre"));
 const Produtos = lazy(() => import("../views/Produtos"));
@@ -13,6 +15,7 @@ const Carrinho = lazy(() => import("../views/Carrinho"));
 const Auth = lazy(() => import("../views/Auth"));
 const ProdutoDetalhe = lazy(()=> import("../views/ProdutosDetalhes"))
 const Componentes = lazy(()=> import("../views/Componentes"));
+const Dashboard = lazy(()=> import("../views/Interno/Dashboard"));
 
 
 
@@ -42,6 +45,7 @@ function Routing() {
       <Suspense fallback={<LoadingFallback />}>
         <ScrollToTop />
         <Routes>
+          {/* ROTAS PÚBLICAS */}
           <Route element={<Template />}>
             <Route index element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
@@ -50,10 +54,18 @@ function Routing() {
             <Route path="/servicos" element={<Servicos />} />
             <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/login" element={<Auth />} />
-            <Route path="/ui" element={<Componentes />} />  
+            <Route path="/ui" element={<Componentes />} />
             <Route path="*" element={<NotFound />} />
-          </Route>  
-              
+          </Route>
+
+          {/* ROTAS PROTEGIDAS */}
+          <Route element={<ProtectedRoute><AuthTemplate /></ProtectedRoute>}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            {/* Outras rotas protegidas */}
+            {/* <Route path="/dashboard/configuracoes" element={<Configuracoes />} />
+            <Route path="/dashboard/perfil" element={<Perfil />} /> */}
+            {/* etc */}
+          </Route>
         </Routes>
       </Suspense>
     </Router>
