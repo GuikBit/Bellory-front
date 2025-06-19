@@ -10,9 +10,12 @@ import { formatCPF, formatTelefone } from "../../utils/functions"
 import BarbeariaStepper, { BarbeariaStep } from "../ui/BarbeariaStepper"
 import { BarbeariaInput } from "../ui"
 import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
+import { useBuscarServicosAgendamento } from "../../service/Query/servico/ServicoQuerys"
 
 const FemininoEleganteAgendamento = () => {
-  const theme = themes.femininoElegante
+  const theme = themes.femininoElegante;
+
+  const {data} = useBuscarServicosAgendamento();
 
   const list = [
     {
@@ -183,8 +186,8 @@ const FemininoEleganteAgendamento = () => {
               <div className="py-4">
                 <EleganteSubTitle title="Serviços" />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pb-10">
-                  {list.map((item) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pb-10">
+                  {data && data?.dados.map((item) => (
                     <motion.div
                       key={item.id}
                       onClick={() => handlerSetServicos(item)}
@@ -202,8 +205,8 @@ const FemininoEleganteAgendamento = () => {
                     >
                       <div className="relative h-40">
                         <img
-                          src={item.image || "/placeholder.svg"}
-                          alt={item.title}
+                          src={item.urlsImagens[0] || "/placeholder.svg"}
+                          alt={item.nome}
                           className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -218,12 +221,12 @@ const FemininoEleganteAgendamento = () => {
                         )}
 
                         <div className="absolute bottom-0 left-0 p-3">
-                          <h3 className="text-lg font-bold text-white">{item.title}</h3>
+                          <h3 className="text-lg font-bold text-white">{item.nome}</h3>
                           <p
                             className={`font-semibold`}
                             style={{ color: isSelecionado(item.id) ? theme.colors.primary : "white" }}
                           >
-                            R$ {item.price.toFixed(2)}
+                            R$ {item.preco}
                           </p>
                         </div>
                       </div>
@@ -231,6 +234,7 @@ const FemininoEleganteAgendamento = () => {
                   ))}
                 </div>
               </div>              
+
             </BarbeariaStep>
 
             <BarbeariaStep>
@@ -488,7 +492,7 @@ const FemininoEleganteAgendamento = () => {
                           >
                             <p style={{ color: theme.colors.text }}>{item.nome}</p>
                             <p className="font-semibold" style={{ color: theme.colors.primary }}>
-                              R$ {item.preco.toFixed(2)}
+                              R$ {item.preco}
                             </p>
                           </div>
                         ))}
@@ -500,7 +504,7 @@ const FemininoEleganteAgendamento = () => {
                             Total:
                           </p>
                           <p className="text-xl font-bold" style={{ color: theme.colors.primary }}>
-                            R$ {novo?.servicos?.reduce((acc, item) => acc + item.preco, 0).toFixed(2)}
+                            R$ {novo?.servicos?.reduce((acc, item) => acc + item.preco, 0)}
                           </p>
                         </div>
                       </div>
