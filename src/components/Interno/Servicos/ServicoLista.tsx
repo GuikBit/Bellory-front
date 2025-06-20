@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 
 import { type ReactNode, useEffect, useState, useCallback } from "react"
 import { DataTable, type DataTableRowEditCompleteEvent } from "primereact/datatable"
@@ -14,11 +14,13 @@ import { InputTextarea } from "primereact/inputtextarea"
 import { Button } from "primereact/button"
 import { Dialog } from "primereact/dialog"
 import { motion, AnimatePresence } from "framer-motion"
-import { Edit, Save, X } from "lucide-react"
+import { Pencil, Plus, Save, Trash2, X } from "lucide-react"
 import { useGetAllServicos, useUpdateServico } from "../../../service/Query/servico/ServicoQuerys"
 import type { Servicos } from "../../../utils/interfaces"
 import { useTheme } from "../../../global/Theme-context"
 import { BarbeariaButton, BarbeariaCard } from "../../ui"
+import { Sidebar } from "primereact/sidebar"
+import ServicoCadastro from "./ServicoCadastro"
 
 interface ColumnMeta {
   field: string
@@ -50,8 +52,11 @@ const useIsMobile = () => {
 const ServicoLista = () => {
   const { currentTheme: theme } = useTheme()
   const isMobile = useIsMobile()
+
   const { data, isLoading, isSuccess, error } = useGetAllServicos()
   const { mutateAsync: updateServico } = useUpdateServico()
+
+  const [visibleRight, setVisibleRight] = useState(false);
 
   const [servicos, setServicos] = useState<Servicos[]>([])
   const [editingService, setEditingService] = useState<Servicos | null>(null)
@@ -434,14 +439,19 @@ const ServicoLista = () => {
             </div>
             <div className="flex items-center gap-2">
               {statusBodyTemplate(servico)}
-              <Button
+              {/* <Button
                 icon={<Edit size={16} />}
                 className="p-button-text p-button-sm"
                 onClick={() => handleMobileEdit(servico)}
                 style={{ color: theme.colors.primary }}
-              />
+              /> */}
 
-              <BarbeariaButton onClick={()=>handleMobileEdit(servico)} iconOnly leftIcon={<Edit size={16} />} variant="ghost" />
+            <BarbeariaButton 
+                onClick={() => handleMobileEdit(servico)} 
+                iconOnly 
+                leftIcon={<Pencil size={16} />} 
+                variant="outline"
+            />
             </div>
           </div>
 
@@ -491,26 +501,31 @@ const ServicoLista = () => {
   )
 
   const header = (
-    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-      <h2 className="text-xl font-semibold" style={{ color: theme.colors.text, fontFamily: theme.fonts.heading }}>
-        Lista de Serviços
-      </h2>
-      {!isMobile && (
-        <MultiSelect
-          value={visibleColumns}
-          options={columns}
-          optionLabel="header"
-          onChange={onColumnToggle}
-          className="w-full sm:w-20rem"
-          display="chip"
-          placeholder="Selecionar Colunas"
-          style={{
-            backgroundColor: theme.colors.cardBackground,
-            borderColor: theme.colors.secondary,
-            color: theme.colors.text,
-          }}
-        />
-      )}
+    <div className="">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+            <h2 className="text-xl font-semibold" style={{ color: theme.colors.text, fontFamily: theme.fonts.heading }}>
+                Lista de Serviços
+            </h2>
+        </div>
+        <div className="flex flex-row justify-between items-center mb-4">
+            <BarbeariaButton leftIcon={<Plus />} onClick={()=> setVisibleRight(true)} rounded="full" size="sm">Novo Servico</BarbeariaButton>
+            {!isMobile && (
+                <MultiSelect
+                value={visibleColumns}
+                options={columns}
+                optionLabel="header"
+                onChange={onColumnToggle}
+                className="w-full sm:w-20rem"
+                display="chip"
+                placeholder="Selecionar Colunas"
+                style={{
+                    backgroundColor: theme.colors.cardBackground,
+                    borderColor: theme.colors.secondary,
+                    color: theme.colors.text,
+                }}
+                />
+            )}
+        </div>
     </div>
   )
 
@@ -537,6 +552,33 @@ const ServicoLista = () => {
       </div>
     )
   }
+
+  const detalhesServico = (servico: Servicos) => {
+    setEditingService(servico)
+    setVisibleRight(true)
+  }
+
+  const actionBodyTemplate = (rowData: Servicos) => {
+        return (
+                <div className="flex gap-2">
+                    <BarbeariaButton 
+                        iconOnly 
+                        leftIcon={<Pencil />} 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => detalhesServico(rowData)}
+                    />
+                    <BarbeariaButton 
+                        iconOnly 
+                        leftIcon={<Trash2 />} 
+                        variant="outline"
+                        size="sm"
+                        security=""
+                        onClick={() => {}}
+                    />
+                </div>
+        );
+    };
 
   return (
     <div style={{ backgroundColor: theme.colors.background, minHeight: "100vh" }}>
@@ -579,6 +621,7 @@ const ServicoLista = () => {
                 body={col.body}
                 editor={col.editable ? col.editor : undefined}
                 style={col.style}
+                filter
               />
             ))}
             <Column
@@ -586,6 +629,7 @@ const ServicoLista = () => {
               headerStyle={{ width: "10%", minWidth: "8rem" }}
               bodyStyle={{ textAlign: "center" }}
               header="Ações"
+              body={actionBodyTemplate}
             />
           </DataTable>
         </div>
@@ -757,6 +801,10 @@ const ServicoLista = () => {
           </div>
         )}
       </Dialog>
+
+        <Sidebar visible={visibleRight} style={{width: '600px'}} position="right" onHide={() => setVisibleRight(false)}>
+            < ServicoCadastro detalhes={editingService} />
+        </Sidebar>
     </div>
   )
 }
