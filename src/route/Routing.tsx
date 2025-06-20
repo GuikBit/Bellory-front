@@ -16,6 +16,8 @@ const Auth = lazy(() => import("../views/Auth"));
 const ProdutoDetalhe = lazy(()=> import("../views/ProdutosDetalhes"))
 const Componentes = lazy(()=> import("../views/Componentes"));
 const Dashboard = lazy(()=> import("../views/Interno/Dashboard"));
+const ServicoLista = lazy(()=> import("../components/Interno/Servicos/ServicoLista"));
+const ServicoCategoria = lazy(()=> import("../components/Interno/Servicos/ServicoCategoria"));
 
 
 
@@ -62,8 +64,8 @@ function Routing() {
           <Route element={<ProtectedRoute><AuthTemplate /></ProtectedRoute>}>
             <Route path="/dashboard" element={<Dashboard />} />
             {/* Outras rotas protegidas */}
-            {/* <Route path="/dashboard/configuracoes" element={<Configuracoes />} />
-            <Route path="/dashboard/perfil" element={<Perfil />} /> */}
+             <Route path="/servicos/lista" element={<ServicoLista />} />
+            <Route path="/servicos/categorias" element={<ServicoCategoria />} />
             {/* etc */}
           </Route>
         </Routes>

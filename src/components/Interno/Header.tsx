@@ -4,19 +4,18 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Bell,
-  Search,
   Settings,
   User,
   LogOut,
   Menu,
   X,
   ChevronDown,
-  Home,
-  BarChart3,
-  Users,
-  Calendar,
-  Package,
-  MessageSquare,
+  // Home,
+  // BarChart3,
+  // Users,
+  // Calendar,
+  // Package,
+  // MessageSquare,
   HelpCircle,
   Maximize2,
   Minimize2,
@@ -48,7 +47,7 @@ const InternalHeader = ({
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
-  const [searchValue, setSearchValue] = useState("")
+  // const [searchValue, setSearchValue] = useState("")
   const { currentTheme: theme } = useTheme()
 
   // Toggle fullscreen
@@ -91,14 +90,14 @@ const InternalHeader = ({
   ]
 
   // Quick actions menu
-  const quickActions = [
-    { icon: Home, label: "Dashboard", href: "/dashboard" },
-    { icon: Calendar, label: "Agendamentos", href: "/agendamentos" },
-    { icon: Users, label: "Clientes", href: "/clientes" },
-    { icon: Package, label: "Produtos", href: "/produtos" },
-    { icon: BarChart3, label: "Relatórios", href: "/relatorios" },
-    { icon: MessageSquare, label: "Mensagens", href: "/mensagens" },
-  ]
+  // const quickActions = [
+  //   { icon: Home, label: "Dashboard", href: "/dashboard" },
+  //   { icon: Calendar, label: "Agendamentos", href: "/agendamentos" },
+  //   { icon: Users, label: "Clientes", href: "/clientes" },
+  //   { icon: Package, label: "Produtos", href: "/produtos" },
+  //   { icon: BarChart3, label: "Relatórios", href: "/relatorios" },
+  //   { icon: MessageSquare, label: "Mensagens", href: "/mensagens" },
+  // ]
 
   const handleMenuToggle = () => {
     const newState = !isMenuOpen
@@ -176,7 +175,7 @@ const InternalHeader = ({
         </div>
 
         {/* Center Section - Search */}
-        <div className="flex-1 max-w-md mx-4">
+        {/* <div className="flex-1 max-w-md mx-4">
           <div className="relative">
             <Search
               size={18}
@@ -205,240 +204,243 @@ const InternalHeader = ({
               }}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Right Section */}
-        <div className="flex items-center gap-2">
-          {/* Fullscreen Toggle */}
-          <motion.button
-            onClick={toggleFullscreen}
-            className="hidden md:flex p-2 rounded-lg transition-colors"
-            whileHover={{
-              backgroundColor: `${theme.colors.primary}10`,
-              scale: 1.05,
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {isFullscreen ? (
-              <Minimize2 size={18} style={{ color: theme.colors.primary }} />
-            ) : (
-              <Maximize2 size={18} style={{ color: theme.colors.primary }} />
-            )}
-          </motion.button>
-
-          {/* Notifications */}
-          <div className="relative">
+        {!isMenuOpen && (
+          <div className="flex items-center gap-5">
+            {/* Fullscreen Toggle */}
             <motion.button
-              onClick={(e) => {
-                e.stopPropagation()
-                setIsNotificationsOpen(!isNotificationsOpen)
-                setIsProfileOpen(false)
-              }}
-              className="relative p-2 rounded-lg transition-colors"
+              onClick={toggleFullscreen}
+              className="hidden md:flex p-2 rounded-lg transition-colors"
               whileHover={{
                 backgroundColor: `${theme.colors.primary}10`,
                 scale: 1.05,
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Bell size={18} style={{ color: theme.colors.primary }} />
-              {notifications > 0 && (
-                <motion.span
-                  className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
-                  style={{
-                    backgroundColor: theme.colors.primary,
-                    color: theme.colors.buttonText,
-                  }}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                >
-                  {notifications > 9 ? "9+" : notifications}
-                </motion.span>
+              {isFullscreen ? (
+                <Minimize2 size={18} style={{ color: theme.colors.primary }} />
+              ) : (
+                <Maximize2 size={18} style={{ color: theme.colors.primary }} />
               )}
             </motion.button>
 
-            {/* Notifications Dropdown */}
-            <AnimatePresence>
-              {isNotificationsOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  className="absolute right-0 mt-2 w-80 rounded-lg shadow-lg border z-50"
-                  style={{
-                    backgroundColor: theme.colors.cardBackground,
-                    borderColor: `${theme.colors.secondary}30`,
-                  }}
-                >
-                  <div className="p-4 border-b" style={{ borderColor: `${theme.colors.secondary}20` }}>
-                    <h3 className="font-semibold" style={{ color: theme.colors.text }}>
-                      Notificações
-                    </h3>
-                  </div>
-                  <div className="max-h-64 overflow-y-auto">
-                    {notificationsList.map((notification) => (
-                      <motion.div
-                        key={notification.id}
-                        className="p-3 border-b last:border-b-0 hover:bg-opacity-50 cursor-pointer"
-                        style={{ borderColor: `${theme.colors.secondary}10` }}
-                        whileHover={{ backgroundColor: `${theme.colors.primary}05` }}
-                      >
-                        <div className="flex justify-between items-start">
-                          <div className="flex-1">
-                            <p className="font-medium text-sm" style={{ color: theme.colors.text }}>
-                              {notification.title}
-                            </p>
-                            <p className="text-xs mt-1" style={{ color: theme.colors.textSecondary }}>
-                              {notification.message}
-                            </p>
-                          </div>
-                          <span className="text-xs" style={{ color: theme.colors.textSecondary }}>
-                            {notification.time}
-                          </span>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div className="p-3 border-t" style={{ borderColor: `${theme.colors.secondary}20` }}>
-                    <button
-                      className="w-full text-sm font-medium py-2 rounded-md transition-colors"
-                      style={{
-                        color: theme.colors.primary,
-                        backgroundColor: `${theme.colors.primary}10`,
-                      }}
-                    >
-                      Ver todas as notificações
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Settings */}
-          <motion.button
-            onClick={onSettingsClick}
-            className="p-2 rounded-lg transition-colors"
-            whileHover={{
-              backgroundColor: `${theme.colors.primary}10`,
-              scale: 1.05,
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Settings size={18} style={{ color: theme.colors.primary }} />
-          </motion.button>
-
-          {/* User Profile */}
-          <div className="relative">
-            <motion.button
-              onClick={(e) => {
-                e.stopPropagation()
-                setIsProfileOpen(!isProfileOpen)
-                setIsNotificationsOpen(false)
-              }}
-              className="flex items-center gap-2 p-2 rounded-lg transition-colors"
-              whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
-            >
-              <div className="flex items-center gap-2">
-                {userAvatar ? (
-                  <img
-                    src={userAvatar || "/placeholder.svg"}
-                    alt={userName}
-                    className="w-8 h-8 rounded-full object-cover"
-                  />
-                ) : (
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: theme.colors.primary }}
+            {/* Notifications */}
+            <div className="relative">
+              <motion.button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setIsNotificationsOpen(!isNotificationsOpen)
+                  setIsProfileOpen(false)
+                }}
+                className="relative p-2 rounded-lg transition-colors"
+                whileHover={{
+                  backgroundColor: `${theme.colors.primary}10`,
+                  scale: 1.05,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Bell size={18} style={{ color: theme.colors.primary }} />
+                {notifications > 0 && (
+                  <motion.span
+                    className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
+                    style={{
+                      backgroundColor: theme.colors.primary,
+                      color: theme.colors.buttonText,
+                    }}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   >
-                    <User size={16} style={{ color: theme.colors.buttonText }} />
-                  </div>
+                    {notifications > 9 ? "9+" : notifications}
+                  </motion.span>
                 )}
-                <span className="hidden md:block font-medium text-sm" style={{ color: theme.colors.text }}>
-                  {userName}
-                </span>
-                <ChevronDown
-                  size={14}
-                  className={`hidden md:block transition-transform duration-200 ${isProfileOpen ? "rotate-180" : ""}`}
-                  style={{ color: theme.colors.textSecondary }}
-                />
-              </div>
+              </motion.button>
+
+              {/* Notifications Dropdown */}
+              <AnimatePresence>
+                {isNotificationsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    className="absolute right-0 mt-2 w-80 rounded-lg shadow-lg border z-50"
+                    style={{
+                      backgroundColor: theme.colors.cardBackground,
+                      borderColor: `${theme.colors.secondary}30`,
+                    }}
+                  >
+                    <div className="p-4 border-b" style={{ borderColor: `${theme.colors.secondary}20` }}>
+                      <h3 className="font-semibold" style={{ color: theme.colors.text }}>
+                        Notificações
+                      </h3>
+                    </div>
+                    <div className="max-h-64 overflow-y-auto">
+                      {notificationsList.map((notification) => (
+                        <motion.div
+                          key={notification.id}
+                          className="p-3 border-b last:border-b-0 hover:bg-opacity-50 cursor-pointer"
+                          style={{ borderColor: `${theme.colors.secondary}10` }}
+                          whileHover={{ backgroundColor: `${theme.colors.primary}05` }}
+                        >
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <p className="font-medium text-sm" style={{ color: theme.colors.text }}>
+                                {notification.title}
+                              </p>
+                              <p className="text-xs mt-1" style={{ color: theme.colors.textSecondary }}>
+                                {notification.message}
+                              </p>
+                            </div>
+                            <span className="text-xs" style={{ color: theme.colors.textSecondary }}>
+                              {notification.time}
+                            </span>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                    <div className="p-3 border-t" style={{ borderColor: `${theme.colors.secondary}20` }}>
+                      <button
+                        className="w-full text-sm font-medium py-2 rounded-md transition-colors"
+                        style={{
+                          color: theme.colors.primary,
+                          backgroundColor: `${theme.colors.primary}10`,
+                        }}
+                      >
+                        Ver todas as notificações
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Settings */}
+            <motion.button
+              onClick={onSettingsClick}
+              className="p-2 rounded-lg transition-colors"
+              whileHover={{
+                backgroundColor: `${theme.colors.primary}10`,
+                scale: 1.05,
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Settings size={18} style={{ color: theme.colors.primary }} />
             </motion.button>
 
-            {/* Profile Dropdown */}
-            <AnimatePresence>
-              {isProfileOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg border z-50"
-                  style={{
-                    backgroundColor: theme.colors.cardBackground,
-                    borderColor: `${theme.colors.secondary}30`,
-                  }}
-                >
-                  <div className="p-3 border-b" style={{ borderColor: `${theme.colors.secondary}20` }}>
-                    <p className="font-medium" style={{ color: theme.colors.text }}>
-                      {userName}
-                    </p>
-                    <p className="text-sm" style={{ color: theme.colors.textSecondary }}>
-                      Administrador
-                    </p>
-                  </div>
-
-                  <div className="py-2">
-                    <motion.button
-                      onClick={onProfileClick}
-                      className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
-                      whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
-                      style={{ color: theme.colors.text }}
+            {/* User Profile */}
+            <div className="relative">
+              <motion.button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setIsProfileOpen(!isProfileOpen)
+                  setIsNotificationsOpen(false)
+                }}
+                className="flex items-center gap-2 p-2 rounded-lg transition-colors"
+                whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
+              >
+                <div className="flex items-center gap-2">
+                  {userAvatar ? (
+                    <img
+                      src={userAvatar || "/placeholder.svg"}
+                      alt={userName}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div
+                      className="w-8 h-8 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: theme.colors.primary }}
                     >
-                      <User size={16} />
-                      Meu Perfil
-                    </motion.button>
+                      <User size={16} style={{ color: theme.colors.buttonText }} />
+                    </div>
+                  )}
+                  <span className="hidden md:block font-medium text-sm" style={{ color: theme.colors.text }}>
+                    {userName}
+                  </span>
+                  <ChevronDown
+                    size={14}
+                    className={`hidden md:block transition-transform duration-200 ${isProfileOpen ? "rotate-180" : ""}`}
+                    style={{ color: theme.colors.textSecondary }}
+                  />
+                </div>
+              </motion.button>
 
-                    <motion.button
-                      onClick={onSettingsClick}
-                      className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
-                      whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
-                      style={{ color: theme.colors.text }}
-                    >
-                      <Settings size={16} />
-                      Configurações
-                    </motion.button>
+              {/* Profile Dropdown */}
+              <AnimatePresence>
+                {isProfileOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg border z-50"
+                    style={{
+                      backgroundColor: theme.colors.cardBackground,
+                      borderColor: `${theme.colors.secondary}30`,
+                    }}
+                  >
+                    <div className="p-3 border-b" style={{ borderColor: `${theme.colors.secondary}20` }}>
+                      <p className="font-medium" style={{ color: theme.colors.text }}>
+                        {userName}
+                      </p>
+                      <p className="text-sm" style={{ color: theme.colors.textSecondary }}>
+                        Administrador
+                      </p>
+                    </div>
 
-                    <motion.button
-                      className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
-                      whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
-                      style={{ color: theme.colors.text }}
-                    >
-                      <HelpCircle size={16} />
-                      Ajuda
-                    </motion.button>
-                  </div>
+                    <div className="py-2">
+                      <motion.button
+                        onClick={onProfileClick}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
+                        whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
+                        style={{ color: theme.colors.text }}
+                      >
+                        <User size={16} />
+                        Meu Perfil
+                      </motion.button>
 
-                  <div className="border-t py-2" style={{ borderColor: `${theme.colors.secondary}20` }}>
-                    <motion.button
-                      onClick={onLogout}
-                      className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
-                      whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
-                      style={{ color: theme.colors.primary }}
-                    >
-                      <LogOut size={16} />
-                      Sair
-                    </motion.button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                      <motion.button
+                        onClick={onSettingsClick}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
+                        whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
+                        style={{ color: theme.colors.text }}
+                      >
+                        <Settings size={16} />
+                        Configurações
+                      </motion.button>
+
+                      <motion.button
+                        className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
+                        whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
+                        style={{ color: theme.colors.text }}
+                      >
+                        <HelpCircle size={16} />
+                        Ajuda
+                      </motion.button>
+                    </div>
+
+                    <div className="border-t py-2" style={{ borderColor: `${theme.colors.secondary}20` }}>
+                      <motion.button
+                        onClick={onLogout}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-sm transition-colors"
+                        whileHover={{ backgroundColor: `${theme.colors.primary}10` }}
+                        style={{ color: theme.colors.primary }}
+                      >
+                        <LogOut size={16} />
+                        Sair
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
 
       {/* Mobile Quick Actions */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -469,7 +471,7 @@ const InternalHeader = ({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </motion.header>
   )
 }

@@ -5,6 +5,7 @@ import { Outlet } from "react-router"
 import { useTheme } from "../global/Theme-context"
 import InternalSidebar from "../components/Interno/Sidebar"
 import InternalHeader from "../components/Interno/Header"
+// import { useIsMobile } from "../hooks/useIsMobile"
 
 
 const AuthTemplate = () => {
@@ -30,6 +31,8 @@ const AuthTemplate = () => {
     setIsSidebarOpen(isOpen)
   }
 
+  // const isMobile = useIsMobile();
+
   return (
     <div
       className="flex h-screen w-full overflow-hidden"
@@ -39,7 +42,10 @@ const AuthTemplate = () => {
       }}
     >
       {/* Sidebar */}
-      <InternalSidebar isOpen={isSidebarOpen} onToggle={handleSidebarToggle} />
+      {/* <div className={!isSidebarOpen && isMobile?"hidden":"md:flex"}> */}
+        <InternalSidebar isOpen={isSidebarOpen} onToggle={handleSidebarToggle} /> 
+      {/* </div> */}
+      
 
       {/* Main Content Area */}
       <div className="flex flex-col flex-1 overflow-hidden">
@@ -63,13 +69,13 @@ const AuthTemplate = () => {
             fontFamily: currentTheme.fonts.body,
           }}
         >
-          <div className="max-w-7xl mx-auto">
+          <div className="mx-auto">
             <Outlet />
           </div>
         </main>
 
         {/* Footer */}
-        <footer
+        {/* <footer
           className="border-t px-6 py-4"
           style={{
             backgroundColor: currentTheme.colors.cardBackground,
@@ -81,7 +87,7 @@ const AuthTemplate = () => {
             <p className="text-sm">© 2024 Beauty Salon Admin. Todos os direitos reservados.</p>
             <p className="text-sm">Versão 1.0.0</p>
           </div>
-        </footer>
+        </footer> */}
       </div>
     </div>
   )

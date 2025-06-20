@@ -21,7 +21,10 @@ import {
   TrendingUp,
   ChevronLeft,
   ChevronRight,
-  HelpCircle,
+  // HelpCircle,
+  UsersRound,
+  CalendarDays,
+  PanelsTopLeft,
 } from "lucide-react"
 import { useNavigate, useLocation } from "react-router"
 import { useTheme } from "../../global/Theme-context"
@@ -29,7 +32,7 @@ import { useTheme } from "../../global/Theme-context"
 interface MenuItem {
   id: string
   label: string
-  icon: React.ElementType
+  icon: React.ComponentType<{ size?: number; style?: React.CSSProperties }> // Accepts size prop
   path: string
   badge?: number
   subItems?: MenuItem[]
@@ -82,7 +85,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
       id: "servicos",
       label: "Serviços",
       icon: Scissors,
-      path: "/servicos",
+      path: "/servicos/lista",
       subItems: [
         { id: "servicos-lista", label: "Lista de Serviços", icon: Scissors, path: "/servicos/lista" },
         { id: "servicos-categorias", label: "Categorias", icon: Package, path: "/servicos/categorias" },
@@ -96,6 +99,16 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
       subItems: [
         { id: "produtos-estoque", label: "Estoque", icon: Package, path: "/produtos/estoque" },
         { id: "produtos-vendas", label: "Vendas", icon: TrendingUp, path: "/produtos/vendas" },
+      ],
+    },
+    {
+      id: "colaboradores",
+      label: "Colaboradores",
+      icon: UsersRound,
+      path: "/colaboradores",
+      subItems: [
+        { id: "colaboradores-estoque", label: "Ativos", icon: UserCheck, path: "/colaboradores/ativos" },
+        { id: "colaboradores-vendas", label: "Plano de horário", icon: CalendarDays, path: "/colaboradores/planoshorario" },
       ],
     },
     {
@@ -122,21 +135,33 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
       path: "/mensagens",
       badge: 5,
     },
-  ]
-
-  const bottomMenuItems: MenuItem[] = [
     {
       id: "configuracoes",
       label: "Configurações",
       icon: Settings,
       path: "/configuracoes",
+      subItems: [
+        { id: "configuracoes-landingpages", label: "Landing Pages", icon: PanelsTopLeft, path: "/configuracoes/landingpages" },
+        { id: "configuracoes-estoque", label: "Estoque", icon: Package, path: "/configuracoes/estoque" },
+        { id: "configuracoes-colaboradores", label: "Colaboradores", icon: UsersRound, path: "/configuracoes/colaboradores" },
+        { id: "configuracoes-financeiros", label: "Financeiro", icon: CreditCard, path: "/configuracoes/financeiros" },
+      ],
     },
-    {
-      id: "ajuda",
-      label: "Ajuda",
-      icon: HelpCircle,
-      path: "/ajuda",
-    },
+  ]
+
+  const bottomMenuItems: MenuItem[] = [
+    // {
+    //   id: "configuracoes",
+    //   label: "Configurações",
+    //   icon: Settings,
+    //   path: "/configuracoes",
+    // },
+    // {
+    //   id: "ajuda",
+    //   label: "Ajuda",
+    //   icon: HelpCircle,
+    //   path: "/ajuda",
+    // },
   ]
 
   // Toggle expanded items
@@ -198,7 +223,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
     return (
       <div key={item.id}>
         <motion.div
-          className={`relative flex items-center gap-3 px-3 py-2.5 mx-2 rounded-lg cursor-pointer transition-all duration-200 ${
+          className={`relative flex items-center gap-5 px-3 py-4 mx-2 rounded-full cursor-pointer transition-all duration-200 ${
             isSubItem ? "ml-4" : ""
           }`}
           style={{
@@ -208,6 +233,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
                 ? `${theme.colors.primary}08`
                 : "transparent",
             borderLeft: isActive && !isSubItem ? `3px solid ${theme.colors.primary}` : "3px solid transparent",
+            borderRight: "3px solid transparent"
           }}
           onClick={() => {
             if (hasSubItems && isOpen) {
@@ -222,7 +248,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
           whileTap={{ scale: 0.98 }}
         >
           {/* Icon */}
-          <div className="flex-shrink-0 relative">
+          <div className={isOpen?"flex-shrink-0 ml-2 relative":"flex w-full justify-center relative"}>
             <item.icon
               size={20}
               style={{
@@ -232,7 +258,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
             {/* Badge */}
             {item.badge && item.badge > 0 && (
               <motion.span
-                className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
+                className="absolute -top-1 -right-2 w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
                 style={{
                   backgroundColor: theme.colors.primary,
                   color: theme.colors.buttonText,
@@ -277,9 +303,10 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
           </AnimatePresence>
 
           {/* Tooltip for collapsed state */}
+          <AnimatePresence>
           {!isOpen && hoveredItem === item.id && (
             <motion.div
-              className="absolute left-full ml-2 px-2 py-1 rounded-md shadow-lg z-50 whitespace-nowrap"
+              className="absolute left-full ml-5 px-4 py-1 rounded-full shadow-lg z-50 whitespace-nowrap"
               style={{
                 backgroundColor: theme.colors.cardBackground,
                 color: theme.colors.text,
@@ -303,6 +330,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
               )}
             </motion.div>
           )}
+          </AnimatePresence>
         </motion.div>
 
         {/* Sub Items */}
@@ -340,7 +368,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
     >
       {/* Toggle Button */}
       <motion.button
-        className="absolute -right-3 top-6 w-6 h-6 rounded-full border shadow-md flex items-center justify-center z-10"
+        className="absolute -right-4 top-4 w-10 h-10 rounded-full border shadow-md flex items-center justify-center z-20"
         style={{
           backgroundColor: theme.colors.background,
           borderColor: `${theme.colors.secondary}30`,
@@ -350,9 +378,9 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
         whileTap={{ scale: 0.9 }}
       >
         {isOpen ? (
-          <ChevronLeft size={14} style={{ color: theme.colors.primary }} />
+          <ChevronLeft size={20} style={{ color: theme.colors.primary }} />
         ) : (
-          <ChevronRight size={14} style={{ color: theme.colors.primary }} />
+          <ChevronRight size={20} style={{ color: theme.colors.primary }} />
         )}
       </motion.button>
 
@@ -387,7 +415,7 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
       </div>
 
       {/* Main Navigation */}
-      <div className="flex-1 py-4 overflow-y-auto">
+      <div className="flex-1 py-4 ">
         <nav className="space-y-1">{menuItems.map((item) => renderMenuItem(item))}</nav>
       </div>
 
@@ -423,7 +451,9 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
                 <p className="text-xs truncate" style={{ color: theme.colors.textSecondary }}>
                   Administrador
                 </p>
+                
               </div>
+              <p className="text-xs truncate" style={{ color: theme.colors.textSecondary }} > Versão 1.0.0 </p>
             </div>
           </motion.div>
         )}

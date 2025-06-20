@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Star, ChevronLeft, ChevronRight, Heart, Sparkles } from "lucide-react"
-import { themes } from "../../theme/theme"
+import { themes } from "../../../theme/theme"
 
 
 const testimonialsData = [

@@ -20,7 +20,7 @@ import {
   CheckCircle,
   ChevronLeft,
 } from "lucide-react"
-import { useGlobalState } from "../../../global/GlobalContext"
+// import { useGlobalState } from "../../../global/GlobalContext"
 import { useNavigate } from "react-router"
 import { useAuth } from "../../../global/AuthContext"
 

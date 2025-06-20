@@ -17,40 +17,40 @@ const FemininoEleganteAgendamento = () => {
 
   const {data} = useBuscarServicosAgendamento();
 
-  const list = [
-    {
-      id: "1001",
-      title: "Corte",
-      image:
-        "https://images.unsplash.com/photo-1647140655214-e4a2d914971f?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description:
-        "Corte moderno e personalizado para o formato do seu rosto. Estilo, elegância e confiança em cada detalhe.",
-      price: 50.0,
-    },
-    {
-      id: "1002",
-      title: "Barba",
-      image:
-        "https://images.unsplash.com/photo-1599351431618-317f6a5f9a6b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      description: "Barba feita com navalha, toalha quente e hidratação. Realce seu visual com cuidado profissional.",
-      price: 25.0,
-    },
-    {
-      id: "1003",
-      title: "Sobrancelha",
-      image:
-        "https://s1-unimed-dev.us-southeast-1.linodeobjects.com/images/products/seller_143/Modelagem-e-design-de-sobrancelha-masculina_cfac09e2_7d31_40ce_97ab_629fd41641a0.webp",
-      description: "Remoção dos excessos de pelos para uma aparência limpa e natural, sem exageros.",
-      price: 17.0,
-    },
-    {
-      id: "1004",
-      title: "Pigmentação de Barba",
-      image: "https://www.lamafiabarbearia.com.br//wp-content/uploads/2022/08/bg-box-pigmentacao-barba.jpg",
-      description: "Cobertura de falhas e fios brancos com técnica artesanal. Efeito natural e visual renovado.",
-      price: 13.0,
-    },
-  ]
+  // const list = [
+  //   {
+  //     id: "1001",
+  //     title: "Corte",
+  //     image:
+  //       "https://images.unsplash.com/photo-1647140655214-e4a2d914971f?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //     description:
+  //       "Corte moderno e personalizado para o formato do seu rosto. Estilo, elegância e confiança em cada detalhe.",
+  //     price: 50.0,
+  //   },
+  //   {
+  //     id: "1002",
+  //     title: "Barba",
+  //     image:
+  //       "https://images.unsplash.com/photo-1599351431618-317f6a5f9a6b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //     description: "Barba feita com navalha, toalha quente e hidratação. Realce seu visual com cuidado profissional.",
+  //     price: 25.0,
+  //   },
+  //   {
+  //     id: "1003",
+  //     title: "Sobrancelha",
+  //     image:
+  //       "https://s1-unimed-dev.us-southeast-1.linodeobjects.com/images/products/seller_143/Modelagem-e-design-de-sobrancelha-masculina_cfac09e2_7d31_40ce_97ab_629fd41641a0.webp",
+  //     description: "Remoção dos excessos de pelos para uma aparência limpa e natural, sem exageros.",
+  //     price: 17.0,
+  //   },
+  //   {
+  //     id: "1004",
+  //     title: "Pigmentação de Barba",
+  //     image: "https://www.lamafiabarbearia.com.br//wp-content/uploads/2022/08/bg-box-pigmentacao-barba.jpg",
+  //     description: "Cobertura de falhas e fios brancos com técnica artesanal. Efeito natural e visual renovado.",
+  //     price: 13.0,
+  //   },
+  // ]
 
   const barbeiros = [
     {

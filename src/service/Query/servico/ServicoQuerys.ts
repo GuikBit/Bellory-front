@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { buscarServicosAgendamento } from "../../API/servico/ServicoAPIs";
 
 export function useBuscarServicosAgendamento() {

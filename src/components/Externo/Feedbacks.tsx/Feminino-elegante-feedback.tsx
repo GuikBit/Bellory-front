@@ -3,9 +3,10 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Star, ChevronLeft, ChevronRight, Heart } from "lucide-react"
-import { themes } from "../../theme/theme"
-import EleganteSubTitle from "../Fragments/Feminino/EleganteSubTitleIcon"
-import { BarbeariaButton } from "../ui"
+import { themes } from "../../../theme/theme"
+import EleganteSubTitle from "../../Fragments/Feminino/EleganteSubTitleIcon"
+import { BarbeariaButton } from "../../ui"
+
 
 
 const testimonialsData = [

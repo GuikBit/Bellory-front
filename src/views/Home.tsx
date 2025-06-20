@@ -4,7 +4,6 @@
 
 // import { useGlobalState } from "../global/ContextGlobalState"
 import { useTheme } from "../global/Theme-context" 
-import ThemeFeedback from "../components/Feedbacks.tsx/theme-feedback"
 import ThemeAgendamento from "../components/Externo/Agendamento/theme-agendamento"
 import ThemeProdutos from "../components/Externo/Produtos/theme-produtos"
 import ThemeServicos from "../components/Externo/Servicos/theme-servicos"
@@ -12,6 +11,7 @@ import ThemeAbout from "../components/Externo/About/theme-about"
 import ThemePresentation from "../components/Externo/Presentation/theme-presentation"
 import ThemePlanos from "../components/Externo/Planos/theme-planos"
 import EleganteSubTitle from "../components/Fragments/Feminino/EleganteSubTitleIcon"
+import ThemeFeedback from "../components/Externo/Feedbacks.tsx/theme-feedback"
 
 const Home = () => {
 

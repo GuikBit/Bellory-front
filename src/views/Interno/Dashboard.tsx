@@ -1,8 +1,6 @@
 "use client"
 
-import { useState } from "react"
 import { useTheme } from "../../global/Theme-context"
-import { Card } from "primereact/card"
 import { BarbeariaCard } from "../../components/ui"
 
 
