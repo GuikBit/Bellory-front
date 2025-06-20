@@ -1,16 +1,32 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Outlet } from "react-router"
 import { useTheme } from "../global/Theme-context"
 import InternalSidebar from "../components/Interno/Sidebar"
 import InternalHeader from "../components/Interno/Header"
+import { useIsMobile } from "../hooks/useIsMobile"
 // import { useIsMobile } from "../hooks/useIsMobile"
 
 
 const AuthTemplate = () => {
   const { currentTheme } = useTheme()
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+    const isMobile = useIsMobile() // Adicionar esta linha
+  const [isSidebarOpen, setIsSidebarOpen] = useState(!isMobile) // Iniciar fechado no mobile
+
+  // const handleSidebarToggle = (isOpen: boolean) => {
+  //   if (isMobile && isOpen) {
+  //     // No mobile, sempre abrir expandido
+  //     setIsSidebarOpen(true)
+  //   } else {
+  //     setIsSidebarOpen(isOpen)
+  //   }
+  // }
+
+  // Adicionar este useEffect após o handleSidebarToggle
+  useEffect(() => {
+    setIsSidebarOpen(!isMobile) // Fechar no mobile, abrir no desktop
+  }, [isMobile])
 
   const handleLogout = () => {
     console.log("Logout clicked")
@@ -41,10 +57,17 @@ const AuthTemplate = () => {
         color: currentTheme.colors.text,
       }}
     >
+      {/* Overlay para mobile */}
+      {/* {isMobile && isSidebarOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsSidebarOpen(false)} />
+      )} */}
+
       {/* Sidebar */}
-      {/* <div className={!isSidebarOpen && isMobile?"hidden":"md:flex"}> */}
-        <InternalSidebar isOpen={isSidebarOpen} onToggle={handleSidebarToggle} /> 
-      {/* </div> */}
+      <div
+        className={`${isMobile ? "fixed inset-y-0 left-0 z-999" : "relative"} ${!isSidebarOpen && isMobile ? "hidden" : ""}`}
+      >
+        <InternalSidebar isOpen={isSidebarOpen} onToggle={handleSidebarToggle} />
+      </div>
       
 
       {/* Main Content Area */}
@@ -53,6 +76,7 @@ const AuthTemplate = () => {
         <InternalHeader
           userName="João Silva"
           notifications={5}
+          isOpen={isSidebarOpen}
           onMenuToggle={setIsSidebarOpen}
           onLogout={handleLogout}
           onProfileClick={handleProfileClick}

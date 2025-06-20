@@ -8,14 +8,7 @@ import {
   User,
   LogOut,
   Menu,
-  X,
   ChevronDown,
-  // Home,
-  // BarChart3,
-  // Users,
-  // Calendar,
-  // Package,
-  // MessageSquare,
   HelpCircle,
   Maximize2,
   Minimize2,
@@ -26,6 +19,7 @@ interface InternalHeaderProps {
   userName?: string
   userAvatar?: string
   notifications?: number
+  isOpen?: boolean
   onMenuToggle?: (isOpen: boolean) => void
   onLogout?: () => void
   onProfileClick?: () => void
@@ -38,12 +32,13 @@ const InternalHeader = ({
   userAvatar,
   notifications = 3,
   onMenuToggle,
+  isOpen,
   onLogout,
   onProfileClick,
   onSettingsClick,
   breadcrumbs = [{ label: "Dashboard" }],
 }: InternalHeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(!isOpen)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
@@ -100,7 +95,7 @@ const InternalHeader = ({
   // ]
 
   const handleMenuToggle = () => {
-    const newState = !isMenuOpen
+    const newState = !isOpen
     setIsMenuOpen(newState)
     onMenuToggle?.(newState)
   }
@@ -140,11 +135,11 @@ const InternalHeader = ({
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {isMenuOpen ? (
-                  <X size={20} style={{ color: theme.colors.primary }} />
-                ) : (
+                {/* {isMenuOpen ? ( */}
+                  {/* <X size={20} style={{ color: theme.colors.primary }} /> */}
+                {/* ) : ( */}
                   <Menu size={20} style={{ color: theme.colors.primary }} />
-                )}
+                {/* )} */}
               </motion.div>
             </AnimatePresence>
           </motion.button>
