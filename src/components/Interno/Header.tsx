@@ -202,7 +202,7 @@ const InternalHeader = ({
         </div> */}
 
         {/* Right Section */}
-        {!isMenuOpen && (
+        {/* {!isMenuOpen && ( */}
           <div className="flex items-center gap-5">
             {/* Fullscreen Toggle */}
             <motion.button
@@ -430,7 +430,7 @@ const InternalHeader = ({
               </AnimatePresence>
             </div>
           </div>
-        )}
+        {/* )} */}
 
       </div>
 

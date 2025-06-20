@@ -78,6 +78,23 @@ export interface Produto {
   trending?: boolean
 }
 
+export interface Servicos {
+    id: number;
+    organizacao_id: number;
+    nome: string;
+    categoria: string;
+    genero: string;
+    descricao: string;
+    duracaoEstimadaMinutos: number;
+    preco: number;
+    produtos: string[];
+    urlsImagens: string[];
+    ativo: boolean;
+    dtCriacao: Date;
+    dtAtualizacao:Date;
+    usuarioAtualizacao: number;
+}
+
 export interface ProductCarrinho extends Product {
     quantidade: number; 
 }
