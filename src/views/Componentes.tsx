@@ -1,10 +1,14 @@
-import { ArrowRight, Calendar, Check, Clock, CreditCard, DollarSign, Download, Heart, Lock, Mail, MapPin, Phone, Plus, Scissors, Search, Settings, ShoppingCart, Star, User } from "lucide-react";
+import { ArrowRight, Bell, Calendar, Check, Clock, CreditCard, DollarSign, Download, Globe, Heart, Lock, Mail, MapPin, Phone, Plus, Scissors, Search, Settings, Shield, ShoppingCart, Star, User } from "lucide-react";
 import { BarbeariaButton, BarbeariaCard, BarbeariaInput } from "../components/ui";
 import { useState } from "react";
 import BarbeariaStepper, { BarbeariaStep } from "../components/ui/BarbeariaStepperNovo";
+import BarbeariaDropdown from "../components/ui/BarbeariaDropdown";
+import BarbeariaInputSwitch from "../components/ui/BarbeariaInputSwitch";
+import { useTheme } from "../global/Theme-context";
 
 
 const Componentes = () => {
+    const { currentTheme: theme } = useTheme()
   const [values, setValues] = useState({
     basic: "",
     email: "",
@@ -15,6 +19,34 @@ const Componentes = () => {
     price: "",
     address: "",
   })
+  const [formData, setFormData] = useState({
+      nome: "",
+    email: "",
+    categoria: "",
+    genero: "",
+    notificacoes: true,
+    modoEscuro: false,
+    autoSave: true,
+    publicoPerfil: false,
+  })
+
+  // Opções para dropdowns
+  const categorias = [
+    {
+      value: "corte",
+      label: "Corte de Cabelo",
+      icon: <User size={16} />,
+      description: "Cortes tradicionais e modernos",
+    },
+    { value: "barba", label: "Barba", icon: <Settings size={16} />, description: "Aparar e modelar barba" },
+    { value: "combo", label: "Combo", icon: <Globe size={16} />, description: "Cabelo + Barba" },
+  ]
+
+  const generos = [
+    { value: "masculino", label: "Masculino" },
+    { value: "feminino", label: "Feminino" },
+    { value: "unissex", label: "Unissex" },
+  ]
 
   const [activeDemo, setActiveDemo] = useState<string>("default")
 
@@ -465,7 +497,7 @@ const Componentes = () => {
                     <section className="space-y-4">
                     <h2 className="text-xl font-semibold">Estados</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <BarbeariaCard>
+                        <BarbeariaCard isHoverInteractive>
                         <h4 className="font-semibold mb-2">Normal</h4>
                         <p className="text-sm opacity-80">Estado padrão do card</p>
                         </BarbeariaCard>
@@ -1046,6 +1078,241 @@ const Componentes = () => {
                     )}
                 </div>
             </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Formulário de Dados */}
+          <BarbeariaCard variant="outline" size="lg" rounded="lg" bordered>
+            <div className="p-6 space-y-6">
+              <h2 className="text-xl font-semibold mb-4" style={{ color: theme.colors.text }}>
+                Informações Pessoais
+              </h2>
+
+              <BarbeariaInput
+                label="Nome Completo"
+                placeholder="Digite seu nome completo"
+                value={formData.nome}
+                leftIcon={<User size={18} />}
+                variant="filled"
+                size="lg"
+                rounded="lg"
+                fullWidth
+                required
+                clearable
+                maxLength={100}
+                showCounter
+                onChange={(e) => handleChange("nome")}
+                onClear={() => handleChange("nome")}
+                helperText="Nome que aparecerá no seu perfil"
+              />
+
+              <BarbeariaInput
+                label="E-mail"
+                type="email"
+                placeholder="seu@email.com"
+                value={formData.email}
+                leftIcon={<Mail size={18} />}
+                variant="filled"
+                size="lg"
+                rounded="lg"
+                fullWidth
+                required
+                clearable
+                onChange={(e) => handleChange("email")}
+                onClear={() => handleChange("email")}
+                helperText="Usado para login e notificações"
+              />
+
+              <BarbeariaDropdown
+                label="Categoria de Serviço"
+                placeholder="Selecione uma categoria"
+                value={formData.categoria}
+                options={categorias}
+                leftIcon={<Settings size={18} />}
+                variant="filled"
+                size="lg"
+                rounded="lg"
+                fullWidth
+                required
+                searchable
+                clearable
+                onChange={(value) => handleChange("categoria")}
+                onClear={() => handleChange("categoria")}
+                helperText="Categoria principal do seu serviço"
+              />
+
+              <BarbeariaDropdown
+                label="Gênero Atendido"
+                placeholder="Selecione o gênero"
+                value={formData.genero}
+                options={generos}
+                variant="filled"
+                size="lg"
+                rounded="lg"
+                fullWidth
+                required
+                onChange={(value) => handleChange("genero")}
+                helperText="Público que você atende"
+              />
+            </div>
+          </BarbeariaCard>
+
+          {/* Configurações */}
+          <BarbeariaCard variant="outline" size="lg" rounded="lg" bordered>
+            <div className="p-6 space-y-6">
+              <h2 className="text-xl font-semibold mb-4" style={{ color: theme.colors.text }}>
+                Configurações
+              </h2>
+
+              <BarbeariaInputSwitch
+                label="Notificações Push"
+                checked={formData.notificacoes}
+                onChange={(checked) => handleChange("notificacoes")}
+                size="lg"
+                rounded="full"
+                activeText="Ativado"
+                inactiveText="Desativado"
+                showLabels
+                labelPosition="left"
+                activeIcon={<Bell size={14} />}
+                helperText="Receber notificações de novos agendamentos"
+              />
+
+              <BarbeariaInputSwitch
+                label="Modo Escuro"
+                checked={formData.modoEscuro}
+                onChange={(checked) => handleChange("modoEscuro")}
+                size="lg"
+                rounded="full"
+                activeText="Escuro"
+                inactiveText="Claro"
+                showLabels
+                labelPosition="left"
+                activeColor="#1f2937"
+                inactiveColor="#f3f4f6"
+                helperText="Alternar entre tema claro e escuro"
+              />
+
+              <BarbeariaInputSwitch
+                label="Salvamento Automático"
+                checked={formData.autoSave}
+                onChange={(checked) => handleChange("autoSave")}
+                size="md"
+                rounded="lg"
+                activeText="Auto"
+                inactiveText="Manual"
+                showLabels
+                labelPosition="right"
+                success={formData.autoSave ? "Salvamento automático ativado" : undefined}
+                helperText="Salvar alterações automaticamente"
+              />
+
+              <BarbeariaInputSwitch
+                label="Perfil Público"
+                checked={formData.publicoPerfil}
+                onChange={(checked) => handleChange("publicoPerfil")}
+                size="md"
+                rounded="full"
+                activeIcon={<Globe size={12} />}
+                inactiveIcon={<Shield size={12} />}
+                activeColor="#10b981"
+                inactiveColor="#ef4444"
+                error={formData.publicoPerfil ? undefined : "Perfil privado - não aparecerá nas buscas"}
+                helperText="Permitir que outros usuários encontrem seu perfil"
+              />
+            </div>
+          </BarbeariaCard>
+        </div>
+
+        {/* Preview dos Dados */}
+        <BarbeariaCard variant="filled" size="lg" rounded="lg" hover="lift">
+          <div className="p-6">
+            <h2 className="text-xl font-semibold mb-4" style={{ color: theme.colors.text }}>
+              Preview dos Dados
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <strong style={{ color: theme.colors.text }}>Nome:</strong>
+                <span style={{ color: theme.colors.textSecondary }}> {formData.nome || "Não informado"}</span>
+              </div>
+              <div>
+                <strong style={{ color: theme.colors.text }}>E-mail:</strong>
+                <span style={{ color: theme.colors.textSecondary }}> {formData.email || "Não informado"}</span>
+              </div>
+              <div>
+                <strong style={{ color: theme.colors.text }}>Categoria:</strong>
+                <span style={{ color: theme.colors.textSecondary }}>
+                  {" "}
+                  {categorias.find((c) => c.value === formData.categoria)?.label || "Não selecionada"}
+                </span>
+              </div>
+              <div>
+                <strong style={{ color: theme.colors.text }}>Gênero:</strong>
+                <span style={{ color: theme.colors.textSecondary }}>
+                  {" "}
+                  {generos.find((g) => g.value === formData.genero)?.label || "Não selecionado"}
+                </span>
+              </div>
+              <div>
+                <strong style={{ color: theme.colors.text }}>Notificações:</strong>
+                <span style={{ color: theme.colors.textSecondary }}>
+                  {" "}
+                  {formData.notificacoes ? "Ativadas" : "Desativadas"}
+                </span>
+              </div>
+              <div>
+                <strong style={{ color: theme.colors.text }}>Modo Escuro:</strong>
+                <span style={{ color: theme.colors.textSecondary }}>
+                  {" "}
+                  {formData.modoEscuro ? "Ativado" : "Desativado"}
+                </span>
+              </div>
+              <div>
+                <strong style={{ color: theme.colors.text }}>Auto Save:</strong>
+                <span style={{ color: theme.colors.textSecondary }}>
+                  {" "}
+                  {formData.autoSave ? "Ativado" : "Desativado"}
+                </span>
+              </div>
+              <div>
+                <strong style={{ color: theme.colors.text }}>Perfil Público:</strong>
+                <span style={{ color: theme.colors.textSecondary }}> {formData.publicoPerfil ? "Sim" : "Não"}</span>
+              </div>
+            </div>
+
+            <div className="mt-6 flex gap-3">
+              <BarbeariaButton
+                variant="primary"
+                size="lg"
+                rounded="lg"
+                leftIcon={<Settings size={18} />}
+                onClick={() => console.log("Salvando dados:", formData)}
+              >
+                Salvar Configurações
+              </BarbeariaButton>
+
+              <BarbeariaButton
+                variant="outline"
+                size="lg"
+                rounded="lg"
+                onClick={() =>
+                  setFormData({
+                    nome: "",
+                    email: "",
+                    categoria: "",
+                    genero: "",
+                    notificacoes: true,
+                    modoEscuro: false,
+                    autoSave: true,
+                    publicoPerfil: false,
+                  })
+                }
+              >
+                Limpar Tudo
+              </BarbeariaButton>
+            </div>
+          </div>
+        </BarbeariaCard>
         </div>
     </div>
   );

@@ -178,6 +178,7 @@ const BarbeariaInput = forwardRef<HTMLInputElement, BarbeariaInputProps>(
         fontWeight: "500",
         color,
         marginBottom: "6px",
+        marginLeft: "8px",
         display: "block",
         transition: "color 0.2s ease",
       }

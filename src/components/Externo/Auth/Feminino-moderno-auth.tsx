@@ -20,6 +20,8 @@ import {
   CheckCircle,
   ChevronLeft,
 } from "lucide-react"
+import { useAuth } from "../../../global/AuthContext"
+import { useNavigate } from "react-router"
 
 const FemininoModernoAuth = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -194,6 +196,37 @@ const LoginForm = ({
   handleSubmit,
   setIsLogin,
 }: LoginFormProps) => {
+
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+
+  const handlerLogin = () => {
+    
+    const user = {
+      id: '1a2b3c4d-5678-90ef-gh12-ijklmnopqrst',
+      nome: 'João da Silva',
+      email: 'joao.silva@example.com',
+      telefone: '+55 11 91234-5678',
+      dataNascimento: '1990-05-15',
+      endereco: 'Rua das Flores, 123',
+      cidade: 'São Paulo',
+      estado: 'SP',
+      cep: '01234-567',
+      pais: 'Brasil',
+      fotoPerfil: 'https://meusite.com/imagens/joao.jpg',
+      dataCadastro: '2023-01-01T10:00:00Z',
+      dataUltimoAcesso: '2025-06-19T14:30:00Z',
+      tipoUsuario: 'cliente', // ou 'admin', 'funcionario', etc.
+      status: 'ativo', // ou 'inativo', 'pendente'
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.fakeTokenParaExemplo'
+    }
+
+    login(user);
+    navigate('/dashboard')
+  }
+
   return (
     <motion.form
       className="p-8 relative"
@@ -284,6 +317,8 @@ const LoginForm = ({
         variants={itemVariants}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
+
+        onClick={()=>handlerLogin()}
       >
         Entrar
         <ArrowRight size={18} className="ml-2" />

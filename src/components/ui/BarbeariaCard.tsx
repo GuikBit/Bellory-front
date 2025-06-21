@@ -36,6 +36,8 @@ interface BarbeariaCardProps extends HTMLMotionProps<"div"> {
   showLoadingOverlay?: boolean
   /** Template personalizado (não usado atualmente) */
   template?: string
+
+  isHoverInteractive?: boolean
 }
 
 const BarbeariaCard = forwardRef<HTMLDivElement, BarbeariaCardProps>(
@@ -56,6 +58,7 @@ const BarbeariaCard = forwardRef<HTMLDivElement, BarbeariaCardProps>(
       fullHeight = false,
       orientation = "vertical",
       showLoadingOverlay = false,
+      isHoverInteractive = false,
       template,
       onClick,
       ...props
@@ -376,7 +379,7 @@ const BarbeariaCard = forwardRef<HTMLDivElement, BarbeariaCardProps>(
         style={combinedStyles}
         initial={getInitialAnimation()}
         animate={getAnimateAnimation()}
-        whileHover={!disabled && !isLoading ? getHoverStyles() : {}}
+        whileHover={!disabled && !isLoading && !isHoverInteractive? getHoverStyles() : {}}
         whileTap={
           (interactive || onClick) && !disabled && !isLoading
             ? {
@@ -386,7 +389,7 @@ const BarbeariaCard = forwardRef<HTMLDivElement, BarbeariaCardProps>(
             : {}
         }
         whileFocus={
-          interactive || onClick
+          (interactive || onClick) && isHoverInteractive
             ? {
                 boxShadow: `0 0 0 3px ${addOpacity(getThemeColor("primary", "#3b82f6"), 0.2)}`,
               }

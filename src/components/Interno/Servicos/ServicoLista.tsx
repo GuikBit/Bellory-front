@@ -19,8 +19,8 @@ import { useGetAllServicos, useUpdateServico } from "../../../service/Query/serv
 import type { Servicos } from "../../../utils/interfaces"
 import { useTheme } from "../../../global/Theme-context"
 import { BarbeariaButton, BarbeariaCard } from "../../ui"
-import { Sidebar } from "primereact/sidebar"
 import ServicoCadastro from "./ServicoCadastro"
+import { useIsMobile } from "../../../hooks/useIsMobile"
 
 interface ColumnMeta {
   field: string
@@ -32,22 +32,6 @@ interface ColumnMeta {
   mobileVisible?: boolean
 }
 
-// Hook para detectar mobile
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkIsMobile()
-    window.addEventListener("resize", checkIsMobile)
-    return () => window.removeEventListener("resize", checkIsMobile)
-  }, [])
-
-  return isMobile
-}
 
 const ServicoLista = () => {
   const { currentTheme: theme } = useTheme()
@@ -86,7 +70,7 @@ const ServicoLista = () => {
       return (
         <Tag
           value={statusLabel}
-          severity={getSeverity(rowData.ativo)}
+          severity={getSeverity(rowData.ativo ?? false)}
           style={{
             backgroundColor: rowData.ativo ? theme.colors.primary : "#ef4444",
             color: theme.colors.buttonText,
@@ -508,7 +492,7 @@ const ServicoLista = () => {
             </h2>
         </div>
         <div className="flex flex-row justify-between items-center mb-4">
-            <BarbeariaButton leftIcon={<Plus />} onClick={()=> setVisibleRight(true)} rounded="full" size="sm">Novo Servico</BarbeariaButton>
+            <BarbeariaButton leftIcon={<Plus />} onClick={()=> {onOpen(null)}} rounded="full" size="sm">Novo Servico</BarbeariaButton>
             {!isMobile && (
                 <MultiSelect
                 value={visibleColumns}
@@ -553,7 +537,7 @@ const ServicoLista = () => {
     )
   }
 
-  const detalhesServico = (servico: Servicos) => {
+  const detalhesServico = (servico: Servicos| null) => {
     setEditingService(servico)
     setVisibleRight(true)
   }
@@ -566,7 +550,7 @@ const ServicoLista = () => {
                         leftIcon={<Pencil />} 
                         variant="outline" 
                         size="sm"
-                        onClick={() => detalhesServico(rowData)}
+                        onClick={()=>onOpen(rowData)}
                     />
                     <BarbeariaButton 
                         iconOnly 
@@ -579,6 +563,16 @@ const ServicoLista = () => {
                 </div>
         );
     };
+
+  const onClose = () =>{
+    setEditingService(null);
+    setVisibleRight(false);
+  }
+
+  const onOpen = (servico: Servicos | null ) =>{
+    setEditingService(servico)
+    setVisibleRight(true)
+  }
 
   return (
     <div style={{ backgroundColor: theme.colors.background, minHeight: "100vh" }}>
@@ -636,7 +630,7 @@ const ServicoLista = () => {
       )}
 
       {/* Dialog de Edição Mobile */}
-      <Dialog
+      {/* <Dialog
         header="Editar Serviço"
         visible={showEditDialog}
         onHide={() => setShowEditDialog(false)}
@@ -800,11 +794,9 @@ const ServicoLista = () => {
             </div>
           </div>
         )}
-      </Dialog>
-
-        <Sidebar visible={visibleRight} style={{width: '600px'}} position="right" onHide={() => setVisibleRight(false)}>
-            < ServicoCadastro detalhes={editingService} />
-        </Sidebar>
+      </Dialog> */}
+            
+      <ServicoCadastro detalhes={editingService} isOpen={visibleRight} onCancel={()=>{ setVisibleRight(false), setEditingService(null) }} onClose={onClose} />
     </div>
   )
 }

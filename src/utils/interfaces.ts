@@ -79,20 +79,20 @@ export interface Produto {
 }
 
 export interface Servicos {
-    id: number;
-    organizacao_id: number;
-    nome: string;
-    categoria: string;
-    genero: string;
-    descricao: string;
-    duracaoEstimadaMinutos: number;
-    preco: number;
-    produtos: string[];
-    urlsImagens: string[];
-    ativo: boolean;
-    dtCriacao: Date;
-    dtAtualizacao:Date;
-    usuarioAtualizacao: number;
+    id?: number;
+    organizacao_id?: number;
+    nome?: string;
+    categoria?: any;
+    genero?: string;
+    descricao?: string;
+    duracaoEstimadaMinutos?: number;
+    preco?: number;
+    produtos?: string[];
+    urlsImagens?: string[];
+    ativo?: boolean;
+    dtCriacao?: Date;
+    dtAtualizacao?:Date;
+    usuarioAtualizacao?: number;
 }
 
 export interface ProductCarrinho extends Product {

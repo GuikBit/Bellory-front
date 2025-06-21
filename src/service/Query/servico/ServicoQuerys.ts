@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { buscarServicosAgendamento, getAllServicos } from "../../API/servico/ServicoAPIs";
+import { buscarServicosAgendamento, getAllServicos, postServico, putServicoById } from "../../API/servico/ServicoAPIs";
 import { Servicos } from "../../../utils/interfaces";
 
 export function useBuscarServicosAgendamento() {
@@ -33,14 +33,34 @@ export const useUpdateServico = () => {
 
   return useMutation({
     mutationFn: async (servico: Servicos) => {
-        console.log(servico);
-        //return await putServicoById(servico)
+        // console.log(servico);
+        return await putServicoById(servico)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["useGetAllServicos"] })
     },
   })
 }
+
+// Hook para criar serviço
+export const useCreateServico = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (servico: Servicos) => {
+      
+    //   console.log(servico);
+
+      return await postServico(servico);
+
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["useGetAllServicos"] })
+    },
+  })
+}
+
+
 
 
   

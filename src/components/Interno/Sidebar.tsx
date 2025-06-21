@@ -25,6 +25,7 @@ import {
   UsersRound,
   CalendarDays,
   PanelsTopLeft,
+  ChartNoAxesCombined,
 } from "lucide-react"
 import { useNavigate, useLocation } from "react-router"
 import { useTheme } from "../../global/Theme-context"
@@ -53,9 +54,15 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
   // Menu items configuration
   const menuItems: MenuItem[] = [
     {
+      id: "home",
+      label: "Home",
+      icon: Home,
+      path: "/",
+    },
+    {
       id: "dashboard",
       label: "Dashboard",
-      icon: Home,
+      icon: ChartNoAxesCombined,
       path: "/dashboard",
     },
     {
