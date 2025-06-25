@@ -61,7 +61,7 @@ const ServicoCadastro = ({ detalhes = null, onSave, onCancel, isOpen = true, onC
   const [showSuccess, setShowSuccess] = useState(false)
 
   // Opções para dropdowns
-   const categorias = [
+  const categorias = [
     {
       value: "corte",
       label: "Corte de Cabelo",
@@ -72,7 +72,7 @@ const ServicoCadastro = ({ detalhes = null, onSave, onCancel, isOpen = true, onC
     { value: "combo", label: "Combo", icon: <Globe size={16} />, description: "Cabelo + Barba" },
   ]
 //   const categorias = ["CORTE", "COLORAÇÃO", "TRATAMENTO", "MANICURE", "PEDICURE", "BARBA", "SOBRANCELHA"]
-    const generos = [
+  const generos = [
     { value: "masculino", label: "Masculino", icon: <Mars size={16}/> },
     { value: "feminino", label: "Feminino", icon: <Venus size={16}/>},
     { value: "unissex", label: "Unissex", icon: <VenusAndMars size={16}/>},

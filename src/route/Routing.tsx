@@ -18,6 +18,10 @@ const Componentes = lazy(()=> import("../views/Componentes"));
 const Dashboard = lazy(()=> import("../views/Interno/Dashboard"));
 const ServicoLista = lazy(()=> import("../components/Interno/Servicos/ServicoLista"));
 const ServicoCategoria = lazy(()=> import("../components/Interno/Servicos/ServicoCategoria"));
+const ColaboradorLista = lazy(()=> import("../components/Interno/Colaboradores/ColaboradoresLista"));
+const AgendamentoMonitoramento = lazy(()=> import("../components/Interno/Agendamento/AgendamentoMonitoramento"));
+// const ServicoCategoria = lazy(()=> import("../components/Interno/Servicos/ServicoCategoria"));
+// const ServicoCategoria = lazy(()=> import("../components/Interno/Servicos/ServicoCategoria"));
 
 
 
@@ -64,8 +68,10 @@ function Routing() {
           <Route element={<ProtectedRoute><AuthTemplate /></ProtectedRoute>}>
             <Route path="/dashboard" element={<Dashboard />} />
             {/* Outras rotas protegidas */}
-             <Route path="/servicos/lista" element={<ServicoLista />} />
+            <Route path="/servicos/lista" element={<ServicoLista />} />
             <Route path="/servicos/categorias" element={<ServicoCategoria />} />
+
+            <Route path="/agendamento" element={<AgendamentoMonitoramento />} />
             {/* etc */}
           </Route>
         </Routes>

@@ -69,10 +69,10 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
       id: "agendamentos",
       label: "Agendamentos",
       icon: Calendar,
-      path: "/agendamentos",
+      path: "/agendamento",
       badge: 3,
       subItems: [
-        { id: "agenda-hoje", label: "Hoje", icon: Clock, path: "/agendamentos/hoje" },
+        { id: "agenda-hoje", label: "Hoje", icon: Clock, path: "/agendamento" },
         { id: "agenda-semana", label: "Esta Semana", icon: Calendar, path: "/agendamentos/semana" },
         { id: "agenda-historico", label: "Histórico", icon: FileText, path: "/agendamentos/historico" },
       ],

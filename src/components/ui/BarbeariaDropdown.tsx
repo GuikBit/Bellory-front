@@ -642,14 +642,14 @@ const BarbeariaDropdown = forwardRef<HTMLDivElement, BarbeariaDropdownProps>(
         )}
 
         {/* Dropdown Container */}
-        <div ref={dropdownRef} style={{ position: "relative" }}>
+        <div ref={dropdownRef} style={{ position: "relative", overflow: 'visible' }}>
           {/* Trigger */}
           <div onClick={toggleDropdown} style={getTriggerStyles()}>
             {/* Loading ou Left Icon */}
             {isLoading ? <LoadingSpinner /> : leftIcon && <div style={getIconStyles("left")}>{leftIcon}</div>}
 
             {/* Selected Value */}
-            <div style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            <div style={{ flex: 1, overflow: "visible", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {renderSelectedValue()}
             </div>
 

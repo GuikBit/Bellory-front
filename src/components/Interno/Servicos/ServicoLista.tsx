@@ -243,7 +243,7 @@ const ServicoLista = () => {
     },
     [theme],
   )
-
+  
   // Configuração das colunas
   const columns: ColumnMeta[] = [
     {
