@@ -220,14 +220,24 @@ const FemininoEleganteAgendamento = () => {
                           </div>
                         )}
 
-                        <div className="absolute bottom-0 left-0 p-3">
+                        <div className="absolute bottom-0 left-0 p-3 w-full">
                           <h3 className="text-lg font-bold text-white">{item.nome}</h3>
-                          <p
-                            className={`font-semibold`}
-                            style={{ color: isSelecionado(item.id) ? theme.colors.primary : "white" }}
-                          >
-                            R$ {item.preco}
-                          </p>
+                          
+                          <div className="flex flex-row justify-between">
+                            <p
+                              className={`font-semibold`}
+                              style={{ color: isSelecionado(item.id) ? theme.colors.primary : "white" }}
+                            >
+                              R$ {item.preco}
+                            </p>
+
+                            <p
+                              className={`text-xs mt-1`}
+                              style={{ color: "white" }}
+                            >
+                            {item.tempoEstimadoMinutos} min
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
