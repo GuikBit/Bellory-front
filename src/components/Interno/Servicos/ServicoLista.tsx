@@ -11,10 +11,8 @@ import { Tag } from "primereact/tag"
 import { InputNumber, type InputNumberValueChangeEvent } from "primereact/inputnumber"
 import { MultiSelect, type MultiSelectChangeEvent } from "primereact/multiselect"
 import { InputTextarea } from "primereact/inputtextarea"
-import { Button } from "primereact/button"
-import { Dialog } from "primereact/dialog"
 import { motion, AnimatePresence } from "framer-motion"
-import { Pencil, Plus, Save, Trash2, X } from "lucide-react"
+import { Pencil, Plus, Trash2,} from "lucide-react"
 import { useGetAllServicos, useUpdateServico } from "../../../service/Query/servico/ServicoQuerys"
 import type { Servicos } from "../../../utils/interfaces"
 import { useTheme } from "../../../global/Theme-context"
@@ -37,8 +35,8 @@ const ServicoLista = () => {
   const { currentTheme: theme } = useTheme()
   const isMobile = useIsMobile()
 
-  const { data, isLoading, isSuccess, error } = useGetAllServicos()
-  const { mutateAsync: updateServico } = useUpdateServico()
+  const { data, isLoading, isSuccess, error } = useGetAllServicos();
+  const { mutateAsync: updateServico } = useUpdateServico();
 
   const [visibleRight, setVisibleRight] = useState(false);
 

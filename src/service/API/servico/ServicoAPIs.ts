@@ -2,7 +2,7 @@ import axios from "axios";
 import api from "../ApiConfig";
 import { Servicos } from "../../../utils/interfaces";
 
-interface Response {
+export interface Response {
   success: boolean
   message: string
   errorCode: number

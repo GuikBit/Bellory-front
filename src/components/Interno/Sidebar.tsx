@@ -26,6 +26,8 @@ import {
   CalendarDays,
   PanelsTopLeft,
   ChartNoAxesCombined,
+  ShoppingCart,
+  Boxes,
 } from "lucide-react"
 import { useNavigate, useLocation } from "react-router"
 import { useTheme } from "../../global/Theme-context"
@@ -99,24 +101,26 @@ const InternalSidebar = ({ isOpen, onToggle }: InternalSidebarProps) => {
       ],
     },
     {
-      id: "produtos",
-      label: "Produtos",
-      icon: Package,
-      path: "/produtos",
+      id: "ecommerce",
+      label: "E-commerce",
+      icon: ShoppingCart,
+      path: "/ecommerce",
       subItems: [
-        { id: "produtos-estoque", label: "Estoque", icon: Package, path: "/produtos/estoque" },
-        { id: "produtos-vendas", label: "Vendas", icon: TrendingUp, path: "/produtos/vendas" },
+        { id: "ecommerce-produtos", label: "Produtos", icon: Package, path: "/ecommerce/produtos" },
+        { id: "ecommerce-estoque", label: "Estoque", icon: Boxes, path: "/ecommerce/estoque" },
+        { id: "ecommerce-vendas", label: "Vendas", icon: TrendingUp, path: "/ecommerce/vendas" },
+        
       ],
     },
     {
       id: "colaboradores",
       label: "Colaboradores",
       icon: UsersRound,
-      path: "/colaboradores",
-      subItems: [
-        { id: "colaboradores-estoque", label: "Ativos", icon: UserCheck, path: "/colaboradores/ativos" },
-        { id: "colaboradores-vendas", label: "Plano de horário", icon: CalendarDays, path: "/colaboradores/planoshorario" },
-      ],
+      path: "/colaboradores/lista",
+      // subItems: [
+      //   { id: "colaboradores-estoque", label: "Ativos", icon: UserCheck, path: "/colaboradores/ativos" },
+      //   { id: "colaboradores-vendas", label: "Plano de horário", icon: CalendarDays, path: "/colaboradores/planoshorario" },
+      // ],
     },
     {
       id: "financeiro",

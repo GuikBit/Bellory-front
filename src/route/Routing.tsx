@@ -19,6 +19,7 @@ const Dashboard = lazy(()=> import("../views/Interno/Dashboard"));
 const ServicoLista = lazy(()=> import("../components/Interno/Servicos/ServicoLista"));
 const ServicoCategoria = lazy(()=> import("../components/Interno/Servicos/ServicoCategoria"));
 const ColaboradorLista = lazy(()=> import("../components/Interno/Colaboradores/ColaboradoresLista"));
+const ProdutoLista = lazy(()=> import("../components/Interno/Ecommerce/ProdutosLista"));
 const AgendamentoMonitoramento = lazy(()=> import("../components/Interno/Agendamento/AgendamentoMonitoramento"));
 // const ServicoCategoria = lazy(()=> import("../components/Interno/Servicos/ServicoCategoria"));
 // const ServicoCategoria = lazy(()=> import("../components/Interno/Servicos/ServicoCategoria"));
@@ -72,6 +73,10 @@ function Routing() {
             <Route path="/servicos/categorias" element={<ServicoCategoria />} />
 
             <Route path="/agendamento" element={<AgendamentoMonitoramento />} />
+
+            <Route path="/colaboradores/lista" element={<ColaboradorLista />} />
+
+            <Route path="/ecommerce/produtos" element={<ProdutoLista />} />
             {/* etc */}
           </Route>
         </Routes>

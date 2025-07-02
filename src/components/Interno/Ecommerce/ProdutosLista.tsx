@@ -1,40 +1,29 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { useTheme } from "../../../global/Theme-context";
 import { useGetAllFunconarios } from "../../../service/Query/funcionario/FuncionarioQuery";
-import { Servicos } from "../../../utils/interfaces";
+import { Produto } from "../../../utils/interfaces";
 import { BarbeariaButton } from "../../ui";
-import ColaboradoresCadastro from "./ColaboradoresCadastro";
 import { useIsMobile } from "../../../hooks/useIsMobile";
 import { DataTable } from "primereact/datatable";
 import { useEffect, useState } from "react";
 import { Column } from "primereact/column";
 
 
-interface Funcionario{
-    id: string;
-    nome: string;
-    especialidades: string[];
-    telefone: string;
-    email: string;
-    dataNascimento: Date;
-    dataAdmissao: Date;
-    salario: number;
-}
 
 
-const ColaboradoresLista = () => {
+const ProdutosLista = () => {
     const { currentTheme: theme } = useTheme();
     const isMobile = useIsMobile();
 
     const { data, isLoading, isSuccess, isError } = useGetAllFunconarios();
 
-    const [funcionario, setFuncionario] = useState<Funcionario[]>([]);
+    const [funcionario, setFuncionario] = useState<Produto[]>([]);
 
     const header = (
         <div className="">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                 <h2 className="text-xl font-semibold" style={{ color: theme.colors.text, fontFamily: theme.fonts.heading }}>
-                    Lista de Funcionários
+                    Lista de Produtos
                 </h2>
             </div>
             <div className="flex flex-row justify-between items-center mb-4">
@@ -59,7 +48,7 @@ const ColaboradoresLista = () => {
         </div>
     )
 
-      const actionBodyTemplate = (rowData: Funcionario) => {
+      const actionBodyTemplate = (rowData: Produto) => {
         return (
             <div className="flex gap-2">
                 <BarbeariaButton 
@@ -134,4 +123,4 @@ const ColaboradoresLista = () => {
     )
 }
 
-export default ColaboradoresLista;
+export default ProdutosLista;
