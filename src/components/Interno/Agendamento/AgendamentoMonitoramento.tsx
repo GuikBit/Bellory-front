@@ -1,11 +1,13 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useMemo } from "react"
+import { motion } from "framer-motion"
+import FullCalendar from "@fullcalendar/react"
+import timeGridPlugin from "@fullcalendar/timegrid"
+import dayGridPlugin from "@fullcalendar/daygrid"
+import interactionPlugin from "@fullcalendar/interaction"
 import {
   CalendarIcon,
-  Clock,
-  User,
   Filter,
   RefreshCw,
   CheckCircle,
@@ -14,10 +16,17 @@ import {
   Play,
   Search,
   Users,
+  User,
+  Scissors,
 } from "lucide-react"
 import { BarbeariaCard, BarbeariaButton, BarbeariaInput } from "../../../components/ui"
 import { useTheme } from "../../../global/Theme-context"
 import BarbeariaDropdown from "../../ui/BarbeariaDropdown"
+import Tippy from "@tippyjs/react"
+import "tippy.js/dist/tippy.css"
+import "tippy.js/animations/scale-subtle.css" // Importando a animação
+import DetalhesAgendamentoModal from "./AgendamentoDetalhes"
+import QuickAddAgendamentoModal from "./AgendamentoNovo"
 
 // Interfaces
 interface Agendamento {
@@ -79,152 +88,31 @@ const mockAgendamentos: Agendamento[] = [
     clienteTelefone: "(11) 77777-7777",
     servicoNome: "Barba",
     colaboradorNome: "Pedro Costa",
-    dataHora: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
+    dataHora: new Date(Date.now() + 120 * 60 * 1000).toISOString(),
     duracao: 30,
     preco: 25,
-    status: "concluido",
-  },
-  {
-    id: "4",
-    clienteNome: "Fernanda Silva",
-    clienteTelefone: "(11) 66666-6666",
-    servicoNome: "Coloração",
-    colaboradorNome: "Maria Santos",
-    dataHora: new Date(Date.now() - 120 * 60 * 1000).toISOString(),
-    duracao: 90,
-    preco: 80,
-    status: "cancelado",
-  },
-    {
-    id: "1",
-    clienteNome: "Carlos Oliveira",
-    clienteTelefone: "(11) 99999-9999",
-    servicoNome: "Corte + Barba",
-    colaboradorNome: "João Silva",
-    dataHora: new Date().toISOString(),
-    duracao: 60,
-    preco: 45,
-    status: "em_andamento",
-  },
-  {
-    id: "2",
-    clienteNome: "Ana Costa",
-    clienteTelefone: "(11) 88888-8888",
-    servicoNome: "Corte Feminino",
-    colaboradorNome: "Maria Santos",
-    dataHora: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
-    duracao: 45,
-    preco: 35,
     status: "agendado",
   },
   {
-    id: "3",
-    clienteNome: "Roberto Lima",
-    clienteTelefone: "(11) 77777-7777",
-    servicoNome: "Barba",
-    colaboradorNome: "Pedro Costa",
-    dataHora: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
-    duracao: 30,
-    preco: 25,
-    status: "concluido",
-  },
-  {
     id: "4",
     clienteNome: "Fernanda Silva",
     clienteTelefone: "(11) 66666-6666",
     servicoNome: "Coloração",
     colaboradorNome: "Maria Santos",
-    dataHora: new Date(Date.now() - 120 * 60 * 1000).toISOString(),
+    dataHora: new Date(Date.now() + 180 * 60 * 1000).toISOString(),
     duracao: 90,
     preco: 80,
-    status: "cancelado",
+    status: "concluido",
   },
-    {
-    id: "1",
-    clienteNome: "Carlos Oliveira",
-    clienteTelefone: "(11) 99999-9999",
-    servicoNome: "Corte + Barba",
+  {
+    id: "5",
+    clienteNome: "Lucas Pereira",
+    clienteTelefone: "(11) 55555-5555",
+    servicoNome: "Corte",
     colaboradorNome: "João Silva",
-    dataHora: new Date().toISOString(),
-    duracao: 60,
-    preco: 45,
-    status: "em_andamento",
-  },
-  {
-    id: "2",
-    clienteNome: "Ana Costa",
-    clienteTelefone: "(11) 88888-8888",
-    servicoNome: "Corte Feminino",
-    colaboradorNome: "Maria Santos",
-    dataHora: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
-    duracao: 45,
-    preco: 35,
-    status: "agendado",
-  },
-  {
-    id: "3",
-    clienteNome: "Roberto Lima",
-    clienteTelefone: "(11) 77777-7777",
-    servicoNome: "Barba",
-    colaboradorNome: "Pedro Costa",
-    dataHora: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
+    dataHora: new Date(Date.now() + 240 * 60 * 1000).toISOString(),
     duracao: 30,
     preco: 25,
-    status: "concluido",
-  },
-  {
-    id: "4",
-    clienteNome: "Fernanda Silva",
-    clienteTelefone: "(11) 66666-6666",
-    servicoNome: "Coloração",
-    colaboradorNome: "Maria Santos",
-    dataHora: new Date(Date.now() - 120 * 60 * 1000).toISOString(),
-    duracao: 90,
-    preco: 80,
-    status: "cancelado",
-  },
-    {
-    id: "1",
-    clienteNome: "Carlos Oliveira",
-    clienteTelefone: "(11) 99999-9999",
-    servicoNome: "Corte + Barba",
-    colaboradorNome: "João Silva",
-    dataHora: new Date().toISOString(),
-    duracao: 60,
-    preco: 45,
-    status: "em_andamento",
-  },
-  {
-    id: "2",
-    clienteNome: "Ana Costa",
-    clienteTelefone: "(11) 88888-8888",
-    servicoNome: "Corte Feminino",
-    colaboradorNome: "Maria Santos",
-    dataHora: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
-    duracao: 45,
-    preco: 35,
-    status: "agendado",
-  },
-  {
-    id: "3",
-    clienteNome: "Roberto Lima",
-    clienteTelefone: "(11) 77777-7777",
-    servicoNome: "Barba",
-    colaboradorNome: "Pedro Costa",
-    dataHora: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
-    duracao: 30,
-    preco: 25,
-    status: "concluido",
-  },
-  {
-    id: "4",
-    clienteNome: "Fernanda Silva",
-    clienteTelefone: "(11) 66666-6666",
-    servicoNome: "Coloração",
-    colaboradorNome: "Maria Santos",
-    dataHora: new Date(Date.now() - 120 * 60 * 1000).toISOString(),
-    duracao: 90,
-    preco: 80,
     status: "cancelado",
   },
 ]
@@ -237,60 +125,35 @@ const AgendamentoMonitoramento = ({ className }: AgendamentoMonitoramentoProps) 
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedColaborador, setSelectedColaborador] = useState<string>("")
   const [selectedStatus, setSelectedStatus] = useState<string>("")
-  const [dateRange, setDateRange] = useState<Date[]>([])
-  const [currentTime, setCurrentTime] = useState(new Date())
-
-  // URL parameters
-  const [urlParams, setUrlParams] = useState({
-    hoje: "",
-    semana: "",
-    historico: false,
-  })
-
-  // Update current time every minute
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date())
-    }, 60000)
-    return () => clearInterval(timer)
-  }, [])
-
-  // Parse URL parameters
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search)
-      setUrlParams({
-        hoje: params.get("hoje") || "",
-        semana: params.get("semana") || "",
-        historico: params.get("historico") === "true",
-      })
-    }
-  }, [])
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedAgendamento, setSelectedAgendamento] = useState<Agendamento | null>(null)
+  const [quickAddModalOpen, setQuickAddModalOpen] = useState(false)
+  const [selectedSlotInfo, setSelectedSlotInfo] = useState<any>(null)
 
   // Status configurations
   const statusConfig = {
     agendado: {
       label: "Agendado",
       color: theme.colors.primary,
-      bgColor: `${theme.colors.primary}15`,
+      bgColor: theme.colors.primary,
       icon: CalendarIcon,
     },
     em_andamento: {
       label: "Em Andamento",
       color: "#f59e0b",
-      bgColor: "#fef3c7",
+      bgColor: "#f59e0b",
       icon: Play,
     },
     concluido: {
       label: "Concluído",
       color: "#10b981",
-      bgColor: "#d1fae5",
+      bgColor: "#10b981",
       icon: CheckCircle,
     },
     cancelado: {
       label: "Cancelado",
       color: "#ef4444",
-      bgColor: "#fee2e2",
+      bgColor: "#ef4444",
       icon: XCircle,
     },
   }
@@ -328,37 +191,23 @@ const AgendamentoMonitoramento = ({ className }: AgendamentoMonitoramentoProps) 
     return filtered
   }, [agendamentos, searchTerm, selectedColaborador, selectedStatus])
 
-  // Group agendamentos by status
-  const agendamentosByStatus = useMemo(() => {
-    const grouped = {
-      agendado: [] as Agendamento[],
-      em_andamento: [] as Agendamento[],
-      concluido: [] as Agendamento[],
-      cancelado: [] as Agendamento[],
-    }
+  // Map agendamentos to FullCalendar events
+  const calendarEvents = useMemo(() => {
+    return filteredAgendamentos.map((agendamento) => {
+      const startDate = new Date(agendamento.dataHora)
+      const endDate = new Date(startDate.getTime() + agendamento.duracao * 60 * 1000)
 
-    filteredAgendamentos.forEach((agendamento) => {
-      grouped[agendamento.status].push(agendamento)
+      return {
+        id: agendamento.id,
+        title: agendamento.clienteNome,
+        start: startDate.toISOString(),
+        end: endDate.toISOString(),
+        backgroundColor: statusConfig[agendamento.status].bgColor,
+        borderColor: statusConfig[agendamento.status].color,
+        extendedProps: agendamento,
+      }
     })
-
-    // Sort each group by date
-    Object.keys(grouped).forEach((status) => {
-      grouped[status as keyof typeof grouped].sort(
-        (a, b) => new Date(a.dataHora).getTime() - new Date(b.dataHora).getTime(),
-      )
-    })
-
-    return grouped
   }, [filteredAgendamentos])
-
-  // Handle status change
-  const handleStatusChange = (agendamentoId: string, newStatus: Agendamento["status"]) => {
-    setAgendamentos((prev) =>
-      prev.map((agendamento) =>
-        agendamento.id === agendamentoId ? { ...agendamento, status: newStatus } : agendamento,
-      ),
-    )
-  }
 
   // Format time
   const formatTime = (dateString: string) => {
@@ -368,188 +217,158 @@ const AgendamentoMonitoramento = ({ className }: AgendamentoMonitoramentoProps) 
     })
   }
 
-  // Render clean appointment card
-  const renderCleanAppointmentCard = (agendamento: Agendamento) => {
-    const status = statusConfig[agendamento.status]
-    const StatusIcon = status.icon
-
-    return (
-      <motion.div
-        key={agendamento.id}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        layout
-      >
-        <BarbeariaCard variant="outline" size="sm" rounded="lg" hover="lift" className="relative">
-          {/* Status indicator line */}
-          <div className="absolute top-0 left-0 w-full h-1 rounded-t-lg" style={{ backgroundColor: status.color }} />
-
-          <div className="p-4">
-            {/* Header */}
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-base truncate" style={{ color: theme.colors.text }}>
-                  {agendamento.clienteNome}
-                </h3>
-                <p className="text-sm truncate" style={{ color: theme.colors.textSecondary }}>
-                  {agendamento.servicoNome}
-                </p>
-              </div>
-
-              <div
-                className="px-2 py-1 rounded-full flex items-center gap-1 ml-2"
-                style={{ backgroundColor: status.bgColor }}
-              >
-                <StatusIcon size={12} style={{ color: status.color }} />
-                <span className="text-xs font-medium whitespace-nowrap" style={{ color: status.color }}>
-                  {status.label}
-                </span>
-              </div>
-            </div>
-
-            {/* Details */}
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Clock size={14} style={{ color: theme.colors.primary }} />
-                  <span style={{ color: theme.colors.text }}>{formatTime(agendamento.dataHora)}</span>
-                </div>
-                <span className="font-medium" style={{ color: theme.colors.text }}>
-                  R$ {agendamento.preco.toFixed(2)}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <User size={14} style={{ color: theme.colors.primary }} />
-                <span className="truncate" style={{ color: theme.colors.text }}>
-                  {agendamento.colaboradorNome}
-                </span>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-2 mt-4">
-              {agendamento.status === "agendado" && (
-                <>
-                  <BarbeariaButton
-                    variant="primary"
-                    size="sm"
-                    rounded="lg"
-                    className="flex-1"
-                    onClick={() => handleStatusChange(agendamento.id, "em_andamento")}
-                  >
-                    Iniciar
-                  </BarbeariaButton>
-                  <BarbeariaButton
-                    variant="outline"
-                    size="sm"
-                    rounded="lg"
-                    onClick={() => handleStatusChange(agendamento.id, "cancelado")}
-                  >
-                    Cancelar
-                  </BarbeariaButton>
-                </>
-              )}
-
-              {agendamento.status === "em_andamento" && (
-                <BarbeariaButton
-                  variant="success"
-                  size="sm"
-                  rounded="lg"
-                  className="flex-1"
-                  onClick={() => handleStatusChange(agendamento.id, "concluido")}
-                >
-                  Finalizar
-                </BarbeariaButton>
-              )}
-            </div>
-          </div>
-        </BarbeariaCard>
-      </motion.div>
+  // Handle status change
+  const handleStatusChange = (agendamentoId: string, newStatus: Agendamento["status"]) => {
+    setAgendamentos((prev) =>
+      prev.map((agendamento) =>
+        agendamento.id === agendamentoId ? { ...agendamento, status: newStatus } : agendamento,
+      ),
     )
+    setModalOpen(false) // Close modal after status change
   }
 
-  // Render status section
-  const renderStatusSection = (status: keyof typeof statusConfig, agendamentos: Agendamento[]) => {
-    const config = statusConfig[status]
-    const StatusIcon = config.icon
+  // Handle add new agendamento
+  const handleAddAgendamento = (data: {
+    clienteNome: string
+    servicoNome: string
+    colaboradorNome: string
+    duracao: number
+    preco: number
+  }) => {
+    const novoAgendamento: Agendamento = {
+      id: Date.now().toString(), // Simple unique ID
+      clienteNome: data.clienteNome,
+      clienteTelefone: "", // Default empty
+      servicoNome: data.servicoNome,
+      colaboradorNome: data.colaboradorNome,
+      dataHora: selectedSlotInfo.start.toISOString(),
+      duracao: data.duracao,
+      preco: data.preco,
+      status: "agendado",
+    }
 
-    if (selectedStatus && selectedStatus !== status) return null
+    setAgendamentos([...agendamentos, novoAgendamento])
+    setQuickAddModalOpen(false)
+    setSelectedSlotInfo(null)
+  }
 
+  // NOVO COMPONENTE INTERNO PARA O POPOVER
+  const AgendamentoPopover = ({ agendamento }: { agendamento: Agendamento }) => {
     return (
-      <div key={status} className="space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg" style={{ backgroundColor: config.bgColor }}>
-            <StatusIcon size={20} style={{ color: config.color }} />
+      <div
+        className="rounded-lg border shadow-lg p-3 w-64 text-sm z-10"
+        style={{
+          backgroundColor: theme.colors.background,
+          color: theme.colors.text,
+          borderColor: theme.colors.border,
+        }}
+      >
+        {/* Seção de Informações */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <User size={14} style={{ color: theme.colors.textSecondary }} />
+            <span className="font-bold">{agendamento.clienteNome}</span>
           </div>
-          <div>
-            <h2 className="text-lg font-semibold" style={{ color: theme.colors.text }}>
-              {config.label}
-            </h2>
-            <p className="text-sm" style={{ color: theme.colors.textSecondary }}>
-              {agendamentos.length} {agendamentos.length === 1 ? "agendamento" : "agendamentos"}
-            </p>
+          <div className="flex items-center gap-2">
+            <Scissors size={14} style={{ color: theme.colors.textSecondary }} />
+            <span>{agendamento.servicoNome}</span>
           </div>
         </div>
 
-        {agendamentos.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <AnimatePresence>
-              {agendamentos.map((agendamento) => renderCleanAppointmentCard(agendamento))}
-            </AnimatePresence>
+        {/* Divisor */}
+        <hr className="my-3" style={{ borderColor: theme.colors.border }} />
+
+        {/* Seção de Ações */}
+        <div className="flex items-center justify-between">
+          {/* <span className="text-xs font-medium" style={{ color: theme.colors.textSecondary }}>
+            Ações:
+          </span> */}
+          <div className="flex gap-2 w-full justify-center">
+            {agendamento.status === "agendado" && (
+              <BarbeariaButton
+                size="xs"
+                variant="primary"
+                onClick={() => handleStatusChange(agendamento.id, "em_andamento")}
+              >
+                <Play size={14} className="mr-1" /> Iniciar
+              </BarbeariaButton>
+            )}
+            {agendamento.status === "em_andamento" && (
+              <>
+                <BarbeariaButton
+                  size="xs"
+                  variant="success"
+                  fullWidth
+                  onClick={() => handleStatusChange(agendamento.id, "concluido")}
+                >
+                  <CheckCircle size={14} className="mr-1" /> Concluir
+                </BarbeariaButton>
+                <BarbeariaButton
+                  size="xs"
+                  variant="error"
+                  fullWidth
+                  onClick={() => handleStatusChange(agendamento.id, "cancelado")}
+                >
+                  <XCircle size={14} className="mr-1" /> Cancelar
+                </BarbeariaButton>
+              </>
+            )}
           </div>
-        ) : (
-          <div className="text-center py-8">
-            <div
-              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3"
-              style={{ backgroundColor: config.bgColor }}
-            >
-              <StatusIcon size={24} style={{ color: config.color }} />
-            </div>
-            <p className="text-sm" style={{ color: theme.colors.textSecondary }}>
-              Nenhum agendamento {config.label.toLowerCase()}
-            </p>
-          </div>
-        )}
+        </div>
       </div>
     )
+  }
+
+  // Custom event content renderer with Tippy popover
+  const renderEventContent = (eventInfo: any) => {
+    const agendamento = eventInfo.event.extendedProps as Agendamento
+    const startTime = formatTime(agendamento.dataHora)
+    const endTime = formatTime(
+      new Date(new Date(agendamento.dataHora).getTime() + agendamento.duracao * 60 * 1000).toISOString(),
+    )
+
+    return (
+      <Tippy
+        content={<AgendamentoPopover agendamento={agendamento} />}
+        interactive={true}
+        zIndex={9999}
+        trigger="mouseenter"
+        placement="top-start"
+        animation="scale-subtle"
+      >
+        <div className="p-2 text-xs overflow-hidden cursor-pointer w-full h-full">
+          <div className="font-semibold text-white truncate">{agendamento.clienteNome}</div>
+          <div className="text-white/90 truncate">{agendamento.servicoNome}</div>
+          <div className="text-white/80 text-xs">
+            {startTime} - {endTime}
+          </div>
+          <div className="text-white/80 text-xs truncate">{agendamento.colaboradorNome}</div>
+        </div>
+      </Tippy>
+    )
+  }
+
+  // Handle event click
+  const handleEventClick = (clickInfo: any) => {
+    const agendamento = clickInfo.event.extendedProps as Agendamento
+    setSelectedAgendamento(agendamento)
+    setModalOpen(true)
   }
 
   return (
     <div className={`space-y-6 ${className}`} style={{ backgroundColor: theme.colors.background }}>
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-bold" style={{ color: theme.colors.text, fontFamily: theme.fonts.heading }}>
-            Agendamentos
-          </h1>
-          <p style={{ color: theme.colors.textSecondary }}>Monitore e gerencie todos os agendamentos</p>
+      {/* Filters */}
+      <div className="p-4 border rounded-lg shadow" style={{ borderColor: theme.colors.border }}>
+        <div className="flex items-center gap-2 mb-2">
+          <Filter size={18} style={{ color: theme.colors.primary }} />
+          <h3 className="font-semibold" style={{ color: theme.colors.text }}>
+            Filtros
+          </h3>
         </div>
 
-        <BarbeariaButton
-          variant="outline"
-          size="sm"
-          leftIcon={<RefreshCw size={16} />}
-          onClick={() => setIsLoading(true)}
-          isLoading={isLoading}
-        >
-          Atualizar
-        </BarbeariaButton>
-      </div>
-
-      {/* Filters */}
-      <BarbeariaCard variant="filled" size="md" rounded="lg">
-        <div className="p-4">
-          <div className="flex items-center gap-2 mb-4">
-            <Filter size={18} style={{ color: theme.colors.primary }} />
-            <h3 className="font-semibold" style={{ color: theme.colors.text }}>
-              Filtros
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Search */}
+        <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
+          {/* Search */}
+          <div className="md:col-span-3">
             <BarbeariaInput
               placeholder="Buscar cliente, serviço..."
               value={searchTerm}
@@ -561,8 +380,10 @@ const AgendamentoMonitoramento = ({ className }: AgendamentoMonitoramentoProps) 
               onChange={(e) => setSearchTerm(e.target.value)}
               onClear={() => setSearchTerm("")}
             />
+          </div>
 
-            {/* Status Filter */}
+          {/* Status Filter */}
+          <div className="md:col-span-2">
             <BarbeariaDropdown
               placeholder="Filtrar por status"
               value={selectedStatus}
@@ -575,8 +396,10 @@ const AgendamentoMonitoramento = ({ className }: AgendamentoMonitoramentoProps) 
               onChange={(value) => setSelectedStatus(value)}
               onClear={() => setSelectedStatus("")}
             />
+          </div>
 
-            {/* Colaborador */}
+          {/* Colaborador */}
+          <div className="md:col-span-2">
             <BarbeariaDropdown
               placeholder="Todos os colaboradores"
               value={selectedColaborador}
@@ -593,14 +416,141 @@ const AgendamentoMonitoramento = ({ className }: AgendamentoMonitoramentoProps) 
               onClear={() => setSelectedColaborador("")}
             />
           </div>
-        </div>
-      </BarbeariaCard>
 
-      {/* Status Sections */}
-      <div className="space-y-8">
-        {Object.entries(agendamentosByStatus).map(([status, agendamentos]) =>
-          renderStatusSection(status as keyof typeof statusConfig, agendamentos),
-        )}
+          <div>
+            <BarbeariaButton
+              variant="outline"
+              size="sm"
+              leftIcon={<RefreshCw size={16} />}
+              onClick={() => setIsLoading(true)}
+              isLoading={isLoading}
+            >
+              Atualizar
+            </BarbeariaButton>
+          </div>
+        </div>
+      </div>
+
+      {/* FullCalendar */}
+      <div className="border rounded-lg overflow-hidden shadow" style={{ borderColor: theme.colors.border }}>
+        <style>{`
+          :root {
+            --fc-bg-color: ${theme.colors.background};
+            --fc-border-color: ${theme.colors.border};
+            --fc-text-color: ${theme.colors.text};
+            --fc-main-color: ${theme.colors.primary};
+          }
+          
+          .fc {
+            background-color: var(--fc-bg-color);
+            color: var(--fc-text-color);
+            font-family: ${theme.fonts.body};
+          }
+          
+          .fc .fc-toolbar {
+            background-color: var(--fc-bg-color);
+            border-bottom: 1px solid var(--fc-border-color);
+            padding: 1rem;
+          }
+          
+          .fc .fc-toolbar-title {
+            color: var(--fc-text-color);
+            font-weight: 600;
+            font-size: 1.25rem;
+          }
+          
+          .fc .fc-button {
+            background-color: var(--fc-main-color);
+            border-color: var(--fc-main-color);
+            color: white;
+          }
+          
+          .fc .fc-button:hover {
+            background-color: var(--fc-main-color);
+            opacity: 0.9;
+          }
+          
+          .fc .fc-button:disabled {
+            opacity: 0.6;
+          }
+          
+          .fc-theme-standard .fc-scrollgrid {
+            border-color: var(--fc-border-color);
+          }
+          
+          .fc-theme-standard td, .fc-theme-standard th {
+            border-color: var(--fc-border-color);
+          }
+          
+          .fc .fc-col-header {
+            background-color: ${theme.colors.background};
+            color: var(--fc-text-color);
+            font-weight: 600;
+          }
+          
+          .fc .fc-timegrid-slot {
+            border-color: var(--fc-border-color);
+          }
+          
+          .fc .fc-timegrid-slot-label {
+            color: var(--fc-text-color);
+            font-size: 0.875rem;
+          }
+          
+          .fc .fc-event {
+            border-radius: 6px;
+            border-width: 1px;
+            font-size: 2.75rem;
+            cursor: pointer;
+            z-index: 0;
+            overflow: visible;
+          }
+          
+          .fc .fc-event:hover {
+            opacity: 0.9;
+          }
+          
+          .fc .fc-timegrid-event {
+            border-radius: 6px;
+            height: auto;
+          }
+          
+          .fc-direction-ltr .fc-timegrid-slot-label-frame {
+            text-align: right;
+            padding-right: 8px;
+          }
+        `}</style>
+
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView="timeGridDay"
+          locale="pt-br"
+          allDaySlot={false}
+          selectable={true}
+          headerToolbar={{
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay",
+          }}
+          events={calendarEvents}
+          eventContent={renderEventContent}
+          eventClick={handleEventClick}
+          select={(selectInfo) => {
+            setSelectedSlotInfo(selectInfo)
+            setQuickAddModalOpen(true)
+          }}
+          height="auto"
+          slotMinTime="08:00:00"
+          slotMaxTime="20:00:00"
+          slotDuration="00:30:00"
+          slotLabelInterval="01:00:00"
+          nowIndicator={true}
+          businessHours={{
+            daysOfWeek: [1, 2, 3, 4, 5, 6],
+            startTime: "08:00",
+            endTime: "18:00",
+          }}
+        />
       </div>
 
       {/* Empty State */}
@@ -617,6 +567,21 @@ const AgendamentoMonitoramento = ({ className }: AgendamentoMonitoramentoProps) 
           </BarbeariaCard>
         </motion.div>
       )}
+      {/* Details Modal */}
+      <DetalhesAgendamentoModal
+        agendamento={selectedAgendamento}
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onStatusChange={handleStatusChange}
+      />
+      {/* Quick Add Modal */}
+      <QuickAddAgendamentoModal
+        isOpen={quickAddModalOpen}
+        onClose={() => setQuickAddModalOpen(false)}
+        onAddAgendamento={handleAddAgendamento}
+        slotInfo={selectedSlotInfo}
+        colaboradores={colaboradores}
+      />
     </div>
   )
 }

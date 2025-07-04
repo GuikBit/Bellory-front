@@ -11,10 +11,16 @@
     "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.png"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.18",
+    "@fullcalendar/daygrid": "^6.1.18",
+    "@fullcalendar/interaction": "^6.1.18",
+    "@fullcalendar/react": "^6.1.18",
+    "@fullcalendar/timegrid": "^6.1.18",
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
     "@tailwindcss/vite": "^4.1.5",
     "@tanstack/react-query": "^5.75.0",
+    "@tippyjs/react": "^4.2.6",
     "axios": "^1.10.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.9.4",
