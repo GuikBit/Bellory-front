@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 import { Servicos } from "../../../utils/interfaces"
 
 
@@ -10,21 +10,22 @@ interface ServicoCadastroProps {
   onClose?: () => void
 }
 
+//detalhes = null, onSave, onCancel, isOpen = true, onClose
 
-const ColaboradoresCadastro = ({ detalhes = null, onSave, onCancel, isOpen = true, onClose }: ServicoCadastroProps) =>{
+const ColaboradoresCadastro = ({  }: ServicoCadastroProps) =>{
 
-    const [servico, setServico] = useState<Servicos>({
-        organizacao_id: 1,
-        nome: "",
-        categoria: "",
-        genero: "",
-        descricao: "",
-        duracaoEstimadaMinutos: 0,
-        preco: 0,
-        produtos: [],
-        urlsImagens: [],
-        ativo: true,
-    })
+    // const [servico, setServico] = useState<Servicos>({
+    //     organizacao_id: 1,
+    //     nome: "",
+    //     categoria: "",
+    //     genero: "",
+    //     descricao: "",
+    //     duracaoEstimadaMinutos: 0,
+    //     preco: 0,
+    //     produtos: [],
+    //     urlsImagens: [],
+    //     ativo: true,
+    // })
 
     return(
         <div>

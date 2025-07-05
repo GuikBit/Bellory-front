@@ -1100,7 +1100,7 @@ const Componentes = () => {
                 clearable
                 maxLength={100}
                 showCounter
-                onChange={(e) => handleChange("nome")}
+                onChange={() => handleChange("nome")}
                 onClear={() => handleChange("nome")}
                 helperText="Nome que aparecerá no seu perfil"
               />
@@ -1117,7 +1117,7 @@ const Componentes = () => {
                 fullWidth
                 required
                 clearable
-                onChange={(e) => handleChange("email")}
+                onChange={() => handleChange("email")}
                 onClear={() => handleChange("email")}
                 helperText="Usado para login e notificações"
               />
@@ -1135,7 +1135,7 @@ const Componentes = () => {
                 required
                 searchable
                 clearable
-                onChange={(value) => handleChange("categoria")}
+                onChange={() => handleChange("categoria")}
                 onClear={() => handleChange("categoria")}
                 helperText="Categoria principal do seu serviço"
               />
@@ -1150,7 +1150,7 @@ const Componentes = () => {
                 rounded="lg"
                 fullWidth
                 required
-                onChange={(value) => handleChange("genero")}
+                onChange={() => handleChange("genero")}
                 helperText="Público que você atende"
               />
             </div>
@@ -1166,7 +1166,7 @@ const Componentes = () => {
               <BarbeariaInputSwitch
                 label="Notificações Push"
                 checked={formData.notificacoes}
-                onChange={(checked) => handleChange("notificacoes")}
+                onChange={() => handleChange("notificacoes")}
                 size="lg"
                 rounded="full"
                 activeText="Ativado"
@@ -1180,7 +1180,7 @@ const Componentes = () => {
               <BarbeariaInputSwitch
                 label="Modo Escuro"
                 checked={formData.modoEscuro}
-                onChange={(checked) => handleChange("modoEscuro")}
+                onChange={() => handleChange("modoEscuro")}
                 size="lg"
                 rounded="full"
                 activeText="Escuro"
@@ -1195,7 +1195,7 @@ const Componentes = () => {
               <BarbeariaInputSwitch
                 label="Salvamento Automático"
                 checked={formData.autoSave}
-                onChange={(checked) => handleChange("autoSave")}
+                onChange={() => handleChange("autoSave")}
                 size="md"
                 rounded="lg"
                 activeText="Auto"
@@ -1209,7 +1209,7 @@ const Componentes = () => {
               <BarbeariaInputSwitch
                 label="Perfil Público"
                 checked={formData.publicoPerfil}
-                onChange={(checked) => handleChange("publicoPerfil")}
+                onChange={() => handleChange("publicoPerfil")}
                 size="md"
                 rounded="full"
                 activeIcon={<Globe size={12} />}

@@ -42,7 +42,7 @@ const ServicoLista = () => {
 
   const [servicos, setServicos] = useState<Servicos[]>([])
   const [editingService, setEditingService] = useState<Servicos | null>(null)
-  const [showEditDialog, setShowEditDialog] = useState(false)
+  // const [showEditDialog, setShowEditDialog] = useState(false)
   const [statuses] = useState<{ label: string; value: boolean }[]>([
     { label: "ATIVO", value: true },
     { label: "INATIVO", value: false },
@@ -384,18 +384,18 @@ const ServicoLista = () => {
 
   const handleMobileEdit = (servico: Servicos) => {
     setEditingService({ ...servico })
-    setShowEditDialog(true)
+    // setShowEditDialog(true)
   }
 
-  const handleSaveMobileEdit = async () => {
-    if (editingService) {
-      const updatedServicos = servicos.map((s) => (s.id === editingService.id ? editingService : s))
-      setServicos(updatedServicos)
-      await updateServico(editingService)
-      setShowEditDialog(false)
-      setEditingService(null)
-    }
-  }
+  // const handleSaveMobileEdit = async () => {
+  //   if (editingService) {
+  //     const updatedServicos = servicos.map((s) => (s.id === editingService.id ? editingService : s))
+  //     setServicos(updatedServicos)
+  //     await updateServico(editingService)
+  //     // setShowEditDialog(false)
+  //     setEditingService(null)
+  //   }
+  // }
 
   const allowEdit = useCallback((rowData: Servicos) => {
     return rowData.ativo !== false
@@ -535,10 +535,10 @@ const ServicoLista = () => {
     )
   }
 
-  const detalhesServico = (servico: Servicos| null) => {
-    setEditingService(servico)
-    setVisibleRight(true)
-  }
+  // const detalhesServico = (servico: Servicos| null) => {
+  //   setEditingService(servico)
+  //   setVisibleRight(true)
+  // }
 
   const actionBodyTemplate = (rowData: Servicos) => {
         return (

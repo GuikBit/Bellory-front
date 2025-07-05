@@ -15,7 +15,6 @@ import {
   Plus,
   Trash2,
   CheckCircle,
-  AlertCircle,
   User,
   Settings,
   Globe,

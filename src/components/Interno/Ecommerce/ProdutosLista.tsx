@@ -15,7 +15,7 @@ const ProdutosLista = () => {
     const { currentTheme: theme } = useTheme();
     const isMobile = useIsMobile();
 
-    const { data, isLoading, isSuccess, isError } = useGetAllFunconarios();
+    const { data, isLoading, isSuccess } = useGetAllFunconarios();
 
     const [funcionario, setFuncionario] = useState<Produto[]>([]);
 
@@ -48,7 +48,7 @@ const ProdutosLista = () => {
         </div>
     )
 
-      const actionBodyTemplate = (rowData: Produto) => {
+      const actionBodyTemplate = () => {
         return (
             <div className="flex gap-2">
                 <BarbeariaButton 

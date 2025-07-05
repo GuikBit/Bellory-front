@@ -1,9 +1,9 @@
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { useTheme } from "../../../global/Theme-context";
 import { useGetAllFunconarios } from "../../../service/Query/funcionario/FuncionarioQuery";
-import { Servicos } from "../../../utils/interfaces";
+
 import { BarbeariaButton } from "../../ui";
-import ColaboradoresCadastro from "./ColaboradoresCadastro";
+
 import { useIsMobile } from "../../../hooks/useIsMobile";
 import { DataTable } from "primereact/datatable";
 import { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ const ColaboradoresLista = () => {
     const { currentTheme: theme } = useTheme();
     const isMobile = useIsMobile();
 
-    const { data, isLoading, isSuccess, isError } = useGetAllFunconarios();
+    const { data, isLoading, isSuccess } = useGetAllFunconarios();
 
     const [funcionario, setFuncionario] = useState<Funcionario[]>([]);
 
@@ -59,7 +59,7 @@ const ColaboradoresLista = () => {
         </div>
     )
 
-      const actionBodyTemplate = (rowData: Funcionario) => {
+      const actionBodyTemplate = () => {
         return (
             <div className="flex gap-2">
                 <BarbeariaButton 
